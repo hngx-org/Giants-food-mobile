@@ -70,7 +70,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appTheme
-          .appBackgroundColor, // Change to your desired background color
+          .appBackgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
