@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../core/utils/image_constant.dart';
 
 class AppSuccessDisplay extends StatelessWidget {
   const AppSuccessDisplay({super.key, required this.displayText});
@@ -12,7 +13,7 @@ class AppSuccessDisplay extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SvgPicture.asset(
-          "assets/images/img_yay.svg",
+          ImageConstant.imgYay,
           height: 250,
         ),
         const SizedBox(
@@ -29,7 +30,7 @@ class AppSuccessDisplay extends StatelessWidget {
               width: 10,
             ),
             SvgPicture.asset(
-              "assets/images/emoji_smiling_face.svg",
+              ImageConstant.imgEmojiSmilingFace
             ),
           ],
         ),
