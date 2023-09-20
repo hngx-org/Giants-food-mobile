@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:giants_free_lunch/screens/profile_page_screen.dart';
 import 'package:giants_free_lunch/themes/app_theme.dart';
-
+import './core/app_export.dart';
 import 'screens/success_screen.dart';
 
 AppTheme appTheme = AppTheme();
+
 void main() {
   runApp(const MyApp());
 }

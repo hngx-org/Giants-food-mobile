@@ -39,7 +39,7 @@ dependencies:
   get_storage: ^2.1.1
   flutter_screenutil: ^5.9.0
   dio: ^5.3.2
-  flutter_svg: ^2.0.5
+  flutter_svg: ^2.0.7
 
 dev_dependencies:
   flutter_test:
@@ -62,12 +62,37 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets: 
+    - assets/
+    - assets/images/
+  fonts: 
+    - family: Lucida Bright
+      fonts: 
+        - asset: assets/fonts/LucidaBrightDemi.ttf
+          weight: 600
+    - family: Inter
+      fonts: 
+        - asset: assets/fonts/InterSemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/InterMedium.ttf
+          weight: 500
+        - asset: assets/fonts/InterBold.ttf
+          weight: 700
+        - asset: assets/fonts/InterRegular.ttf
+          weight: 400
+    - family: IBM Plex Mono
+      fonts: 
+        - asset: assets/fonts/IBMPlexMonoMedium.ttf
+          weight: 500
+    - family: Lato
+      fonts: 
+        - asset: assets/fonts/LatoMedium.ttf
+          weight: 500
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-    - assets/
-    - assets/png/
-
+  # assets:
+  #   - assets/
+  #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
