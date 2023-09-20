@@ -35,7 +35,7 @@ class AddBankAccountScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Get.back(),
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(CupertinoIcons.chevron_left),
         ),
         title: const Text(
           'Add Bank Account',
@@ -53,7 +53,7 @@ class AddBankAccountScreen extends StatelessWidget {
               const Text(
                 'Securely link your bank account',
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -67,6 +67,11 @@ class AddBankAccountScreen extends StatelessWidget {
                   return DropdownMenuItem<String>(
                       value: country, child: Text(country));
                 }).toList(),
+                icon: const Icon(
+                  CupertinoIcons.chevron_down,
+                  size: 16.0,
+                  weight: 18.0,
+                ),
                 decoration: const InputDecoration(
                   hintText: 'Select Country',
                   border: OutlineInputBorder(
@@ -87,6 +92,11 @@ class AddBankAccountScreen extends StatelessWidget {
                     child: Text(bank),
                   );
                 }).toList(),
+                icon: const Icon(
+                  CupertinoIcons.chevron_down,
+                  size: 16.0,
+                  weight: 18.0,
+                ),
                 decoration: const InputDecoration(
                   hintText: 'Select Bank',
                   border: OutlineInputBorder(
