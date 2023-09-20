@@ -12,7 +12,7 @@ class AppSuccessDisplay extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SvgPicture.asset(
-          "assets/YAY.svg",
+          "assets/images/img_yay.svg",
           height: 250,
         ),
         const SizedBox(
@@ -29,7 +29,7 @@ class AppSuccessDisplay extends StatelessWidget {
               width: 10,
             ),
             SvgPicture.asset(
-              "assets/emoji_smiling_face.svg",
+              "assets/images/emoji_smiling_face.svg",
             ),
           ],
         ),
