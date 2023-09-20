@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:giants_free_lunch/widgets/custom_bottom_bar.dart' as widget;
-
 import '../controllers/add_bank_account_controller.dart' as addcontroller ;
+import '../widgets/custom_bottom_bar.dart';
 
 
 class AddBankAccountScreen extends StatelessWidget {
   final addcontroller.AddBankAccountController _controller = Get.put(addcontroller.AddBankAccountController());
 
-  final Rx<widget.BottomBarItem> selectedItem;
+final Rx<BottomBarItem> selectedItem = BottomBarItem.Home.obs;
   
-   AddBankAccountScreen({super.key, required this.selectedItem});
+   AddBankAccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +80,11 @@ class AddBankAccountScreen extends StatelessWidget {
               },
               child: const Text('Add Bank Account'),
             ),
-             widget.CustomBottomNavigationBar(selectedItem: _controller.selectedItem),
           ],
         ),
+      ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        selectedItem: selectedItem,
       ),
     );
   }

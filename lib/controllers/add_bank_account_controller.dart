@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../widgets/custom_bottom_bar.dart';
 
-enum BottomBarItem { Home, Leaderboards, Profile }
 
-class AddBankAccountController extends GetxController {
-  final Rx<BottomBarItem> selectedItem = BottomBarItem.Home.obs; // Initialize with the default selected item
+class AddBankAccountController extends GetxController {// Initialize with the default selected item
   final List<String> countryList = ['Country 1', 'Country 2', 'Country 3'];
   final List<String> bankList = ['Bank 1', 'Bank 2', 'Bank 3'];
   String selectedCountry = 'Country 1';
