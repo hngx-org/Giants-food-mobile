@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:iconsax/iconsax.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -40,9 +39,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: Colors.grey, width: 1.5),
+                      image: const DecorationImage(image: AssetImage('assets/images/img_unsplashxogwpcmgdw.png'))
+
                     ),
-                    child: SvgPicture.asset(
-                        'assets/images/img_search_black_900.svg'),
                   ),
                   const SizedBox(
                     height: 10,
@@ -54,18 +53,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text(
-                    "Send Invitation",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xff4031B4)),
-                  ),
-                  Container(
-                    height: 1.5,
-                    width: 107,
-                    decoration: const BoxDecoration(color: Color(0xff4031B4)),
-                  ),
+                 InkWell(
+                   onTap: (){},
+                   child: Column(
+                     children: [
+                       const Text(
+                         "Send Invitation",
+                         style: TextStyle(
+                             fontSize: 15,
+                             fontWeight: FontWeight.w500,
+                             color: Color(0xff4031B4)),
+                       ),
+                       Container(
+                         height: 1.5,
+                         width: 107,
+                         decoration: const BoxDecoration(color: Color(0xff4031B4)),
+                       ),
+                     ],
+                   ),
+                 )
                 ],
               ),
             ),
@@ -82,17 +88,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(
               height: 15,
             ),
-            Card(
+            Card(surfaceTintColor: Colors.white,
               shadowColor: Colors.grey,
-              color: Colors.white,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                ),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
                 child: Column(
                   children: [
                     ProfileItems(
@@ -127,22 +128,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 30,
             ),
              Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset('assets/images/img_file.svg'),
-                  // Icon(Iconsax.logout),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  const Text(
-                    'Logout',
-                    style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16),
-                  )
-                ],
+              child: InkWell(
+                onTap: (){},
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset('assets/images/img_file.svg'),
+                    // Icon(Iconsax.logout),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Text(
+                      'Logout',
+                      style: TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16),
+                    )
+                  ],
+                ),
               ),
             ),
           ],
