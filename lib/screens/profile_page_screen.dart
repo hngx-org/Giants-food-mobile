@@ -89,7 +89,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 15,
             ),
             Card(
-              elevation: 3,
               surfaceTintColor: Colors.white,
               shadowColor: Colors.grey,
               shape: RoundedRectangleBorder(
