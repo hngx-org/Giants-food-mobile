@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:giants_free_lunch/screens/home_screen.dart';
-import 'package:get/get.dart';
+import 'package:giants_free_lunch/screens/homescreen/home_screen.dart';
+import './core/app_export.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -16,12 +16,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Free Lunch App',
       theme: ThemeData(
-      
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }
-
