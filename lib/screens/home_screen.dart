@@ -1,16 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
+import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/core/colors/colors.dart';
-
 import 'package:giants_free_lunch/screens/leader_board_screen.dart';
 import 'package:giants_free_lunch/screens/profile_page_screen.dart';
 import 'package:giants_free_lunch/widgets/container.dart';
 import 'package:giants_free_lunch/widgets/custom_bottom_bar.dart';
 import 'package:giants_free_lunch/widgets/custom_text.dart';
 
-//import '../core/app_export.dart';
 class HomePage extends StatelessWidget {
   final Rx<BottomBarItem> selectedItem = BottomBarItem.Home.obs;
   @override
@@ -110,19 +108,19 @@ _activitiesBuild() {
 _recentBuild() {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 10).copyWith(
-      top: 10,
+      top: 10.sp,
     ),
-    child: const Row(
+    child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CustomText(
           text: "Recent Activities",
-          fontsize: 20,
+          fontsize: 20.sp,
           isBold: true,
         ),
         CustomText(
           text: "See all",
-          fontsize: 20,
+          fontsize: 20.sp,
           isBold: true,
         ),
       ],

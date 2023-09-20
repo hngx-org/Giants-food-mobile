@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-import 'package:giants_free_lunch/screens/home_screen.dart';
+import '../core/app_export.dart';
 import 'package:giants_free_lunch/widgets/custom_bottom_bar.dart';
 
 import 'leader_board_screen.dart';
