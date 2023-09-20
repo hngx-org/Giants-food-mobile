@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:giants_free_lunch/screens/login_screen.dart';
 import './core/app_export.dart';
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const SignUp(title: ''),
     );
   }
 }
