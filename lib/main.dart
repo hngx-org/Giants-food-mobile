@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/screens/profile_page_screen.dart';
 import 'package:giants_free_lunch/themes/app_theme.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ProfileScreen(),
+      home: const HomePage(),
     );
   }
 }

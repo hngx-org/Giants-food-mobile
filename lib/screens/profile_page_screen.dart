@@ -88,7 +88,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(
               height: 15,
             ),
-            Card(surfaceTintColor: Colors.white,
+            Card(
+              elevation: 3,
+              surfaceTintColor: Colors.white,
               shadowColor: Colors.grey,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
