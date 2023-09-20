@@ -1,47 +1,14 @@
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-// import 'package:get/get.dart';
-// import 'package:giants_free_lunch/core/colors/colors.dart';
-// import 'package:giants_free_lunch/screens/dashboard/bottom_nav.dart';
-// import 'package:giants_free_lunch/screens/homescreen/widgets/container.dart';
-// import 'package:giants_free_lunch/screens/homescreen/widgets/custom_text.dart';
-// import 'package:giants_free_lunch/widgets/custom_bottom_bar.dart' as selected;
-
-// class HomePage extends StatelessWidget {
-//   // const HomePage({super.key});
-
-//   final Rx <BottomBarItem> selectedItem = BottomBarItem.Home.obs ;
-//   @override
-//   Widget build(BuildContext context) {
-//     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-//       statusBarColor: colorPrimary,
-//       statusBarIconBrightness: Brightness.light,
-//     ));
-//     return Scaffold(
-//       body: SafeArea(
-//         child: Column(
-//           children: [
-//             _topBuild(),
-//             _recentBuild(),
-//             _activitiesBuild(),
-//           ],
-//         ),
-//       ),
-//       bottomNavigationBar: selected.CustomBottomNavigationBar(selectedItem: selectedItem),
-//     );
-//   }
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:giants_free_lunch/core/colors/colors.dart';
-import 'package:giants_free_lunch/screens/homescreen/widgets/container.dart';
-import 'package:giants_free_lunch/screens/homescreen/widgets/custom_text.dart';
+
 import 'package:giants_free_lunch/screens/leader_board_screen.dart';
 import 'package:giants_free_lunch/screens/profile_page_screen.dart';
+import 'package:giants_free_lunch/widgets/container.dart';
 import 'package:giants_free_lunch/widgets/custom_bottom_bar.dart';
+import 'package:giants_free_lunch/widgets/custom_text.dart';
 
 //import '../core/app_export.dart';
 class HomePage extends StatelessWidget {

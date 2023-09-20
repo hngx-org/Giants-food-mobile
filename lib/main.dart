@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:giants_free_lunch/screens/homescreen/home_screen.dart';
 import './core/app_export.dart';
 
 void main() {
