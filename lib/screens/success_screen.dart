@@ -10,14 +10,14 @@ class SuccessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appTheme.appBackgroundColor,
-      body: const Column(
+      body:  Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Spacer(),
-          const AppSuccessDisplay(displayText: '"You' "'" "ve just made Lucy'" 's day!"'),
+          Spacer(),
+          AppSuccessDisplay(displayText: '"You' "'" "ve just made Lucy'" 's day!"'),
           const Spacer(),
           Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 30),
             child: AppButton(buttonText: "Return Home", onPressed: (){}),
           )
         ],

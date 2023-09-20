@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:iconsax/iconsax.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -23,8 +25,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
                 children: [
                   const Text(
-                    'Profile',
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                    'My Profile',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                        color: Color(0xFF150D57)),
                   ),
                   const SizedBox(
                     height: 20,
@@ -34,10 +39,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     width: 100,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: Colors.grey, width: 2),
-                        image: const DecorationImage(
-                            image: AssetImage('assets/png/profile.png'),
-                            fit: BoxFit.cover)),
+                        border: Border.all(color: Colors.grey, width: 1.5),
+                       ),
+                    child:SvgPicture.asset('assets/images/img_unsplashxogwpcmgdw.png') ,
                   ),
                   const SizedBox(
                     height: 10,
@@ -54,126 +58,126 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
-                        color: Colors.blue),
+                        color: Color(0xff4031B4)),
                   ),
                   Container(
                     height: 1,
                     width: 100,
-                    decoration: const BoxDecoration(color: Colors.blue),
+                    decoration: const BoxDecoration(color: Color(0xff4031B4)),
                   ),
                 ],
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 45,
             ),
             const Text(
               'Profile',
               style: TextStyle(
                   color: Colors.grey,
                   fontWeight: FontWeight.w500,
-                  fontSize: 18),
+                  fontSize: 17),
             ),
-            SizedBox(height: 10,),
-            Container(
-              padding: EdgeInsets.all(10),
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                border: Border.all(),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: const Column(
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.person_outline),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Edit Profile',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w500),
-                      ),
-                      Spacer(),
-                      Icon(Icons.keyboard_arrow_right_sharp)
-                    ],
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.dark_mode_rounded),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Lunch History',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w500),
-                      ),
-                      Spacer(),
-                      Icon(Icons.keyboard_arrow_right_sharp)
-                    ],
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.notifications),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Notifications',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w500),
-                      ),
-                      Spacer(),
-                      Icon(Icons.keyboard_arrow_right_sharp)
-                    ],
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.security),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Security',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w500),
-                      ),
-                      Spacer(),
-                      Icon(Icons.keyboard_arrow_right_sharp)
-                    ],
-                  )
-                ],
+            const SizedBox(
+              height: 15,
+            ),
+            Card(
+              color: Theme.of(context).colorScheme.onBackground,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  children: [
+                    ProfileItems(
+                      title: 'Edit Profile',
+                      widget:Image.asset('assets/png/Vector.png'),
+                      voidCallback: () {},
+                    ),
+                    ProfileItems(
+                      title: 'Lunch History',
+                      widget:SvgPicture.asset('assets/images/img_pajamasappearance.svg'),
+
+                      voidCallback: () {},
+                    ),
+                    ProfileItems(
+                      title: 'Notifications',
+                      widget:SvgPicture.asset('assets/images/img_notification_black_900.svg'),
+
+                      voidCallback: () {},
+                    ),
+                    ProfileItems(
+                      title: 'Security',
+                      widget:SvgPicture.asset('assets/images/img_notification_black_900.svg'),
+                      voidCallback: () {},
+                    ),
+                  ],
+                ),
               ),
             ),
-             SizedBox(height: 20,),
-             const Center(
+            const SizedBox(
+              height: 30,
+            ),
+             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-
                 children: [
-                  Icon(
-                    Icons.logout_outlined,
-                    color: Colors.red,
-                  ),
+               SvgPicture.asset('assets/images/img_file.svg'),
                   Text(
                     'Logout',
-                    style: TextStyle(color: Colors.red,fontWeight: FontWeight.w500,fontSize: 16),
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16),
                   )
                 ],
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
+class ProfileItems extends StatefulWidget {
+  final String title;
+  final Widget widget;
+  final VoidCallback voidCallback;
+
+  const ProfileItems({
+    super.key,
+    required this.title,
+    required this.widget,
+    required this.voidCallback,
+  });
+
+  @override
+  State<ProfileItems> createState() => _ProfileItemsState();
+}
+
+class _ProfileItemsState extends State<ProfileItems> {
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => widget.voidCallback,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: Row(
+          children: [
+            widget.widget,
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              widget.title,
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+            ),
+            Spacer(),
+            const Icon(Icons.keyboard_arrow_right_sharp)
           ],
         ),
       ),
