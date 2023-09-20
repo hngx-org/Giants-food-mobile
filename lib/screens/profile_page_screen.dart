@@ -38,10 +38,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 100,
                     width: 100,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: Colors.grey, width: 1.5),
-                       ),
-                    child:SvgPicture.asset('assets/images/img_unsplashxogwpcmgdw.png') ,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.grey, width: 1.5),
+                    ),
+                    child: SvgPicture.asset(
+                        'assets/images/img_search_black_900.svg'),
                   ),
                   const SizedBox(
                     height: 10,
@@ -61,8 +62,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: Color(0xff4031B4)),
                   ),
                   Container(
-                    height: 1,
-                    width: 100,
+                    height: 1.5,
+                    width: 107,
                     decoration: const BoxDecoration(color: Color(0xff4031B4)),
                   ),
                 ],
@@ -71,10 +72,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(
               height: 45,
             ),
-            const Text(
+             Text(
               'Profile',
               style: TextStyle(
-                  color: Colors.grey,
+                  color: Colors.black.withOpacity(0.5),
                   fontWeight: FontWeight.w500,
                   fontSize: 17),
             ),
@@ -82,8 +83,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 15,
             ),
             Card(
-              color: Theme.of(context).colorScheme.onBackground,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              shadowColor: Colors.grey,
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
               child: Container(
                 padding: const EdgeInsets.all(10),
                 width: MediaQuery.of(context).size.width,
@@ -94,24 +97,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     ProfileItems(
                       title: 'Edit Profile',
-                      widget:Image.asset('assets/png/Vector.png'),
+                      widget:
+                          SvgPicture.asset('assets/images/img_navprofile.svg'),
                       voidCallback: () {},
                     ),
                     ProfileItems(
                       title: 'Lunch History',
-                      widget:SvgPicture.asset('assets/images/img_pajamasappearance.svg'),
-
+                      widget: SvgPicture.asset(
+                          'assets/images/img_pajamasappearance.svg'),
                       voidCallback: () {},
                     ),
                     ProfileItems(
                       title: 'Notifications',
-                      widget:SvgPicture.asset('assets/images/img_notification_black_900.svg'),
-
+                      widget: SvgPicture.asset(
+                          'assets/images/img_notification_black_900.svg'),
                       voidCallback: () {},
                     ),
                     ProfileItems(
                       title: 'Security',
-                      widget:SvgPicture.asset('assets/images/img_notification_black_900.svg'),
+                      widget: SvgPicture.asset(
+                          'assets/images/img_heroiconsoutli_black_900.svg'),
                       voidCallback: () {},
                     ),
                   ],
@@ -125,8 +130,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-               SvgPicture.asset('assets/images/img_file.svg'),
-                  Text(
+                  SvgPicture.asset('assets/images/img_file.svg'),
+                  // Icon(Iconsax.logout),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Text(
                     'Logout',
                     style: TextStyle(
                         color: Colors.red,
@@ -176,7 +185,7 @@ class _ProfileItemsState extends State<ProfileItems> {
               widget.title,
               style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
             ),
-            Spacer(),
+            const Spacer(),
             const Icon(Icons.keyboard_arrow_right_sharp)
           ],
         ),
