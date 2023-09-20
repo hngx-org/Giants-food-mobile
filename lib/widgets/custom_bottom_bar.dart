@@ -53,10 +53,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
     required BottomBarItem item,
   }) {
     return BottomNavigationBarItem(
-      icon: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 60.0),
-        child: Icon(icon),
-      ),
+      icon: Icon(icon),
       label: title,
     );
   }
