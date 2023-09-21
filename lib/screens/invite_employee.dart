@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:giants_free_lunch/controllers/invite_employee_controller.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/widgets/app_textField.dart';
-import 'package:giants_free_lunch/widgets/header_widget.dart';
 
 class InviteEmployee extends StatefulWidget {
   const InviteEmployee({super.key});
@@ -19,6 +18,26 @@ class _InviteEmployeeState extends State<InviteEmployee> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appTheme.appBackgroundColor,
+      appBar: AppBar(
+        backgroundColor: appTheme.appBackgroundColor,
+        elevation: 0,
+        leading: GestureDetector(
+          onTap: () {
+            Get.back();
+          },
+          child: const Icon(Icons.arrow_back_ios_new_rounded),
+        ),
+        centerTitle: true,
+        title: Text(
+          "Invite Employee",
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: appTheme.primaryColor,
+            height: 2,
+          ),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
@@ -27,9 +46,8 @@ class _InviteEmployeeState extends State<InviteEmployee> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const HeaderWidget(headerText: "Invite Employee"),
                 const SizedBox(
-                  height: 86,
+                  height: 56,
                 ),
                 const Text(
                   "Send an Invitation to an employee, they\nwill receive it in their email.",
