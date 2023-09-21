@@ -6,3 +6,4 @@ export 'package:giants_free_lunch/screens/home_screen.dart';
 export '../widgets/custom_bottom_bar.dart';
 export 'package:giants_free_lunch/main.dart';
 export '../widgets/app_custom_buttons.dart';
+export '../widgets/app_textField.dart';
