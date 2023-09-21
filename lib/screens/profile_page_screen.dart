@@ -86,7 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   fontSize: 17),
             ),
             const SizedBox(
-              height: 15,
+              height: 16,
             ),
             Card(
               surfaceTintColor: Colors.white,
