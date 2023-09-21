@@ -41,11 +41,13 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
         child: ListView(
           children: [
             // accept your invitation descriptin text
-            const Text(
-              'Accept your invitation',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.normal,
+            Center(
+              child: const Text(
+                'Accept your invitation',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                ),
               ),
             ),
             AppTextField(
