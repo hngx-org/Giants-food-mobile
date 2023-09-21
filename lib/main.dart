@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:giants_free_lunch/screens/login_screen.dart';
+
 import './core/app_export.dart';
 
 void main() {
@@ -12,6 +14,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return ScreenUtilInit(
         designSize: const Size(360, 780),
         builder: (context, child) {
@@ -26,5 +29,6 @@ class MyApp extends StatelessWidget {
             home: const SignIn(),
           );
         });
+
   }
 }
