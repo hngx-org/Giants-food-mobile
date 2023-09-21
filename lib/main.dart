@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './core/app_export.dart';
-import 'screens/add_bank_account_screen.dart';
+import 'screens/accept_invite.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: AddBankAccountScreen(),
+      home: AcceptInviteScreen(),
     );
   }
 }
