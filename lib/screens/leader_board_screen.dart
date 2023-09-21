@@ -1,10 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:giants_free_lunch/screens/profile_page_screen.dart';
+import 'package:giants_free_lunch/widgets/custom_bottom_bar.dart';
+
+import '../core/app_export.dart';
 
 class LeaderBoard extends StatelessWidget {
-  const LeaderBoard({super.key});
+  final Rx<BottomBarItem> selectedItem = BottomBarItem.Leaderboards.obs;
+  LeaderBoard({super.key}) {
+    selectedItem.listen((item) {
+      switch (item) {
+        case BottomBarItem.Home:
+          Get.offAll(() => HomePage()); // Navigate to the Home page
+          break;
+        case BottomBarItem.Leaderboards:
+          Get.offAll(
+              () => LeaderBoard()); // Navigate to the Leaderboards screen
+          break;
+        case BottomBarItem.Profile:
+          Get.offAll(() => ProfileScreen()); // Navigate to the Profile screen
+          break;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ));
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Text("LeaderBoard"),
+        ),
+      ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        selectedItem: selectedItem,
+      ),
+    );
   }
 }

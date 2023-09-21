@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:giants_free_lunch/themes/app_theme.dart';
 
@@ -12,6 +13,10 @@ class WithdrawLunchScreen extends StatefulWidget {
 class _WithdrawLunchScreenState extends State<WithdrawLunchScreen> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ));
     return Scaffold(
       appBar: AppBar(
         title: const Text('Withdraw your lunch'),
