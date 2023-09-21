@@ -7,7 +7,7 @@ class SignUp extends StatefulWidget {
   const SignUp({super.key, required String title});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<SignUp> createState() => _SignUpState(); //jjjj
 }
 
 class _SignUpState extends State<SignUp> {
@@ -15,7 +15,7 @@ class _SignUpState extends State<SignUp> {
 
   @override
   void dispose() {
-    inviteController.dispose(); // Corrected the controller name
+    inviteController.dispose(); 
     super.dispose();
   }
 
