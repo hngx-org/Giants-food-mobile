@@ -1,17 +1,22 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
+import 'package:giants_free_lunch/screens/give_lucy_free_lunch_two_screen.dart';
 
 class GiveLunch extends StatelessWidget {
   GiveLunch({super.key});
-  
+
   final appTheme = AppTheme();
   bool check = false;
-  
+
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ));
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -26,85 +31,101 @@ class GiveLunch extends StatelessWidget {
                   SizedBox(
                     child: Row(
                       children: [
-                        IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_back_ios_rounded)),
-                        const SizedBox(width: 50,),
-                        const Text('Give free lunch',
-                          style: TextStyle(fontFamily: "assets/fonts/InterBold.ttf",fontWeight: FontWeight.w700),
+                        IconButton(
+                            onPressed: () => Get.back(),
+                            icon: const Icon(Icons.arrow_back_ios_rounded)),
+                        const SizedBox(
+                          width: 50,
                         ),
-                        const SizedBox(width: 5,),
-                        SvgPicture.asset(ImageConstant.imgCut,
+                        const Text(
+                          'Give free lunch',
+                          style: TextStyle(
+                              fontFamily: "assets/fonts/InterBold.ttf",
+                              fontWeight: FontWeight.w700),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        SvgPicture.asset(
+                          ImageConstant.imgCut,
                           semanticsLabel: 'SVG Image',
-                          height: 20,width: 20,
+                          height: 20,
+                          width: 20,
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Container(
                     color: Colors.white,
                     child: TextFormField(
-                      decoration: InputDecoration(
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(width: 2,color: Colors.black45),
-                        ),
-                        border: const OutlineInputBorder(
-                          borderSide: BorderSide(width: 2,color: Colors.black45),
-                        ),
-                        hintText: "Search worker's name",
-                        suffixIcon: IconButton(
-                          onPressed: (){}, icon: const Icon(Icons.search_outlined),
-                        ),
-                      )
-                    ),
+                        decoration: InputDecoration(
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(width: 2, color: Colors.black45),
+                      ),
+                      border: const OutlineInputBorder(
+                        borderSide: BorderSide(width: 2, color: Colors.black45),
+                      ),
+                      hintText: "Search worker's name",
+                      suffixIcon: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.search_outlined),
+                      ),
+                    )),
                   )
                 ],
               ),
             ),
             Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                    itemCount: 15,
-                  itemBuilder: (context,index){
-                      return Column(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: 15,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
                               children: [
-                                Row(
-                                  children: [
-                                    Container(
-                                      height: 50,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                        color: Colors.black26,
-                                        image: DecorationImage(
-                                          image: AssetImage(ImageConstant.imgUnsplashqayxtcv4aq),
-                                          fit: BoxFit.cover,
-                                        ),
-                                        borderRadius: BorderRadius.circular(100),
-                                        //color: Colors.blue
-                                      ),
+                                Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black26,
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                          ImageConstant.imgUnsplashqayxtcv4aq),
+                                      fit: BoxFit.cover,
                                     ),
-                                    const SizedBox(width: 5,),
-                                    const Text('Kolawole Emmanuel'),
-                                  ],
+                                    borderRadius: BorderRadius.circular(100),
+                                    //color: Colors.blue
+                                  ),
                                 ),
-                                Checkbox(
-                                  shape: const CircleBorder(),
-                                    value: check,
-                                    onChanged: (bool? value){
-                                      check = value!;
-                                    })
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                const Text('Kolawole Emmanuel'),
                               ],
                             ),
-                          ),
-                          const Divider()
-                        ],
-                      );
-                  },
-                ),
+                            Checkbox(
+                                shape: const CircleBorder(),
+                                value: check,
+                                onChanged: (bool? value) {
+                                  check = value!;
+                                })
+                          ],
+                        ),
+                      ),
+                      const Divider()
+                    ],
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -112,9 +133,13 @@ class GiveLunch extends StatelessWidget {
           height: 40,
           width: MediaQuery.sizeOf(context).width * 0.8,
           child: FloatingActionButton.extended(
-            onPressed: (){},
-            label: Text("",style: const TextStyle(color: Colors.white),),
-            shape: const BeveledRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+            onPressed: () => Get.to(() => GiveLucyFreeLunchTwoScreen()),
+            label: Text(
+              "Proceed",
+              style: const TextStyle(color: Colors.white),
+            ),
+            shape: const BeveledRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(5))),
             backgroundColor: appTheme.primaryColor,
           ),
         ),
@@ -123,5 +148,4 @@ class GiveLunch extends StatelessWidget {
       ),
     );
   }
-
 }

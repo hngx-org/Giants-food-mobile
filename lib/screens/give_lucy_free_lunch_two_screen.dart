@@ -38,7 +38,7 @@ class _GiveLucyFreeLunchTwoScreenState
           children: [
             Text(
               'Give Lucy free lunch',
-              style:  TextStyle(
+              style: TextStyle(
                   fontSize: 18.0,
                   shadows: const [
                     Shadow(
@@ -53,8 +53,10 @@ class _GiveLucyFreeLunchTwoScreenState
                   height: 2.8,
                   color: AppTheme().primaryColor),
             ),
-           const SizedBox( width: 9,),
-           Image.asset('assets/images/img_lucy.png')
+            const SizedBox(
+              width: 9,
+            ),
+            //Image.asset('assets/images/img_unsplashe9gnuhpsg1w_31x31.png')
           ],
         ),
       ),
@@ -142,7 +144,8 @@ class _GiveLucyFreeLunchTwoScreenState
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 50),
                 child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 40,
                       mainAxisSpacing: 40,
                       crossAxisCount: 2,
