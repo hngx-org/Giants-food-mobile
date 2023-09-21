@@ -99,18 +99,36 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
               hintText: 'Phone Number',
             ),
             const SizedBox(height: 20),
-            AppTextField(
-              textController: controller.passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(),
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return 'Please enter a password';
-                }
-                return null;
-              },
-              textTitle: 'Password',
-              hintText: 'Password',
+            Obx(
+              () => AppTextField(
+                textController: controller.confirmPasswordController,
+                obscureText: controller.isPasswordVisible.value,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  // Add an icon button to toggle password visibility
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      controller.isPasswordVisible.value
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                    ),
+                    onPressed: () {
+                      controller.togglePasswordVisibility();
+                    },
+                  ),
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please confirm your password';
+                  }
+                  if (value != controller.passwordController.text) {
+                    return 'Passwords do not match';
+                  }
+                  return null;
+                },
+                hintText: 'Password',
+                textTitle: 'Password',
+              ),
             ),
             const SizedBox(height: 20),
             AppTextField(
