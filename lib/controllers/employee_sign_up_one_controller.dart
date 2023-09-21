@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 
+
 class InviteController extends GetxController {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
