@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:giants_free_lunch/controllers/employee_sign_up_one_controller.dart';
-import 'package:giants_free_lunch/screens/test.dart';
+import 'package:giants_free_lunch/core/app_export.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key, required String title});
@@ -11,11 +11,11 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final SignUpController signUpController = SignUpController();
+  final InviteController inviteController = Get.put(InviteController());
 
   @override
   void dispose() {
-    signUpController.dispose();
+    inviteController.dispose(); // Corrected the controller name
     super.dispose();
   }
 
@@ -38,24 +38,29 @@ class _SignUpState extends State<SignUp> {
           suffixIcon: GestureDetector(
             onTap: () {
               setState(() {
-                signUpController.obscurePassword = !signUpController.obscurePassword;
+                inviteController.obscurePassword = !inviteController
+                    .obscurePassword; // Corrected the controller name
               });
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: Icon(
-               signUpController.obscurePassword ? Icons.visibility : Icons.visibility_off,
+                inviteController.obscurePassword
+                    ? Icons.visibility
+                    : Icons.visibility_off, // Corrected the controller name
                 color: Colors.grey,
                 size: 19,
               ),
             ),
           ),
         ),
-        obscureText: signUpController.obscurePassword,
+        obscureText:
+            inviteController.obscurePassword, // Corrected the controller name
       ),
     );
   }
 
+  final appTheme = AppTheme();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,7 +145,8 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                     child: TextField(
-                      controller: signUpController.firstNameController,
+                      controller: inviteController
+                          .firstNameController, // Corrected the controller name
                       decoration: const InputDecoration(
                         hintText: 'First name',
                         border: InputBorder.none,
@@ -170,7 +176,8 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                     child: TextField(
-                      controller: signUpController.lastNameController,
+                      controller: inviteController
+                          .lastNameController, // Corrected the controller name
                       decoration: const InputDecoration(
                         hintText: 'Last name',
                         border: InputBorder.none,
@@ -200,7 +207,8 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                     child: TextField(
-                      controller: signUpController.emailController,
+                      controller: inviteController
+                          .emailController, // Corrected the controller name
                       decoration: const InputDecoration(
                         hintText: 'Email',
                         border: InputBorder.none,
@@ -230,7 +238,8 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                     child: TextField(
-                      controller: signUpController.phoneNumberController,
+                      controller: inviteController
+                          .phoneNumberController, // Corrected the controller name
                       decoration: const InputDecoration(
                         hintText: 'Phone number',
                         border: InputBorder.none,
@@ -254,7 +263,10 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   const SizedBox(height: 5.0),
-                  buildPasswordTextField( signUpController.obscurePassword, signUpController.passWordController),
+                  buildPasswordTextField(
+                      inviteController.obscurePassword,
+                      inviteController
+                          .passWordController), // Corrected the controller name
                   const SizedBox(height: 40.0),
                   const Text(
                     'Confirm Password',
@@ -269,7 +281,9 @@ class _SignUpState extends State<SignUp> {
                   ),
                   const SizedBox(height: 5.0),
                   buildPasswordTextField(
-                     signUpController.obscurePassword, signUpController.confirmPassWordController),
+                      inviteController.obscurePassword,
+                      inviteController
+                          .confirmPassWordController), // Corrected the controller name
                   const SizedBox(height: 32.0),
                   ElevatedButton(
                     onPressed: () {},

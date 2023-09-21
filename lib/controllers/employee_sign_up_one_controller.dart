@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:giants_free_lunch/core/app_export.dart';
 
-class SignUpController {
+class InviteController extends GetxController {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -9,12 +10,13 @@ class SignUpController {
   final TextEditingController confirmPassWordController = TextEditingController();
   bool obscurePassword = true;
 
-  void dispose() {
+  void onclose() {
     firstNameController.dispose();
     lastNameController.dispose();
     emailController.dispose();
     phoneNumberController.dispose();
     passWordController.dispose();
     confirmPassWordController.dispose();
+    super.onClose();
   }
 }
