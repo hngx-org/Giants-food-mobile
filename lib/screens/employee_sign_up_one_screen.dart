@@ -44,7 +44,7 @@ class _SignUpState extends State<SignUp> {
             child: Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: Icon(
-                obscure ? Icons.visibility : Icons.visibility_off,
+               signUpController.obscurePassword ? Icons.visibility : Icons.visibility_off,
                 color: Colors.grey,
                 size: 19,
               ),
