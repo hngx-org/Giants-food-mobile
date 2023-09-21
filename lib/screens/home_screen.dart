@@ -2,19 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
-import 'package:giants_free_lunch/core/colors/colors.dart';
+
 import 'package:giants_free_lunch/screens/leader_board_screen.dart';
 import 'package:giants_free_lunch/screens/profile_page_screen.dart';
 import 'package:giants_free_lunch/widgets/container.dart';
 import 'package:giants_free_lunch/widgets/custom_bottom_bar.dart';
 import 'package:giants_free_lunch/widgets/custom_text.dart';
 
+final appTheme = AppTheme();
+
 class HomePage extends StatelessWidget {
   final Rx<BottomBarItem> selectedItem = BottomBarItem.Home.obs;
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: colorPrimary,
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: appTheme.primaryColor,
       statusBarIconBrightness: Brightness.light,
     ));
     return Scaffold(
@@ -55,23 +57,23 @@ class HomePage extends StatelessWidget {
 _activitiesBuild() {
   return ListView(
     shrinkWrap: true,
-    children: const [
+    children: [
       ListTile(
-        title: CustomText(
+        title: const CustomText(
           text: "You got 2 free lunches",
           isBold: true,
         ),
-        subtitle: CustomText(
+        subtitle: const CustomText(
             text:
                 'You received a free lunch for your outstanding contribution. Thank you for your hard work'),
         trailing: Column(
           children: [
             CustomText(
               text: "From: Lucy",
-              color: colorPrimary,
+              color: appTheme.primaryColor,
               isBold: true,
             ),
-            CustomText(
+            const CustomText(
               text: "Today: 3:30pm",
               fontsize: 12,
             )
@@ -79,11 +81,11 @@ _activitiesBuild() {
         ),
       ),
       ListTile(
-        title: CustomText(
+        title: const CustomText(
           text: "You got 3 free lunches",
           isBold: true,
         ),
-        subtitle: CustomText(
+        subtitle: const CustomText(
             text:
                 'You received a free lunch for your outstanding contribution. Thank you for your hard work'),
         trailing: Column(
@@ -91,10 +93,10 @@ _activitiesBuild() {
           children: [
             CustomText(
               text: "From: Lucy",
-              color: colorPrimary,
+              color: appTheme.primaryColor,
               isBold: true,
             ),
-            CustomText(
+            const CustomText(
               text: "Today: 3:30pm",
               fontsize: 12,
             )
@@ -132,7 +134,7 @@ _topBuild() {
   return Container(
     width: double.infinity,
     height: 270,
-    color: colorPrimary,
+    color: appTheme.primaryColor,
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Stack(
@@ -182,10 +184,10 @@ _topBuild() {
                 ],
               ),
               const SizedBox(height: 20),
-              const Text(
+              Text(
                 "Hi, John",
                 style: TextStyle(
-                  color: colorWhite,
+                  color: appTheme.navBackgroundColor,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),

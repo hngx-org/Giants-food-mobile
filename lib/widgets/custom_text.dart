@@ -6,6 +6,7 @@ class CustomText extends StatelessWidget {
   final double? fontsize;
   final bool isBold;
   final Color? color;
+  final bool isAligned;
 
   const CustomText({
     Key? key,
@@ -13,12 +14,14 @@ class CustomText extends StatelessWidget {
     this.fontsize = 15,
     this.isBold = false,
     this.color,
+    this.isAligned = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: isAligned ? TextAlign.center : null,
       style: TextStyle(
         fontSize: fontsize,
         fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
