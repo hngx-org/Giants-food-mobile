@@ -7,11 +7,15 @@ class AppTextField extends StatelessWidget {
     required this.textController,
     this.onChanged,
     required this.hintText,
+    this.suffixIcon,
+    this.obscureText = false,
   });
   final String textTitle;
   final TextEditingController textController;
   final Function(String)? onChanged;
   final String hintText;
+  final Widget? suffixIcon;
+  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +34,7 @@ class AppTextField extends StatelessWidget {
           height: 45,
           width: double.infinity,
           child: TextField(
+            obscureText: obscureText,
             controller: textController,
             onChanged: onChanged,
             keyboardType: TextInputType.text,
@@ -38,6 +43,7 @@ class AppTextField extends StatelessWidget {
               hintText: hintText,
               hintStyle:
                   const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+              suffixIcon: suffixIcon,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
                 borderSide: const BorderSide(

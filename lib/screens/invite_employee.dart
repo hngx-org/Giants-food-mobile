@@ -4,8 +4,16 @@ import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/widgets/app_textField.dart';
 import 'package:giants_free_lunch/widgets/header_widget.dart';
 
-class InviteEmployee extends StatelessWidget {
+class InviteEmployee extends StatefulWidget {
   const InviteEmployee({super.key});
+
+  @override
+  State<InviteEmployee> createState() => _InviteEmployeeState();
+}
+
+class _InviteEmployeeState extends State<InviteEmployee> {
+  final _inviteController = Get.put(InviteController());
+  bool obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +45,26 @@ class InviteEmployee extends StatelessWidget {
                 ),
                 AppTextField(
                   textTitle: "Email",
-                  textController: textController,
+                  textController: _inviteController.textController,
                   hintText: "Email",
+                  // suffixIcon: IconButton(
+                  //   splashColor: Colors.transparent,
+                  //   icon: obscureText
+                  //       ? Icon(
+                  //           Icons.visibility_off,
+                  //           color: appTheme.black200,
+                  //         )
+                  //       : const Icon(
+                  //           Icons.visibility,
+                  //           color: Colors.deepPurple,
+                  //         ), //change icon based on boolean value
+                  //   onPressed: () {
+                  //     setState(() {
+                  //       obscureText = !obscureText;
+                  //     });
+                  //   },
+                  // ),
+                  // obscureText: obscureText,
                 ),
                 const SizedBox(
                   height: 36,
