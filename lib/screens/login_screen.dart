@@ -28,7 +28,7 @@ class _SignInState extends State<SignIn> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Center(
                 child: Column(
@@ -85,13 +85,16 @@ class _SignInState extends State<SignIn> {
                   ],
                 ),
               ),
+              CustomText(
+                  text: "Do you want to create an organization?",
+                  fontsize: 15.sp),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const CustomText(text: "Don't have account already?"),
                   TextButton(
-                    onPressed: () => const SecondSignUp(),
-                    child: CustomText(text: 'create account', fontsize: 15.sp),
+                    onPressed: () => Get.to(() => SecondSignUp()),
+                    child: CustomText(text: 'Create account', fontsize: 15.sp),
                   )
                 ],
               )
