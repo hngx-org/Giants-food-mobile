@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:giants_free_lunch/controllers/login_controller.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
+import 'package:giants_free_lunch/screens/employee_sign_up_two_screen.dart';
 import 'package:giants_free_lunch/widgets/app_custom_buttons.dart';
 import 'package:giants_free_lunch/widgets/custom_text.dart';
 import 'package:giants_free_lunch/widgets/custom_textfieldx.dart';
@@ -48,41 +49,52 @@ class _SignInState extends State<SignIn> {
               ),
               const SizedBox(height: 40),
               Form(
-                  key: signController.formFieldKey,
-                  child: Column(
-                    children: [
-                      InputField(
-                          hint: "Email",
-                          title: "Email",
-                          controller: signController.emailController),
-                      Obx(() => InputField(
-                            hint: "Password",
-                            title: "Password",
-                            isObsured: signController.isObsecure.value,
-                            icon: IconButton(
-                              onPressed: () {
-                                signController.isObsecure.value =
-                                    !signController.isObsecure.value;
-                              },
-                              icon: Icon(
-                                signController.isObsecure.value
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                              ),
+                key: signController.formFieldKey,
+                child: Column(
+                  children: [
+                    InputField(
+                        hint: "Email",
+                        title: "Email",
+                        controller: signController.emailController),
+                    Obx(() => InputField(
+                          hint: "Password",
+                          title: "Password",
+                          isObsured: signController.isObsecure.value,
+                          icon: IconButton(
+                            onPressed: () {
+                              signController.isObsecure.value =
+                                  !signController.isObsecure.value;
+                            },
+                            icon: Icon(
+                              signController.isObsecure.value
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
                             ),
-                            controller: signController.passwordController,
-                          )),
-                      const SizedBox(height: 10),
-                      SizedBox(height: 40.h),
-                      AppButton(
-                        buttonText: 'Sign In',
-                        onPressed: () {
-                          signController.validation();
-                          Get.off(HomePage());
-                        },
-                      )
-                    ],
-                  ))
+                          ),
+                          controller: signController.passwordController,
+                        )),
+                    const SizedBox(height: 10),
+                    SizedBox(height: 40.h),
+                    AppButton(
+                      buttonText: 'Sign In',
+                      onPressed: () {
+                        signController.validation();
+                        Get.off(HomePage());
+                      },
+                    )
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CustomText(text: "Don't have account already?"),
+                  TextButton(
+                    onPressed: () => const SecondSignUp(),
+                    child: CustomText(text: 'create account', fontsize: 15.sp),
+                  )
+                ],
+              )
             ],
           ),
         ),
