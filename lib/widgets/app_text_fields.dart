@@ -8,7 +8,7 @@ class AppTextField extends StatelessWidget {
     this.onChanged,
     required this.hintText,
     this.suffixIcon,
-    this.obscureText = false,
+    this.obscureText = false, required InputDecoration decoration, required String? Function(dynamic value) validator,
   });
   final String textTitle;
   final TextEditingController textController;
