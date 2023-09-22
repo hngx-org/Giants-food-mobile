@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/screens/add_bank_account_screen.dart';
-import 'package:giants_free_lunch/themes/app_theme.dart';
+import 'package:giants_free_lunch/screens/redeem_success_screen.dart';
 
 import '../main.dart';
 
@@ -51,11 +51,11 @@ class _WithdrawLunchScreenState extends State<WithdrawLunchScreen> {
             Text(
               'With draw lunch to your\nbank account',
               style: TextStyle(
-                fontSize: 18.sp,
+                fontSize: 17.sp,
                 fontWeight: FontWeight.w500,
               ),
             ),
-            SizedBox(height: 48.h),
+            SizedBox(height: 38.h),
             // space for account details
             ListTile(
               contentPadding: EdgeInsets.all(0),
@@ -79,20 +79,39 @@ class _WithdrawLunchScreenState extends State<WithdrawLunchScreen> {
               ),
             ),
             SizedBox(height: 12.h),
-            ListTile(
-              contentPadding: EdgeInsets.all(0),
-              leading: const Icon(
-                Icons.credit_card_outlined,
-              ),
-              title: Text(
-                'Add bank account',
-                style: TextStyle(
-                  fontSize: 16.sp,
+            InkWell(
+              onTap: () {
+                Get.to(AddBankAccountScreen());
+              },
+              child: ListTile(
+                contentPadding: EdgeInsets.all(0),
+                leading: Icon(
+                  Icons.credit_card_outlined,
+                  color: appTheme.primaryColor,
+                ),
+                title: Text(
+                  'Add bank account',
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    color: appTheme.primaryColor,
+                  ),
+                ),
+                trailing: Container(
+                  height: 20,
+                  width: 20,
+                  decoration: BoxDecoration(
+                    border: Border.all(),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: const Icon(
+                    Icons.add,
+                    color: Colors.green,
+                    size: 18,
+                  ),
                 ),
               ),
-              trailing: const Icon(Icons.add_circle_outline_outlined),
             ),
-            SizedBox(height: 77.h),
+            SizedBox(height: 67.h),
             Text(
               'Free lunch worth of #2,500.00 will be credited\n'
               'to your bank account',
@@ -102,7 +121,7 @@ class _WithdrawLunchScreenState extends State<WithdrawLunchScreen> {
             AppButton(
               buttonText: "Withdraw",
               onPressed: () {
-                Get.to(AddBankAccountScreen());
+                Get.to(const RedeemSuccessScreen());
               },
             )
           ],

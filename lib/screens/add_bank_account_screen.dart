@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:giants_free_lunch/screens/leader_board_screen.dart';
-import 'package:giants_free_lunch/screens/redeem_success_screen.dart';
 import '../controllers/add_bank_account_controller.dart' as addcontroller;
 import '../core/app_export.dart';
-import 'profile_page_screen.dart';
 
 class AddBankAccountScreen extends StatelessWidget {
   final addcontroller.AddBankAccountController _controller =
@@ -156,7 +153,8 @@ class ContentWidget extends StatelessWidget {
           AppButton(
             buttonText: 'Add Account',
             onPressed: () async {
-              Get.to(const RedeemSuccessScreen());
+              Get.back();
+              
               // Add logic to add bank account here
               final result = await _controller.addBankAccount();
 
