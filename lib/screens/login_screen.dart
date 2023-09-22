@@ -47,41 +47,42 @@ class _SignInState extends State<SignIn> {
               ),
               const SizedBox(height: 40),
               Form(
-                  key: signController.formFieldKey,
-                  child: Column(
-                    children: [
-                      InputField(
-                          hint: "Email",
-                          title: "Email",
-                          controller: signController.emailController),
-                      Obx(() => InputField(
-                            hint: "Password",
-                            title: "Password",
-                            isObsured: signController.isObsecure.value,
-                            icon: IconButton(
-                              onPressed: () {
-                                signController.isObsecure.value =
-                                    !signController.isObsecure.value;
-                              },
-                              icon: Icon(
-                                signController.isObsecure.value
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                              ),
+                key: signController.formFieldKey,
+                child: Column(
+                  children: [
+                    InputField(
+                        hint: "Email",
+                        title: "Email",
+                        controller: signController.emailController),
+                    Obx(() => InputField(
+                          hint: "Password",
+                          title: "Password",
+                          isObsured: signController.isObsecure.value,
+                          icon: IconButton(
+                            onPressed: () {
+                              signController.isObsecure.value =
+                                  !signController.isObsecure.value;
+                            },
+                            icon: Icon(
+                              signController.isObsecure.value
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
                             ),
-                            controller: signController.passwordController,
-                          )),
-                      const SizedBox(height: 10),
-                      SizedBox(height: 40.h),
-                      AppButton(
-                        buttonText: 'Sign In',
-                        onPressed: () {
-                          signController.validation();
-                          Get.off(HomePage());
-                        },
-                      )
-                    ],
-                  ))
+                          ),
+                          controller: signController.passwordController,
+                        )),
+                    const SizedBox(height: 10),
+                    SizedBox(height: 40.h),
+                    AppButton(
+                      buttonText: 'Sign In',
+                      onPressed: () {
+                        signController.validation();
+                        Get.off(HomePage());
+                      },
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ),
