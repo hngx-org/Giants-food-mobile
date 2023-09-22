@@ -15,7 +15,7 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: buttonWidth,
-      height: 50,
+      height: 45,
       child: ElevatedButton(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(
@@ -32,10 +32,9 @@ class AppButton extends StatelessWidget {
         child: Text(
           buttonText,
           style: TextStyle(
-            fontSize: 16,
-            color: appTheme.appButtonTextColor,
-            fontWeight: FontWeight.w600
-          ),
+              fontSize: 16,
+              color: appTheme.appButtonTextColor,
+              fontWeight: FontWeight.w600),
         ),
       ),
     );

@@ -59,7 +59,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: appTheme.appBackgroundColor,
+      // backgroundColor: appTheme.appBackgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: [

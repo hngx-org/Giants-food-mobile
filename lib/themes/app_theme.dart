@@ -7,6 +7,7 @@ class AppTheme {
   Color appButtonTextColor = const Color(0XFFCBFF89);
   Color black200 = const Color(0XFF8A8A8A);
   Color white = const Color(0xffffffff);
+  Color bottomNavBarBG = const Color(0XFFEFECFF);
   static const Color btnBgColor = Color.fromRGBO(21, 13, 87, 1);
   static const Color btnTextColor = Color.fromARGB(203, 255, 137, 1);
 }

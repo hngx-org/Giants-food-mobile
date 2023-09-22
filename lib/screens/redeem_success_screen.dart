@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:giants_free_lunch/main.dart';
-import 'package:giants_free_lunch/widgets/app_custom_buttons.dart';
 import 'package:giants_free_lunch/widgets/app_success_display.dart';
+import 'package:giants_free_lunch/core/app_export.dart';
 
 class RedeemSuccessScreen extends StatelessWidget {
   const RedeemSuccessScreen({super.key});
@@ -18,12 +17,15 @@ class RedeemSuccessScreen extends StatelessWidget {
           const Spacer(),
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
-            child: AppButton(buttonText: "Return Home", onPressed: (){}),
+            child: AppButton(
+              buttonText: "Return Home",
+              onPressed: () {
+                Get.offAll(() => HomePage());
+              },
+            ),
           )
         ],
       ),
     );
   }
 }
-
-
