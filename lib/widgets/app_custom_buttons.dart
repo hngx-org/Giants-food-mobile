@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../core/app_export.dart';
 
 final appTheme = AppTheme();
+
 class AppButton extends StatelessWidget {
   const AppButton(
       {super.key,
@@ -33,10 +34,9 @@ class AppButton extends StatelessWidget {
         child: Text(
           buttonText,
           style: TextStyle(
-            fontSize: 16,
-            color: appTheme.appButtonTextColor,
-            fontWeight: FontWeight.w600
-          ),
+              fontSize: 16,
+              color: appTheme.appButtonTextColor,
+              fontWeight: FontWeight.w600),
         ),
       ),
     );

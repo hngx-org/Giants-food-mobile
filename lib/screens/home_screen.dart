@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
+import 'package:giants_free_lunch/screens/give_lunch_screen.dart';
 import 'package:giants_free_lunch/screens/leader_board_screen.dart';
 import 'package:giants_free_lunch/screens/profile_page_screen.dart';
+import 'package:giants_free_lunch/screens/withdraw_lunch_screen.dart';
 import 'package:giants_free_lunch/widgets/container.dart';
-import 'package:giants_free_lunch/widgets/custom_bottom_bar.dart';
 import 'package:giants_free_lunch/widgets/custom_text.dart';
 
 //final appTheme = AppTheme();
@@ -145,34 +146,28 @@ _topBuild() {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    height: 44,
-                    width: 44,
-                    margin: const EdgeInsets.all(5),
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    child: Image.asset(
-                      'assets/images/account_header.png',
-                      fit: BoxFit.cover,
                       height: 44,
                       width: 44,
-                    ),
-                  ),
-                  Row(
+                      margin: const EdgeInsets.all(5),
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(Icons.person)),
+                  const Row(
                     children: [
-                      const Text(
+                      Text(
                         "Ally",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 30,
                         ),
                       ),
-                      Image.asset(
-                        'assets/images/logo.png',
-                        width: 40,
-                        height: 40,
-                      )
+                      // Image.asset(
+                      //   'assets/images/logo.png',
+                      //   width: 40,
+                      //   height: 40,
+                      // )
                     ],
                   ),
                   const Icon(
@@ -199,7 +194,7 @@ _topBuild() {
                 text: "Lunch Balance",
                 count: '3',
                 image: Image.asset(
-                  'assets/images/snacks.jpeg',
+                  'assets/images/img_group16.png',
                   fit: BoxFit.cover,
                   height: 20,
                   width: 20,
@@ -214,18 +209,22 @@ _topBuild() {
                     height: 50,
                     width: 190,
                     text: 'Give Lunch',
+                    onTap: () => Get.to(() => GiveLunch()),
                     image: Image.asset(
-                      'assets/images/snacks.jpeg',
+                      'assets/images/img_group16.png',
                       fit: BoxFit.cover,
                       height: 30,
                       width: 30,
                     ),
                   ),
-                  const DisplayContainer(
+                  DisplayContainer(
                     height: 50,
                     width: 190,
                     text: 'Withdraw Lunch',
-                    sideIcon: Icon(Icons.arrow_upward),
+                    onTap: () {
+                      Get.to(() => const WithdrawLunchScreen());
+                    },
+                    sideIcon: const Icon(Icons.arrow_upward),
                   )
                 ],
               )

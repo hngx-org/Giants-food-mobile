@@ -29,16 +29,21 @@ class _GiveLucyFreeLunchTwoScreenState
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        leading: const Icon(
-          Icons.arrow_back_ios,
-          color: Color(0xff0F172A),
-          size: 20,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: Color(0xff0F172A),
+            size: 20,
+          ),
         ),
         title: Row(
           children: [
             Text(
               'Give Lucy free lunch',
-              style:  TextStyle(
+              style: TextStyle(
                   fontSize: 18.0,
                   shadows: const [
                     Shadow(
@@ -53,8 +58,10 @@ class _GiveLucyFreeLunchTwoScreenState
                   height: 2.8,
                   color: AppTheme().primaryColor),
             ),
-           const SizedBox( width: 9,),
-           Image.asset('assets/images/img_lucy.png')
+            const SizedBox(
+              width: 9,
+            ),
+            //Image.asset('assets/images/img_unsplashe9gnuhpsg1w_31x31.png')
           ],
         ),
       ),
@@ -115,7 +122,7 @@ class _GiveLucyFreeLunchTwoScreenState
                 height: 12,
               ),
               buildEditField(
-                  keyboard: TextInputType.text,
+                  keyboard: TextInputType.multiline,
                   title: 'Compliment',
                   textController: _complimentController,
                   fieldHeight: 108),
@@ -142,7 +149,8 @@ class _GiveLucyFreeLunchTwoScreenState
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 50),
                 child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 40,
                       mainAxisSpacing: 40,
                       crossAxisCount: 2,
@@ -259,6 +267,9 @@ class _GiveLucyFreeLunchTwoScreenState
             cursorColor: AppTheme().primaryColor,
             autovalidateMode: AutovalidateMode.disabled,
             decoration: const InputDecoration(
+              hintText:
+                  'You\'re simply awesome! I am impressed\nby your outstanding contribution, here\'s a \nlittle token to treat yourself.',
+              hintStyle: TextStyle(),
               fillColor: Colors.white,
               border: OutlineInputBorder(
                 borderSide: BorderSide.none,
