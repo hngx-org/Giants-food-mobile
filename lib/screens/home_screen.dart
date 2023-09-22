@@ -21,12 +21,19 @@ class HomePage extends StatelessWidget {
     ));
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            _topBuild(),
-            _recentBuild(),
-            _activitiesBuild(),
-          ],
+        child: Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                _topBuild(context),
+                const SizedBox(
+                  height: 10,
+                ),
+                _recentBuild(),
+                _activitiesBuild(),
+              ],
+            ),
+          ),
         ),
       ),
       bottomNavigationBar: CustomBottomNavigationBar(
@@ -56,8 +63,31 @@ class HomePage extends StatelessWidget {
 
 _activitiesBuild() {
   return ListView(
+    physics: const NeverScrollableScrollPhysics(),
     shrinkWrap: true,
     children: [
+      ListTile(
+        title: const CustomText(
+          text: "You got 2 free lunches",
+          isBold: true,
+        ),
+        subtitle: const CustomText(
+            text:
+                'You received a free lunch for your outstanding contribution. Thank you for your hard work'),
+        trailing: Column(
+          children: [
+            CustomText(
+              text: "From: Lucy",
+              color: appTheme.primaryColor,
+              isBold: true,
+            ),
+            const CustomText(
+              text: "Today: 3:30pm",
+              fontsize: 12,
+            )
+          ],
+        ),
+      ),
       ListTile(
         title: const CustomText(
           text: "You got 2 free lunches",
@@ -109,7 +139,7 @@ _activitiesBuild() {
 
 _recentBuild() {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 10).copyWith(
+    padding: const EdgeInsets.symmetric(horizontal: 19).copyWith(
       top: 10.sp,
     ),
     child: Row(
@@ -117,12 +147,12 @@ _recentBuild() {
       children: [
         CustomText(
           text: "Recent Activities",
-          fontsize: 20.sp,
+          fontsize: 16.sp,
           isBold: true,
         ),
         CustomText(
           text: "See all",
-          fontsize: 20.sp,
+          fontsize: 14.sp,
           isBold: true,
         ),
       ],
@@ -130,10 +160,10 @@ _recentBuild() {
   );
 }
 
-_topBuild() {
+_topBuild(BuildContext context) {
   return Container(
     width: double.infinity,
-    height: 270,
+    height: 250,
     color: appTheme.primaryColor,
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -146,38 +176,40 @@ _topBuild() {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                      height: 44,
-                      width: 44,
-                      margin: const EdgeInsets.all(5),
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(Icons.person)),
+                    height: 44,
+                    width: 44,
+                    margin: const EdgeInsets.all(5),
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.person,
+                      color: appTheme.appBackgroundColor,
+                    ),
+                  ),
                   const Row(
                     children: [
                       Text(
                         "Ally",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 30,
+                          fontSize: 28,
                         ),
                       ),
-                      // Image.asset(
-                      //   'assets/images/logo.png',
-                      //   width: 40,
-                      //   height: 40,
-                      // )
+                      SizedBox(
+                        width: 20,
+                      )
                     ],
                   ),
                   const Icon(
                     CupertinoIcons.bell,
-                    size: 30,
+                    size: 28,
                     color: Colors.white,
                   )
                 ],
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
               Text(
                 "Hi, John",
                 style: TextStyle(
@@ -189,7 +221,8 @@ _topBuild() {
               const SizedBox(height: 20),
               DisplayContainer(
                 isImageOrIcon: true,
-                height: 50,
+                height: 45,
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 width: double.infinity,
                 text: "Lunch Balance",
                 count: '3',
@@ -206,25 +239,30 @@ _topBuild() {
                 children: [
                   DisplayContainer(
                     isImageOrIcon: true,
-                    height: 50,
-                    width: 190,
+                    height: 45,
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    width: MediaQuery.of(context).size.width / 2.2,
                     text: 'Give Lunch',
                     onTap: () => Get.to(() => GiveLunch()),
                     image: Image.asset(
                       'assets/images/img_group16.png',
                       fit: BoxFit.cover,
-                      height: 30,
-                      width: 30,
+                      height: 20,
+                      width: 20,
                     ),
                   ),
                   DisplayContainer(
-                    height: 50,
-                    width: 190,
+                    height: 45,
+                    padding: const EdgeInsets.only(left: 10, right: 3),
+                    width: MediaQuery.of(context).size.width / 2.2,
                     text: 'Withdraw Lunch',
                     onTap: () {
                       Get.to(() => const WithdrawLunchScreen());
                     },
-                    sideIcon: const Icon(Icons.arrow_upward),
+                    sideIcon: const Icon(
+                      Icons.arrow_upward,
+                      size: 18,
+                    ),
                   )
                 ],
               )

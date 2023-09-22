@@ -137,6 +137,8 @@ class ImageConstant {
 
   static String imgYay = '$imagePath/img_yay.svg';
 
+  static String imgEmojiSmilingFace = '$imagePath/img_emoji_smiling_face.svg';
+
   static String imgNavhomeOnprimary = '$imagePath/img_navhome_onprimary.svg';
 
   static String imageNotFound = 'assets/images/image_not_found.png';

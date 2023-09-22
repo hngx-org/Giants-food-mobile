@@ -51,7 +51,7 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
             ),
             AppTextField(
               textController: controller.firstNameController,
-              decoration: const InputDecoration(labelText: 'First Name'),
+              // decoration: const InputDecoration(labelText: 'First Name'),
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Please enter your first name';
@@ -64,7 +64,7 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
             const SizedBox(height: 20),
             AppTextField(
               textController: controller.lastNameController,
-              decoration: const InputDecoration(labelText: 'Last Name'),
+              // decoration: const InputDecoration(labelText: 'Last Name'),
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Please enter your last name';
@@ -77,7 +77,7 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
             const SizedBox(height: 20),
             AppTextField(
               textController: controller.emailController,
-              decoration: const InputDecoration(labelText: 'Email'),
+              // decoration: const InputDecoration(labelText: 'Email'),
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Please enter your email';
@@ -90,7 +90,7 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
             const SizedBox(height: 20),
             AppTextField(
               textController: controller.phoneController,
-              decoration: const InputDecoration(labelText: 'Phone Number'),
+              // decoration: const InputDecoration(labelText: 'Phone Number'),
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Please enter your phone number';
@@ -104,7 +104,7 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
             AppTextField(
               textController: controller.passwordController,
               obscureText: true,
-              decoration: const InputDecoration(),
+              // decoration: const InputDecoration(),
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Please enter a password';
@@ -118,7 +118,7 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
             AppTextField(
               textController: controller.confirmPasswordController,
               obscureText: true,
-              decoration: const InputDecoration(labelText: 'Confirm Password'),
+              // decoration: const InputDecoration(labelText: 'Confirm Password'),
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Please confirm your password';

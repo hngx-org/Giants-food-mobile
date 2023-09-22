@@ -24,81 +24,94 @@ class _SignInState extends State<SignIn> {
     ));
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                child: Column(
-                  children: [
-                    SizedBox(height: 40.h),
-                    CustomText(
-                      text: "Sign In",
-                      isBold: true,
-                      fontsize: 20.sp,
-                    ),
-                    const CustomText(
-                      isAligned: true,
-                      text: "Welcome Back! Please Sign into your account",
-                      fontsize: 16,
-                    ),
-                  ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 40.h),
+                      CustomText(
+                        text: "Sign In",
+                        isBold: true,
+                        fontsize: 18.sp,
+                      ),
+                      const CustomText(
+                        isAligned: true,
+                        text: "Welcome Back! Please Sign into your account",
+                        fontsize: 14,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 40),
-              Form(
-                child: Column(
-                  children: [
-                    InputField(
-                        hint: "Email",
-                        title: "Email",
-                        controller: signController.emailController),
-                    Obx(() => InputField(
-                          hint: "Password",
-                          title: "Password",
-                          isObsured: signController.isObsecure.value,
-                          icon: IconButton(
-                            onPressed: () {
-                              signController.isObsecure.value =
-                                  !signController.isObsecure.value;
-                            },
-                            icon: Icon(
-                              signController.isObsecure.value
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
+                const SizedBox(height: 40),
+                Form(
+                  key: signController.formFieldKey,
+                  child: Column(
+                    children: [
+                      InputField(
+                          hint: "Email",
+                          title: "Email",
+                          controller: signController.emailController),
+                      Obx(() => InputField(
+                            hint: "Password",
+                            title: "Password",
+                            isObsured: signController.isObsecure.value,
+                            icon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  signController.isObsecure.value =
+                                      !signController.isObsecure.value;
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: Icon(
+                                  signController.isObsecure.value
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: Colors.grey,
+                                  size: 19,
+                                ),
+                              ),
                             ),
-                          ),
-                          controller: signController.passwordController,
-                        )),
-                    SizedBox(height: 40.h),
-                    AppButton(
-                      buttonText: 'Sign In',
-                      onPressed: () {
-                        signController.validation();
-                        Get.off(HomePage());
-                      },
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(height: 10.h),
-              CustomText(
-                text: "Do you want to create an organization?",
-                fontsize: 15.sp,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  TextButton(
-                    onPressed: () => Get.to(() => const SignUp()),
-                    child: CustomText(text: 'Create account', fontsize: 15.sp),
-                  )
-                ],
-              )
-            ],
+                            controller: signController.passwordController,
+                          )),
+                      const SizedBox(height: 10),
+                      SizedBox(height: 40.h),
+                      AppButton(
+                        buttonText: 'Sign In',
+                        onPressed: () {
+                          signController.validation();
+                          Get.off(HomePage());
+                        },
+                      ),
+                      SizedBox(height: 10.h),
+                      Center(
+                        child: CustomText(
+                          text: "Do you want to create an organization?",
+                          fontsize: 13.sp,
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          TextButton(
+                            onPressed: () => Get.off(() => const SignUp()),
+                            child: CustomText(
+                                text: 'Create account', fontsize: 14.sp),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
