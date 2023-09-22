@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/core/utils/image_constant.dart';
@@ -29,12 +28,8 @@ class _GiveLucyFreeLunchTwoScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appTheme.appBackgroundColor,
+        backgroundColor: Colors.transparent,
         elevation: 0,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: appTheme.appBackgroundColor,
-          statusBarIconBrightness: Brightness.dark,
-        ),
         centerTitle: true,
         leading: GestureDetector(
           onTap: () {
@@ -48,26 +43,36 @@ class _GiveLucyFreeLunchTwoScreenState
         ),
         title: Row(
           children: [
+            const Spacer(),
             Text(
               'Give Lucy free lunch',
               style: TextStyle(
-                  fontSize: 18.0,
-                  shadows: const [
-                    Shadow(
-                      blurRadius: 4.0,
-                      color: Colors.grey,
-                      offset: Offset(0.0, 5.0),
-                    ),
-                  ],
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'inter',
-                  fontStyle: FontStyle.normal,
-                  height: 2.8,
-                  color: AppTheme().primaryColor),
+                fontSize: 18.0,
+                shadows: const [
+                  Shadow(
+                    blurRadius: 4.0,
+                    color: Colors.grey,
+                    offset: Offset(0.0, 5.0),
+                  ),
+                ],
+                fontWeight: FontWeight.w700,
+                fontFamily: 'inter',
+                fontStyle: FontStyle.normal,
+                height: 2.8,
+                color: AppTheme().primaryColor,
+              ),
             ),
             const SizedBox(
               width: 9,
             ),
+            SvgPicture.asset(
+              ImageConstant.imgEmojiSmilingFace,
+              height: 25,
+            ),
+            const SizedBox(
+              width: 30,
+            ),
+            const Spacer()
             //Image.asset('assets/images/img_unsplashe9gnuhpsg1w_31x31.png')
           ],
         ),
@@ -161,7 +166,7 @@ class _GiveLucyFreeLunchTwoScreenState
                       crossAxisSpacing: 40,
                       mainAxisSpacing: 40,
                       crossAxisCount: 2,
-                      childAspectRatio: 1.5,
+                      childAspectRatio: 1.3,
                     ),
                     itemCount: mealCategory.length,
                     shrinkWrap: true,
@@ -170,7 +175,7 @@ class _GiveLucyFreeLunchTwoScreenState
                       return Container(
                         width: 84,
                         height: 65,
-                        padding: EdgeInsets.symmetric(vertical: 10),
+                        padding: const EdgeInsets.symmetric(vertical: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
                           border: Border.all(color: Colors.black),
@@ -204,10 +209,13 @@ class _GiveLucyFreeLunchTwoScreenState
               ),
               buildButton(
                 onPressed: () {
-                  Get.to(() => SuccessScreen());
+                  Get.to(SuccessScreen());
                 },
                 buttonText: 'Give free lunch',
-              )
+              ),
+              const SizedBox(
+                height: 38,
+              ),
             ],
           ),
         ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:giants_free_lunch/controllers/invite_employee_controller.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
-
 import 'package:giants_free_lunch/widgets/app_text_fields.dart';
 
 class InviteEmployee extends StatefulWidget {
@@ -44,40 +43,55 @@ class _InviteEmployeeState extends State<InviteEmployee> {
           physics: const BouncingScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 14, 20, 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 56,
-                ),
-                const Text(
-                  "Send an Invitation to an employee, they\nwill receive it in their email.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    height: 2,
+            child: Form(
+              key: _inviteController.formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 56,
                   ),
-                ),
-                const SizedBox(
-                  height: 69,
-                ),
-                AppTextField(
-                  textTitle: "Email",
-                  textController: _inviteController.textController,
-                  hintText: "Email",
-                  decoration: const InputDecoration(labelText: 'Last Name'),
-                ),
-                const SizedBox(
-                  height: 36,
-                ),
-                AppButton(
-                  buttonText: "Send Invitation",
-                  onPressed: () {
-                    _inviteController.validation();
-                  },
-                ),
-              ],
+                  const Text(
+                    "Send an Invitation to an employee, they\nwill receive it in their email.",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      height: 2,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 69,
+                  ),
+                  AppTextField(
+                    textTitle: "Email",
+                    textController: _inviteController.textController,
+                    hintText: "Email",
+                    validator: (value) {
+                      if (RegExp(
+                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          .hasMatch(value)) {
+                        return null;
+                      } else {
+                        return "Please input a valid Email Address";
+                      }
+                    },
+                  ),
+                  const SizedBox(
+                    height: 36,
+                  ),
+                  AppButton(
+                    buttonText: "Send Invitation",
+                    onPressed: () {
+                      if (_inviteController.formKey.currentState!.validate()) {
+                        print("valid");
+                      } else {
+                        print("Invalid");
+                      }
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -11,6 +11,7 @@ import 'package:giants_free_lunch/core/extentions/extenstion.dart';
   final TextEditingController confirmPassWordController =
       TextEditingController();
   bool obscurePassword = true;
+  bool obscureConfirmPassword = true;
 
 
     

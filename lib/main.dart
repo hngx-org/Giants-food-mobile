@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:giants_free_lunch/screens/employee_sign_up_one_screen.dart';
 import 'package:giants_free_lunch/screens/login_screen.dart';
-
 import './core/app_export.dart';
 
+AppTheme appTheme = AppTheme();
 void main() {
   runApp(const MyApp());
 }
