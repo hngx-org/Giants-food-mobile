@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:giants_free_lunch/screens/employee_sign_up_one_screen.dart';
 import 'package:giants_free_lunch/screens/login_screen.dart';
 import './core/app_export.dart';
+import 'screens/recent_activity_screen.dart';
 
 AppTheme appTheme = AppTheme();
 void main() {
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
-            home: const SignIn(),
+            home: RecentActivityPage(),
           );
         });
   }
