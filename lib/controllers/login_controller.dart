@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
+import 'package:giants_free_lunch/core/extentions/extenstion.dart';
 
 class SignInController extends GetxController {
   final emailController = TextEditingController();
@@ -23,28 +24,5 @@ class SignInController extends GetxController {
     } else if (!emailController.text.emailValidation) {
       errorMethod('Please enter a vaild email');
     }
-  }
-
-  SnackbarController errorMethod(String erorrMsg) {
-    return Get.snackbar(
-      backgroundColor: Colors.red,
-      colorText: Colors.white,
-      "Error Occured",
-      erorrMsg,
-    );
-  }
-}
-
-extension ExtString on String {
-  bool get emailValidation {
-    final emailIsValid = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-    return emailIsValid.hasMatch(this);
-  }
-
-  bool get passwordValidation {
-    final passwordIsVaild =
-        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\><*~]).{8,}$');
-    return passwordIsVaild.hasMatch(this);
   }
 }

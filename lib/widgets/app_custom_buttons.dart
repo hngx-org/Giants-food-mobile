@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import '../core/app_export.dart';
-
-final appTheme = AppTheme();
+import 'package:giants_free_lunch/main.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton(
@@ -17,7 +15,7 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: buttonWidth,
-      height: 50,
+      height: 45,
       child: ElevatedButton(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(

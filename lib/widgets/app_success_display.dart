@@ -30,7 +30,7 @@ class AppSuccessDisplay extends StatelessWidget {
               width: 10,
             ),
             SvgPicture.asset(
-              ImageConstant.imgTrash
+              ImageConstant.imgEmojiSmilingFace
             ),
           ],
         ),
