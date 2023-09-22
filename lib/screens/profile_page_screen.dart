@@ -11,146 +11,149 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 40,
-            ),
-            Center(
-              child: Column(
-                children: [
-                  const Text(
-                    'My Profile',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                        color: Color(0xFF150D57)),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    height: 100,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: Colors.grey, width: 1.5),
-                      image: const DecorationImage(image: AssetImage('assets/images/img_unsplashxogwpcmgdw.png'))
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 0,
+          title: const Text(
+            'My Profile',
+            style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
+                color: Color(0xFF150D57)),
+          ),
 
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    "John Olumide",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                 InkWell(
-                   onTap: (){},
-                   child: Column(
-                     children: [
-                       const Text(
-                         "Send Invitation",
-                         style: TextStyle(
-                             fontSize: 15,
-                             fontWeight: FontWeight.w500,
-                             color: Color(0xff4031B4)),
-                       ),
-                       Container(
-                         height: 1.5,
-                         width: 107,
-                         decoration: const BoxDecoration(color: Color(0xff4031B4)),
-                       ),
-                     ],
-                   ),
-                 )
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 45,
-            ),
-             Text(
-              'Profile',
-              style: TextStyle(
-                  color: Colors.black.withOpacity(0.5),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 17),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Card(
-              surfaceTintColor: Colors.white,
-              shadowColor: Colors.grey,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
+        ),
+        body: Padding(
+          padding: EdgeInsets.only(left: 16,right: 16,bottom: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+
+              const SizedBox(height: 20,),
+              Center(
                 child: Column(
                   children: [
-                    ProfileItems(
-                      title: 'Edit Profile',
-                      widget:
-                          SvgPicture.asset('assets/images/img_navprofile.svg'),
-                      voidCallback: () {},
+                    Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.grey, width: 1.5),
+                        image: const DecorationImage(image: AssetImage('assets/images/img_unsplashxogwpcmgdw.png'))
+
+                      ),
                     ),
-                    ProfileItems(
-                      title: 'Lunch History',
-                      widget: SvgPicture.asset(
-                          'assets/images/img_pajamasappearance.svg'),
-                      voidCallback: () {},
-                    ),
-                    ProfileItems(
-                      title: 'Notifications',
-                      widget: SvgPicture.asset(
-                          'assets/images/img_notification_black_900.svg'),
-                      voidCallback: () {},
-                    ),
-                    ProfileItems(
-                      title: 'Security',
-                      widget: SvgPicture.asset(
-                          'assets/images/img_heroiconsoutli_black_900.svg'),
-                      voidCallback: () {},
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-             Center(
-              child: InkWell(
-                onTap: (){},
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset('assets/images/img_file.svg'),
-                    // Icon(Iconsax.logout),
                     const SizedBox(
-                      width: 10,
+                      height: 10,
                     ),
                     const Text(
-                      'Logout',
-                      style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16),
-                    )
+                      "John Olumide",
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                   InkWell(
+                     onTap: (){},
+                     child: Column(
+                       children: [
+                         const Text(
+                           "Send Invitation",
+                           style: TextStyle(
+                               fontSize: 15,
+                               fontWeight: FontWeight.w500,
+                               color: Color(0xff4031B4)),
+                         ),
+                         Container(
+                           height: 1.5,
+                           width: 106.5,
+                           decoration: const BoxDecoration(color: Color(0xff4031B4)),
+                         ),
+                       ],
+                     ),
+                   )
                   ],
                 ),
               ),
-            ),
-          ],
+              const SizedBox(
+                height: 45,
+              ),
+               Text(
+                'Profile',
+                style: TextStyle(
+                    color: Colors.black.withOpacity(0.5),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 17),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Card(
+                surfaceTintColor: Colors.white,
+                shadowColor: Colors.grey,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      ProfileItems(
+                        title: 'Edit Profile',
+                        widget:
+                            SvgPicture.asset('assets/images/img_navprofile.svg'),
+                        voidCallback: () {},
+                      ),
+                      ProfileItems(
+                        title: 'Lunch History',
+                        widget: SvgPicture.asset(
+                            'assets/images/img_pajamasappearance.svg'),
+                        voidCallback: () {},
+                      ),
+                      ProfileItems(
+                        title: 'Notifications',
+                        widget: SvgPicture.asset(
+                            'assets/images/img_notification_black_900.svg'),
+                        voidCallback: () {},
+                      ),
+                      ProfileItems(
+                        title: 'Security',
+                        widget: SvgPicture.asset(
+                            'assets/images/img_heroiconsoutli_black_900.svg'),
+                        voidCallback: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+               Center(
+                child: InkWell(
+                  onTap: (){},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset('assets/images/img_file.svg'),
+                      // Icon(Iconsax.logout),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Text(
+                        'Logout',
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
