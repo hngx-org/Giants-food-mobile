@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:giants_free_lunch/core/app_export.dart';
 
 class DisplayContainer extends StatelessWidget {
   final double height;
@@ -10,6 +11,7 @@ class DisplayContainer extends StatelessWidget {
   final Icon? sideIcon;
   final Image? image;
   final bool isImageOrIcon;
+  final EdgeInsetsGeometry? padding;
   const DisplayContainer({
     Key? key,
     required this.height,
@@ -20,6 +22,7 @@ class DisplayContainer extends StatelessWidget {
     this.image,
     this.isImageOrIcon = false,
     this.count,
+    this.padding,
   }) : super(key: key);
 
   @override
@@ -29,7 +32,7 @@ class DisplayContainer extends StatelessWidget {
       child: Container(
         height: height,
         width: width,
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: padding,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -39,20 +42,22 @@ class DisplayContainer extends StatelessWidget {
           children: [
             Text(
               text,
-              style: const TextStyle(
-                fontSize: 16,
+              style: TextStyle(
+                fontSize: 16.w,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const Spacer(),
-            Text(
-              count ?? "",
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
-            const SizedBox(width: 5),
+            count == null
+                ? const SizedBox()
+                : Text(
+                    count ?? "",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+            count == null ? const SizedBox() : const SizedBox(width: 5),
             Container(
               child: isImageOrIcon ? image : sideIcon,
             )
