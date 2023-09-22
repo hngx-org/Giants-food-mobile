@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
  
-  final TextEditingController firstNameController = TextEditingController();
+  class SignUpController extends GetxController{
+    final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
@@ -26,5 +28,6 @@ import 'package:giants_free_lunch/core/extentions/extenstion.dart';
         confirmPassWordController.text.trim()) {
       errorMethod('password and confirm is not the same');
     } else {}
+  }
   }
 
