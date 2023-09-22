@@ -26,7 +26,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   Container buildPasswordTextField(
-      bool obscure, TextEditingController controller) {
+      bool obscure, TextEditingController controller, Widget suffixIcon) {
     return Container(
       height: 40,
       decoration: BoxDecoration(
@@ -40,26 +40,16 @@ class _SignUpState extends State<SignUp> {
         controller: controller,
         decoration: InputDecoration(
           hintText: 'Password',
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.only(left: 11),
-          suffixIcon: GestureDetector(
-            onTap: () {
-              setState(() {
-                signUpController.obscurePassword =
-                    !signUpController.obscurePassword;
-              });
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Icon(
-                obscure ? Icons.visibility : Icons.visibility_off,
-                color: Colors.grey,
-                size: 19,
-              ),
-            ),
+          hintStyle: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            color: Colors.grey,
           ),
+          border: InputBorder.none,
+          contentPadding: const EdgeInsets.only(left: 11, bottom: 18),
+          suffixIcon: suffixIcon,
         ),
-        obscureText: signUpController.obscurePassword,
+        obscureText: obscure,
       ),
     );
   }
@@ -151,8 +141,13 @@ class _SignUpState extends State<SignUp> {
                         controller: signUpController.firstNameController,
                         decoration: const InputDecoration(
                           hintText: 'First name',
+                          hintStyle: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.grey,
+                          ),
                           border: InputBorder.none,
-                          contentPadding: EdgeInsets.only(left: 11, bottom: 12),
+                          contentPadding: EdgeInsets.only(left: 11, bottom: 18),
                         ),
                       ),
                     ),
@@ -180,9 +175,14 @@ class _SignUpState extends State<SignUp> {
                       child: TextField(
                         controller: signUpController.lastNameController,
                         decoration: const InputDecoration(
+                          hintStyle: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.grey,
+                          ),
                           hintText: 'Last name',
                           border: InputBorder.none,
-                          contentPadding: EdgeInsets.only(left: 11, bottom: 12),
+                          contentPadding: EdgeInsets.only(left: 11, bottom: 18),
                         ),
                       ),
                     ),
@@ -210,9 +210,14 @@ class _SignUpState extends State<SignUp> {
                       child: TextField(
                         controller: signUpController.emailController,
                         decoration: const InputDecoration(
+                          hintStyle: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.grey,
+                          ),
                           hintText: 'Email',
                           border: InputBorder.none,
-                          contentPadding: EdgeInsets.only(left: 11, bottom: 12),
+                          contentPadding: EdgeInsets.only(left: 11, bottom: 18),
                         ),
                       ),
                     ),
@@ -240,9 +245,14 @@ class _SignUpState extends State<SignUp> {
                       child: TextField(
                         controller: signUpController.phoneNumberController,
                         decoration: const InputDecoration(
+                          hintStyle: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.grey,
+                          ),
                           hintText: 'Phone number',
                           border: InputBorder.none,
-                          contentPadding: EdgeInsets.only(left: 11, bottom: 12),
+                          contentPadding: EdgeInsets.only(left: 11, bottom: 18),
                         ),
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.digitsOnly,
@@ -261,8 +271,28 @@ class _SignUpState extends State<SignUp> {
                         // color: Color(0xff000000),
                       ),
                     ),
-                    buildPasswordTextField(signUpController.obscurePassword,
-                        signUpController.passWordController),
+                    buildPasswordTextField(
+                      signUpController.obscurePassword,
+                      signUpController.passWordController,
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            signUpController.obscurePassword =
+                                !signUpController.obscurePassword;
+                          });
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Icon(
+                            signUpController.obscurePassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: Colors.grey,
+                            size: 19,
+                          ),
+                        ),
+                      ),
+                    ),
                     const SizedBox(height: 15.0),
                     const Text(
                       'Confirm Password',
@@ -275,8 +305,28 @@ class _SignUpState extends State<SignUp> {
                         // color: Color(0xff000000),
                       ),
                     ),
-                    buildPasswordTextField(signUpController.obscurePassword,
-                        signUpController.confirmPassWordController),
+                    buildPasswordTextField(
+                      signUpController.obscureConfirmPassword,
+                      signUpController.confirmPassWordController,
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            signUpController.obscureConfirmPassword =
+                                !signUpController.obscureConfirmPassword;
+                          });
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Icon(
+                            signUpController.obscureConfirmPassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: Colors.grey,
+                            size: 19,
+                          ),
+                        ),
+                      ),
+                    ),
                     const SizedBox(height: 32.0),
                     AppButton(
                       buttonText: "Continue",

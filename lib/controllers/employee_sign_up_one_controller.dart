@@ -11,6 +11,7 @@ class SignUpController extends GetxController {
   final TextEditingController confirmPassWordController =
       TextEditingController();
   bool obscurePassword = true;
+  bool obscureConfirmPassword = true;
 
   @override
   void dispose() {

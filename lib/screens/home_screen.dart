@@ -200,11 +200,6 @@ _topBuild(BuildContext context) {
                       SizedBox(
                         width: 20,
                       )
-                      // Image.asset(
-                      //   'assets/images/logo.png',
-                      //   width: 40,
-                      //   height: 40,
-                      // )
                     ],
                   ),
                   const Icon(
@@ -227,6 +222,7 @@ _topBuild(BuildContext context) {
               DisplayContainer(
                 isImageOrIcon: true,
                 height: 45,
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 width: double.infinity,
                 text: "Lunch Balance",
                 count: '3',
@@ -244,6 +240,7 @@ _topBuild(BuildContext context) {
                   DisplayContainer(
                     isImageOrIcon: true,
                     height: 45,
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     width: MediaQuery.of(context).size.width / 2.2,
                     text: 'Give Lunch',
                     onTap: () => Get.to(() => GiveLunch()),
@@ -256,6 +253,7 @@ _topBuild(BuildContext context) {
                   ),
                   DisplayContainer(
                     height: 45,
+                    padding: const EdgeInsets.only(left: 10, right: 3),
                     width: MediaQuery.of(context).size.width / 2.2,
                     text: 'Withdraw Lunch',
                     onTap: () {

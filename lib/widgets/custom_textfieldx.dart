@@ -44,7 +44,7 @@ class _InputFieldState extends State<InputField> {
             ),
           ),
           Container(
-            height: 45.h,
+            height: 40,
             margin: const EdgeInsets.only(top: 2),
             padding: const EdgeInsets.only(left: 8),
             decoration: BoxDecoration(
