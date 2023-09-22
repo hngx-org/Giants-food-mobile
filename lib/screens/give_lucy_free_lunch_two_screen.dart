@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/core/utils/image_constant.dart';
+import 'package:giants_free_lunch/screens/success_screen.dart';
 import 'package:giants_free_lunch/themes/app_theme.dart';
 
 class GiveLucyFreeLunchTwoScreen extends StatefulWidget {
@@ -26,8 +29,12 @@ class _GiveLucyFreeLunchTwoScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: appTheme.appBackgroundColor,
         elevation: 0,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: appTheme.appBackgroundColor,
+          statusBarIconBrightness: Brightness.dark,
+        ),
         centerTitle: true,
         leading: GestureDetector(
           onTap: () {
@@ -196,7 +203,9 @@ class _GiveLucyFreeLunchTwoScreenState
                 height: 38,
               ),
               buildButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => SuccessScreen());
+                },
                 buttonText: 'Give free lunch',
               )
             ],

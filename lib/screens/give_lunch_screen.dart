@@ -13,13 +13,13 @@ class GiveLunch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
     ));
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
@@ -129,23 +129,23 @@ class GiveLunch extends StatelessWidget {
             ),
           ],
         ),
-        floatingActionButton: SizedBox(
-          height: 40,
-          width: MediaQuery.sizeOf(context).width * 0.8,
-          child: FloatingActionButton.extended(
-            onPressed: () => Get.to(() => GiveLucyFreeLunchTwoScreen()),
-            label: Text(
-              "Proceed",
-              style: const TextStyle(color: Colors.white),
-            ),
-            shape: const BeveledRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(5))),
-            backgroundColor: appTheme.primaryColor,
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        backgroundColor: appTheme.appBackgroundColor,
       ),
+      floatingActionButton: SizedBox(
+        height: 40,
+        width: MediaQuery.sizeOf(context).width * 0.8,
+        child: FloatingActionButton.extended(
+          onPressed: () => Get.to(() => GiveLucyFreeLunchTwoScreen()),
+          label: Text(
+            "Proceed",
+            style: const TextStyle(color: Colors.white),
+          ),
+          shape: const BeveledRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(5))),
+          backgroundColor: appTheme.primaryColor,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      backgroundColor: appTheme.appBackgroundColor,
     );
   }
 }
