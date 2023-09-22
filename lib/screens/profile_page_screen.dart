@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:giants_free_lunch/screens/home_screen.dart';
+import 'package:giants_free_lunch/screens/invite_employee.dart';
 import 'package:giants_free_lunch/screens/leader_board_screen.dart';
 import 'package:giants_free_lunch/widgets/custom_bottom_bar.dart';
 
@@ -77,7 +78,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      // Get.to(()=> Invite)
+                      Get.to(() => InviteEmployee());
                     },
                     child: Column(
                       children: [

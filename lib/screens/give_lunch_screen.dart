@@ -2,24 +2,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:giants_free_lunch/controllers/give_lunch_controller.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/screens/give_lucy_free_lunch_two_screen.dart';
+import 'package:giants_free_lunch/widgets/app_text_fields.dart';
 
+// ignore: must_be_immutable
 class GiveLunch extends StatelessWidget {
   GiveLunch({super.key});
 
   final appTheme = AppTheme();
   bool check = false;
+  final _searchController = Get.put(GiveLunchController());
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
     ));
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
@@ -30,6 +34,8 @@ class GiveLunch extends StatelessWidget {
                 children: [
                   SizedBox(
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         IconButton(
                             onPressed: () => Get.back(),
@@ -55,26 +61,35 @@ class GiveLunch extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
+                  const SizedBox(height: 10),
+                  AppTextField(
+                    textTitle: "",
+                    textController: _searchController.searchController,
+                    hintText: "Search worker's name",
+                    decoration: InputDecoration(labelText: 'Search'),
+                    suffixIcon: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.search_outlined),
+                    ),
                   ),
-                  Container(
-                    color: Colors.white,
-                    child: TextFormField(
-                        decoration: InputDecoration(
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(width: 2, color: Colors.black45),
-                      ),
-                      border: const OutlineInputBorder(
-                        borderSide: BorderSide(width: 2, color: Colors.black45),
-                      ),
-                      hintText: "Search worker's name",
-                      suffixIcon: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.search_outlined),
-                      ),
-                    )),
-                  )
+                  const SizedBox(height: 10),
+                  // Container(
+                  //   color: Colors.white,
+                  //   child: TextFormField(
+                  //       decoration: InputDecoration(
+                  //     focusedBorder: const OutlineInputBorder(
+                  //       borderSide: BorderSide(width: 2, color: Colors.black45),
+                  //     ),
+                  //     border: const OutlineInputBorder(
+                  //       borderSide: BorderSide(width: 2, color: Colors.black45),
+                  //     ),
+                  //     hintText: "Search worker's name",
+                  //     suffixIcon: IconButton(
+                  //       onPressed: () {},
+                  //       icon: const Icon(Icons.search_outlined),
+                  //     ),
+                  //   )),
+                  // )
                 ],
               ),
             ),
@@ -129,23 +144,23 @@ class GiveLunch extends StatelessWidget {
             ),
           ],
         ),
-        floatingActionButton: SizedBox(
-          height: 40,
-          width: MediaQuery.sizeOf(context).width * 0.8,
-          child: FloatingActionButton.extended(
-            onPressed: () => Get.to(() => GiveLucyFreeLunchTwoScreen()),
-            label: Text(
-              "Proceed",
-              style: const TextStyle(color: Colors.white),
-            ),
-            shape: const BeveledRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(5))),
-            backgroundColor: appTheme.primaryColor,
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        backgroundColor: appTheme.appBackgroundColor,
       ),
+      floatingActionButton: SizedBox(
+        height: 40,
+        width: MediaQuery.sizeOf(context).width * 0.8,
+        child: FloatingActionButton.extended(
+          onPressed: () => Get.to(() => GiveLucyFreeLunchTwoScreen()),
+          label: Text(
+            "Proceed",
+            style: const TextStyle(color: Colors.white),
+          ),
+          shape: const BeveledRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(5))),
+          backgroundColor: appTheme.primaryColor,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      backgroundColor: appTheme.appBackgroundColor,
     );
   }
 }
