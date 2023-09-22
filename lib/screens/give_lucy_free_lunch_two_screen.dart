@@ -43,6 +43,7 @@ class _GiveLucyFreeLunchTwoScreenState
         ),
         title: Row(
           children: [
+            const Spacer(),
             Text(
               'Give Lucy free lunch',
               style: TextStyle(
@@ -68,6 +69,10 @@ class _GiveLucyFreeLunchTwoScreenState
               ImageConstant.imgEmojiSmilingFace,
               height: 25,
             ),
+            const SizedBox(
+              width: 30,
+            ),
+            const Spacer()
             //Image.asset('assets/images/img_unsplashe9gnuhpsg1w_31x31.png')
           ],
         ),
