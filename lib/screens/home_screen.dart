@@ -204,7 +204,7 @@ _topBuild(BuildContext context) {
                   ),
                   const Icon(
                     CupertinoIcons.bell,
-                    size: 30,
+                    size: 28,
                     color: Colors.white,
                   )
                 ],
