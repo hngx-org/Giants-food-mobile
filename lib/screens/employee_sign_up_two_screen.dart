@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:giants_free_lunch/controllers/employee_sign_up_two_controller.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 
-import 'package:giants_free_lunch/screens/login_screen.dart';
-//import 'package:giants_free_lunch/widgets/app_custom_buttons.dart';
 import 'package:giants_free_lunch/widgets/custom_text.dart';
 import 'package:giants_free_lunch/widgets/custom_textfieldx.dart';
 
@@ -87,9 +85,8 @@ class _SecondSignUpState extends State<SecondSignUp> {
               AppButton(
                 buttonText: 'Finish Sign Up',
                 onPressed: () {
-                  //controller.validation();
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const SignIn()));
+                  controller.validation();
+                  Get.to(() => HomePage());
                 },
               )
             ],

@@ -16,19 +16,18 @@ class AddBankAccountScreen extends StatelessWidget {
     selectedItem.listen((item) {
       switch (item) {
         case BottomBarItem.Home:
-          Get.offAll(() =>  HomePage()); // Navigate to the Home page
+          Get.offAll(() => HomePage()); // Navigate to the Home page
           break;
         case BottomBarItem.Leaderboards:
           Get.offAll(
-              () => const LeaderBoard()); // Navigate to the Leaderboards screen
+              () => LeaderBoard()); // Navigate to the Leaderboards screen
           break;
         case BottomBarItem.Profile:
-          Get.offAll(() => const ProfileScreen()); // Navigate to the Profile screen
+          Get.offAll(() => ProfileScreen()); // Navigate to the Profile screen
           break;
       }
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +146,7 @@ class ContentWidget extends StatelessWidget {
             onPressed: () async {
               // Add logic to add bank account here
               final result = await _controller.addBankAccount();
-    
+
               if (result) {
                 // Show a success message using GetX SnackBar
                 Get.snackbar(

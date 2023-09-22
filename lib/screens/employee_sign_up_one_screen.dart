@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:giants_free_lunch/controllers/employee_sign_up_one_controller.dart';
-import '../core/app_export.dart';
-
+import 'package:giants_free_lunch/core/app_export.dart';
+import 'package:giants_free_lunch/screens/employee_sign_up_two_screen.dart';
+import 'package:giants_free_lunch/widgets/app_text_fields.dart';
+import 'package:giants_free_lunch/widgets/custom_text.dart';
 
 class SignUp extends StatefulWidget {
-  const SignUp({super.key, required String title});
+  const SignUp({super.key});
 
   @override
   State<SignUp> createState() => _SignUpState(); //jjjj
@@ -39,24 +41,20 @@ class _SignUpState extends State<SignUp> {
           suffixIcon: GestureDetector(
             onTap: () {
               setState(() {
-                inviteController.obscurePassword = !inviteController
-                    .obscurePassword; // Corrected the controller name
+                signUpController.obscurePassword = !signUpController.obscurePassword;
               });
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: Icon(
-                inviteController.obscurePassword
-                    ? Icons.visibility
-                    : Icons.visibility_off, // Corrected the controller name
+                obscure ? Icons.visibility : Icons.visibility_off,
                 color: Colors.grey,
                 size: 19,
               ),
             ),
           ),
         ),
-        obscureText:
-            inviteController.obscurePassword, // Corrected the controller name
+        obscureText: signUpController.obscurePassword,
       ),
     );
   }
@@ -65,8 +63,9 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: appTheme.appBackgroundColor,
       body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             Center(
@@ -146,8 +145,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                     child: TextField(
-                      controller: inviteController
-                          .firstNameController, // Corrected the controller name
+                      controller: signUpController.firstNameController,
                       decoration: const InputDecoration(
                         hintText: 'First name',
                         border: InputBorder.none,
@@ -177,8 +175,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                     child: TextField(
-                      controller: inviteController
-                          .lastNameController, // Corrected the controller name
+                      controller: signUpController.lastNameController,
                       decoration: const InputDecoration(
                         hintText: 'Last name',
                         border: InputBorder.none,
@@ -208,8 +205,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                     child: TextField(
-                      controller: inviteController
-                          .emailController, // Corrected the controller name
+                      controller: signUpController.emailController,
                       decoration: const InputDecoration(
                         hintText: 'Email',
                         border: InputBorder.none,
@@ -239,8 +235,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                     child: TextField(
-                      controller: inviteController
-                          .phoneNumberController, // Corrected the controller name
+                      controller: signUpController.phoneNumberController,
                       decoration: const InputDecoration(
                         hintText: 'Phone number',
                         border: InputBorder.none,
@@ -264,10 +259,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   const SizedBox(height: 5.0),
-                  buildPasswordTextField(
-                      inviteController.obscurePassword,
-                      inviteController
-                          .passWordController), // Corrected the controller name
+                  buildPasswordTextField( signUpController.obscurePassword, signUpController.passWordController),
                   const SizedBox(height: 40.0),
                   const Text(
                     'Confirm Password',
@@ -282,9 +274,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                   const SizedBox(height: 5.0),
                   buildPasswordTextField(
-                      inviteController.obscurePassword,
-                      inviteController
-                          .confirmPassWordController), // Corrected the controller name
+                     signUpController.obscurePassword, signUpController.confirmPassWordController),
                   const SizedBox(height: 32.0),
                   ElevatedButton(
                     onPressed: () {},

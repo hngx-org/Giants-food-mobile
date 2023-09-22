@@ -1,16 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:giants_free_lunch/screens/home_screen.dart';
+import 'package:giants_free_lunch/screens/invite_employee.dart';
+import 'package:giants_free_lunch/screens/leader_board_screen.dart';
+import 'package:giants_free_lunch/widgets/custom_bottom_bar.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+class ProfileScreen extends StatelessWidget {
+  final Rx<BottomBarItem> selectedItem = BottomBarItem.Profile.obs;
+  ProfileScreen({super.key}) {
+    selectedItem.listen((item) {
+      switch (item) {
+        case BottomBarItem.Home:
+          Get.offAll(() => HomePage()); // Navigate to the Home page
+          break;
+        case BottomBarItem.Leaderboards:
+          Get.offAll(
+              () => LeaderBoard()); // Navigate to the Leaderboards screen
+          break;
+        case BottomBarItem.Profile:
+          Get.offAll(() => ProfileScreen()); // Navigate to the Profile screen
+          break;
+      }
+    });
+  }
 
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ));
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -39,8 +60,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: Colors.grey, width: 1.5),
-                      image: const DecorationImage(image: AssetImage('assets/images/img_unsplashxogwpcmgdw.png'))
-
+                      image: const DecorationImage(
+                        image: AssetImage(
+                            'assets/images/img_unsplashxogwpcmgdw.png'),
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -53,32 +76,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(
                     height: 10,
                   ),
-                 InkWell(
-                   onTap: (){},
-                   child: Column(
-                     children: [
-                       const Text(
-                         "Send Invitation",
-                         style: TextStyle(
-                             fontSize: 15,
-                             fontWeight: FontWeight.w500,
-                             color: Color(0xff4031B4)),
-                       ),
-                       Container(
-                         height: 1.5,
-                         width: 107,
-                         decoration: const BoxDecoration(color: Color(0xff4031B4)),
-                       ),
-                     ],
-                   ),
-                 )
+                  InkWell(
+                    onTap: () {
+                      Get.to(() => InviteEmployee());
+                    },
+                    child: Column(
+                      children: [
+                        const Text(
+                          "Send Invitation",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xff4031B4)),
+                        ),
+                        Container(
+                          height: 1.5,
+                          width: 107,
+                          decoration:
+                              const BoxDecoration(color: Color(0xff4031B4)),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
             const SizedBox(
               height: 45,
             ),
-             Text(
+            Text(
               'Profile',
               style: TextStyle(
                   color: Colors.black.withOpacity(0.5),
@@ -128,9 +154,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(
               height: 30,
             ),
-             Center(
+            Center(
               child: InkWell(
-                onTap: (){},
+                onTap: () {},
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -152,6 +178,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        selectedItem: selectedItem,
       ),
     );
   }

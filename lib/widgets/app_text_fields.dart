@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AppTextField extends StatelessWidget {
   const AppTextField({
@@ -8,7 +9,11 @@ class AppTextField extends StatelessWidget {
     this.onChanged,
     required this.hintText,
     this.suffixIcon,
-    this.obscureText = false, required InputDecoration decoration, required String? Function(dynamic value) validator,
+    this.obscureText = false,
+    required InputDecoration decoration,
+    String? Function(dynamic value)? validator,
+    this.keyBoardType,
+    this.inputFormatter,
   });
   final String textTitle;
   final TextEditingController textController;
@@ -16,6 +21,8 @@ class AppTextField extends StatelessWidget {
   final String hintText;
   final Widget? suffixIcon;
   final bool obscureText;
+  final TextInputType? keyBoardType;
+  final List<TextInputFormatter>? inputFormatter;
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +34,20 @@ class AppTextField extends StatelessWidget {
           style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            height: 2,
+            fontStyle: FontStyle.normal,
+            height: 2.0,
+            color: Color(0xff000000),
           ),
         ),
         SizedBox(
-          height: 45,
+          height: 50,
           width: double.infinity,
           child: TextField(
             obscureText: obscureText,
             controller: textController,
             onChanged: onChanged,
-            keyboardType: TextInputType.text,
+            keyboardType: keyBoardType,
+            inputFormatters: inputFormatter,
             textCapitalization: TextCapitalization.sentences,
             decoration: InputDecoration(
               hintText: hintText,
@@ -47,7 +57,7 @@ class AppTextField extends StatelessWidget {
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
                 borderSide: const BorderSide(
-                  width: 1,
+                  width: 1.0,
                   color: Color(0xFF323232),
                 ),
               ),

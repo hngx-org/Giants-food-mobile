@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:giants_free_lunch/core/app_export.dart';
+import 'package:giants_free_lunch/screens/redeem_success_screen.dart';
 import 'package:giants_free_lunch/themes/app_theme.dart';
 
 class WithdrawLunchScreen extends StatefulWidget {
@@ -12,8 +15,19 @@ class WithdrawLunchScreen extends StatefulWidget {
 class _WithdrawLunchScreenState extends State<WithdrawLunchScreen> {
   @override
   Widget build(BuildContext context) {
+    // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    //   statusBarColor: Colors.transparent,
+    //   statusBarIconBrightness: Brightness.dark,
+    // ));
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: appTheme.appBackgroundColor,
+        elevation: 0,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: appTheme.appBackgroundColor,
+          statusBarIconBrightness: Brightness.dark,
+        ),
+        centerTitle: true,
         title: const Text('Withdraw your lunch'),
       ),
       body: Padding(
@@ -73,26 +87,14 @@ class _WithdrawLunchScreenState extends State<WithdrawLunchScreen> {
             ),
             SizedBox(height: 25.h),
             SizedBox(
-              width: double.infinity,
-              height: 50.h,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppTheme.btnBgColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.r),
-                  ),
-                ),
-                child: Text(
-                  'WIthdraw',
-                  style: TextStyle(
-                    color: AppTheme.btnTextColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.sp,
-                  ),
-                ),
-              ),
-            ),
+                width: double.infinity,
+                height: 50.h,
+                child: AppButton(
+                  buttonText: 'Withdraw',
+                  onPressed: () {
+                    Get.to(() => RedeemSuccessScreen());
+                  },
+                )),
           ],
         ),
       ),

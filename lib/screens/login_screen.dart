@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:giants_free_lunch/controllers/login_controller.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
+import 'package:giants_free_lunch/screens/employee_sign_up_one_screen.dart';
 import 'package:giants_free_lunch/widgets/custom_text.dart';
 import 'package:giants_free_lunch/widgets/custom_textfieldx.dart';
 
@@ -24,9 +25,10 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
                 child: Column(
@@ -47,41 +49,55 @@ class _SignInState extends State<SignIn> {
               ),
               const SizedBox(height: 40),
               Form(
-                  key: signController.formFieldKey,
-                  child: Column(
-                    children: [
-                      InputField(
-                          hint: "Email",
-                          title: "Email",
-                          controller: signController.emailController),
-                      Obx(() => InputField(
-                            hint: "Password",
-                            title: "Password",
-                            isObsured: signController.isObsecure.value,
-                            icon: IconButton(
-                              onPressed: () {
-                                signController.isObsecure.value =
-                                    !signController.isObsecure.value;
-                              },
-                              icon: Icon(
-                                signController.isObsecure.value
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                              ),
+                child: Column(
+                  children: [
+                    InputField(
+                        hint: "Email",
+                        title: "Email",
+                        controller: signController.emailController),
+                    Obx(() => InputField(
+                          hint: "Password",
+                          title: "Password",
+                          isObsured: signController.isObsecure.value,
+                          icon: IconButton(
+                            onPressed: () {
+                              signController.isObsecure.value =
+                                  !signController.isObsecure.value;
+                            },
+                            icon: Icon(
+                              signController.isObsecure.value
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
                             ),
-                            controller: signController.passwordController,
-                          )),
-                      const SizedBox(height: 10),
-                      SizedBox(height: 40.h),
-                      AppButton(
-                        buttonText: 'Sign In',
-                        onPressed: () {
-                          signController.validation();
-                          Get.off(HomePage());
-                        },
-                      )
-                    ],
-                  ))
+                          ),
+                          controller: signController.passwordController,
+                        )),
+                    SizedBox(height: 40.h),
+                    AppButton(
+                      buttonText: 'Sign In',
+                      onPressed: () {
+                        signController.validation();
+                        Get.off(HomePage());
+                      },
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(height: 10.h),
+              CustomText(
+                text: "Do you want to create an organization?",
+                fontsize: 15.sp,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  TextButton(
+                    onPressed: () => Get.to(() => const SignUp()),
+                    child: CustomText(text: 'Create account', fontsize: 15.sp),
+                  )
+                ],
+              )
             ],
           ),
         ),
