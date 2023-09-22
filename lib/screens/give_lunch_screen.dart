@@ -33,10 +33,11 @@ class _GiveLunchState extends State<GiveLunch> {
           },
           child: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
-        centerTitle: true,
+        // centerTitle: true,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Spacer(),
             Text(
               'Give free lunch',
               style: TextStyle(
@@ -55,6 +56,10 @@ class _GiveLunchState extends State<GiveLunch> {
               height: 20,
               width: 20,
             ),
+            const SizedBox(
+              width: 30,
+            ),
+            const Spacer()
           ],
         ),
       ),

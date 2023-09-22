@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:giants_free_lunch/controllers/employee_sign_up_one_controller.dart';
+import 'package:giants_free_lunch/core/app_export.dart';
+import 'package:giants_free_lunch/screens/employee_sign_up_two_screen.dart';
 
 class SignUp extends StatefulWidget {
-  const SignUp({super.key, required String title});
+  const SignUp({
+    super.key,
+  });
 
   @override
   State<SignUp> createState() => _SignUpState();
@@ -21,6 +25,7 @@ class _SignUpState extends State<SignUp> {
   Container buildPasswordTextField(
       bool obscure, TextEditingController controller) {
     return Container(
+      height: 40,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
         border: Border.all(
@@ -37,7 +42,8 @@ class _SignUpState extends State<SignUp> {
           suffixIcon: GestureDetector(
             onTap: () {
               setState(() {
-                signUpController.obscurePassword = !signUpController.obscurePassword;
+                signUpController.obscurePassword =
+                    !signUpController.obscurePassword;
               });
             },
             child: Padding(
@@ -67,7 +73,7 @@ class _SignUpState extends State<SignUp> {
                 padding: const EdgeInsets.only(
                   left: 109,
                   right: 109,
-                  top: 80,
+                  top: 50,
                 ),
                 child: Container(
                   width: 157,
@@ -91,7 +97,7 @@ class _SignUpState extends State<SignUp> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const SizedBox(
-                    height: 58.0,
+                    height: 38.0,
                   ),
                   Container(
                     margin: const EdgeInsets.only(bottom: 10.0),
@@ -100,8 +106,8 @@ class _SignUpState extends State<SignUp> {
                       style: TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xff000000),
-                          fontFamily: 'Inter',
+                          // color: Color(0xff000000),
+                          // fontFamily: 'Inter',
                           height: 1.56),
                       textAlign: TextAlign.center,
                     ),
@@ -110,9 +116,9 @@ class _SignUpState extends State<SignUp> {
                     'Let\'s get started! Sign up with \n your email below.',
                     style: TextStyle(
                       fontSize: 14.0,
-                      color: Color(0xff000000),
+                      // color: Color(0xff000000),
                       fontWeight: FontWeight.w400,
-                      fontFamily: 'Inter',
+                      // fontFamily: 'Inter',
                       height: 1.56,
                     ),
                     textAlign: TextAlign.center,
@@ -123,14 +129,14 @@ class _SignUpState extends State<SignUp> {
                     style: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Inter',
+                      // fontFamily: 'Inter',
                       fontStyle: FontStyle.normal,
-                      color: Color(0xff000000),
+                      // color: Color(0xff000000),
                       height: 2.0,
                     ),
                   ),
-                  const SizedBox(height: 5.0),
                   Container(
+                    height: 40,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       border: Border.all(
@@ -143,24 +149,24 @@ class _SignUpState extends State<SignUp> {
                       decoration: const InputDecoration(
                         hintText: 'First name',
                         border: InputBorder.none,
-                        contentPadding: EdgeInsets.only(left: 11),
+                        contentPadding: EdgeInsets.only(left: 11, bottom: 12),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 40.0),
+                  const SizedBox(height: 15.0),
                   const Text(
                     'Last name',
                     style: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'inter',
+                      // fontFamily: 'inter',
                       fontStyle: FontStyle.normal,
                       height: 2.0,
-                      color: Color(0xff000000),
+                      // color: Color(0xff000000),
                     ),
                   ),
-                  const SizedBox(height: 5.0),
                   Container(
+                    height: 40,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       border: Border.all(
@@ -173,24 +179,24 @@ class _SignUpState extends State<SignUp> {
                       decoration: const InputDecoration(
                         hintText: 'Last name',
                         border: InputBorder.none,
-                        contentPadding: EdgeInsets.only(left: 11),
+                        contentPadding: EdgeInsets.only(left: 11, bottom: 12),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 40.0),
+                  const SizedBox(height: 15.0),
                   const Text(
                     'Email',
                     style: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'inter',
+                      // fontFamily: 'inter',
                       fontStyle: FontStyle.normal,
                       height: 2.0,
-                      color: Color(0xff000000),
+                      // color: Color(0xff000000),
                     ),
                   ),
-                  const SizedBox(height: 5.0),
                   Container(
+                    height: 40,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       border: Border.all(
@@ -203,24 +209,24 @@ class _SignUpState extends State<SignUp> {
                       decoration: const InputDecoration(
                         hintText: 'Email',
                         border: InputBorder.none,
-                        contentPadding: EdgeInsets.only(left: 11),
+                        contentPadding: EdgeInsets.only(left: 11, bottom: 12),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 40.0),
+                  const SizedBox(height: 15.0),
                   const Text(
                     'Phone number',
                     style: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'inter',
+                      // fontFamily: 'inter',
                       fontStyle: FontStyle.normal,
                       height: 2.0,
-                      color: Color(0xff000000),
+                      // color: Color(0xff000000),
                     ),
                   ),
-                  const SizedBox(height: 5.0),
                   Container(
+                    height: 40,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       border: Border.all(
@@ -233,60 +239,47 @@ class _SignUpState extends State<SignUp> {
                       decoration: const InputDecoration(
                         hintText: 'Phone number',
                         border: InputBorder.none,
-                        contentPadding: EdgeInsets.only(left: 11),
+                        contentPadding: EdgeInsets.only(left: 11, bottom: 12),
                       ),
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly,
                       ],
                     ),
                   ),
-                  const SizedBox(height: 40.0),
+                  const SizedBox(height: 15.0),
                   const Text(
                     'Password',
                     style: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'inter',
+                      // fontFamily: 'inter',
                       fontStyle: FontStyle.normal,
                       height: 2.0,
-                      color: Color(0xff000000),
+                      // color: Color(0xff000000),
                     ),
                   ),
-                  const SizedBox(height: 5.0),
-                  buildPasswordTextField( signUpController.obscurePassword, signUpController.passWordController),
-                  const SizedBox(height: 40.0),
+                  buildPasswordTextField(signUpController.obscurePassword,
+                      signUpController.passWordController),
+                  const SizedBox(height: 15.0),
                   const Text(
                     'Confirm Password',
                     style: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'inter',
+                      // fontFamily: 'inter',
                       fontStyle: FontStyle.normal,
                       height: 2.0,
-                      color: Color(0xff000000),
+                      // color: Color(0xff000000),
                     ),
                   ),
-                  const SizedBox(height: 5.0),
-                  buildPasswordTextField(
-                     signUpController.obscurePassword, signUpController.confirmPassWordController),
+                  buildPasswordTextField(signUpController.obscurePassword,
+                      signUpController.confirmPassWordController),
                   const SizedBox(height: 32.0),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(
-                          0xFF150D57), // Change to your desired button color
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'Continue',
-                        style: TextStyle(
-                          color: Color(0xFFCBFF89),
-                        ),
-                      ),
-                    ),
+                  AppButton(
+                    buttonText: "Continue",
+                    onPressed: () {
+                      Get.to(const SecondSignUp());
+                    },
                   ),
                   const SizedBox(height: 55.0),
                 ],

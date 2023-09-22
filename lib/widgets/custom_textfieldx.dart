@@ -37,7 +37,11 @@ class _InputFieldState extends State<InputField> {
         children: [
           Text(
             widget.title,
-            style: titleStyle,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              height: 2,
+            ),
           ),
           Container(
             height: 45.h,
@@ -48,7 +52,7 @@ class _InputFieldState extends State<InputField> {
                 color: Colors.grey,
                 width: 1.0,
               ),
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(8),
             ),
             child: Row(
               children: [

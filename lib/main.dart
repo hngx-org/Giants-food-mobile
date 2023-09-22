@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:giants_free_lunch/screens/employee_sign_up_one_screen.dart';
 
 import 'package:giants_free_lunch/screens/login_screen.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
-            home: const SignIn(),
+            home: const SignUp(),
           );
         });
   }
