@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
 import 'package:giants_free_lunch/models/app_model.dart';
 import 'package:giants_free_lunch/services/api_client.dart';
-import 'package:get_storage/get_storage.dart';
+
+final apiClient = ApiClient();
 
 class SignInController extends GetxController {
   final ApiClient apiClient = ApiClient();
@@ -16,6 +18,7 @@ class SignInController extends GetxController {
   RxString email = ''.obs;
   RxString accessToken = ''.obs;
   GlobalKey<FormFieldState> formFieldKey = GlobalKey();
+
   String? errorMessage;
   @override
   void dispose() {
@@ -65,6 +68,14 @@ class SignInController extends GetxController {
       }
     } catch (e) {
       print('Error during login: $e');
+      CircularProgressIndicator.adaptive();
+      login();
     }
   }
+
+//     final passwordIsVaild =
+//         RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\><*~]).{8,}$');
+//     return passwordIsVaild.hasMatch(this);
+//   }
+// }
 }

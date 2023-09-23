@@ -1,7 +1,9 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:giants_free_lunch/screens/accept_invite.dart';
 import 'package:giants_free_lunch/screens/login_screen.dart';
+import 'package:go_router/go_router.dart';
 import './core/app_export.dart';
 
 AppTheme appTheme = AppTheme();
@@ -16,6 +18,15 @@ void main() async {
   final networkInfo = NetworkInfo(connectivity);
   Get.put(networkInfo);
 }
+
+GoRouter _appRoute = GoRouter(routes: <RouteBase>[
+  GoRoute(
+    path: "/",
+    builder: (BuildContext context, GoRouterState state) {
+      return AcceptInviteScreen();
+    },
+  ),
+]);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

@@ -101,4 +101,68 @@ class ApiClient extends GetConnect {
       rethrow;
     }
   }
+
+  Future<dynamic> postSignUp1({
+    Map<String, String> headers = const {},
+    Map requestData = const {},
+  }) async {
+    ProgressDialogUtils.showProgressDialog();
+    try {
+      await isNetworkConnected();
+      Response response = await httpClient.post(
+        '$url/api/auth/signup',
+        headers: headers,
+        body: requestData,
+      );
+      print("------------- $response");
+      ProgressDialogUtils.hideProgressDialog();
+      if (_isSuccessCall(response)) {
+        return response.body;
+      } else if (response.statusCode == 400) {
+        print("------------- ${response.statusCode}");
+        return response.statusCode;
+      } else {
+        throw response.body != null ? response.body : 'Something Went Wrong!';
+      }
+    } catch (error, stackTrace) {
+      ProgressDialogUtils.hideProgressDialog();
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+
+  Future<dynamic> postSignUp2({
+    Map<String, String> headers = const {},
+    Map requestData = const {},
+  }) async {
+    ProgressDialogUtils.showProgressDialog();
+    try {
+      await isNetworkConnected();
+      Response response = await httpClient.post(
+        '$url/api/organizations',
+        headers: headers,
+        body: requestData,
+      );
+      print("------------- $response");
+      ProgressDialogUtils.hideProgressDialog();
+      if (_isSuccessCall(response)) {
+        return response.body;
+      } else if (response.statusCode == 400) {
+        print("------------- ${response.statusCode}");
+        return response.statusCode;
+      } else {
+        throw response.body != null ? response.body : 'Something Went Wrong!';
+      }
+    } catch (error, stackTrace) {
+      ProgressDialogUtils.hideProgressDialog();
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
 }
