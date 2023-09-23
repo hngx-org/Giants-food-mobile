@@ -31,8 +31,9 @@ class LeaderBoard extends StatelessWidget {
       statusBarIconBrightness: Brightness.dark,
     ));
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: appTheme.appBackgroundColor,
+              backgroundColor: Colors.white,
         elevation: 0,
         leading: GestureDetector(
           onTap: () {
@@ -141,14 +142,24 @@ class LeaderBoard extends StatelessWidget {
             height: 2,
           ),
         ),
-        trailing: const Text(
-          '4.9',
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-            height: 2,
-          ),
+        trailing: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.star,
+              color: Colors.yellow,
+              size: 16, // Adjust the size as needed
+            ),
+            Text(
+              '4.9',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+                height: 2,
+              ),
+            ),
+          ],
         ),
       ),
     );
