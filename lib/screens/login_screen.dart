@@ -5,7 +5,6 @@ import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/screens/employee_sign_up_one_screen.dart';
 import 'package:giants_free_lunch/widgets/custom_text.dart';
 import 'package:giants_free_lunch/widgets/custom_textfieldx.dart';
-import 'package:get_storage/get_storage.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});

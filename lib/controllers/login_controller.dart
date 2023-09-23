@@ -42,7 +42,7 @@ class SignInController extends GetxController {
 
   Future<void> login() async {
     try {
-      final headers = {'Authorization': 'I dont have'};
+      //final headers = {'Authorization': 'I dont have'};
       final requestData = {
         'email': emailController.text,
         'password_hash': passwordController.text,
@@ -68,8 +68,8 @@ class SignInController extends GetxController {
       }
     } catch (e) {
       print('Error during login: $e');
-      CircularProgressIndicator.adaptive();
-      login();
+      //CircularProgressIndicator.adaptive();
+      // login();
     }
   }
 

@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
       statusBarColor: appTheme.primaryColor,
       statusBarIconBrightness: Brightness.light,
     ));
-    final signController = Get.put(SignInController());
+    //final signController = Get.put(SignInController());
     // Retrieve saved data from GetStorage
     final box = GetStorage();
     final firstName = box.read('firstName') ?? '';
@@ -85,14 +85,12 @@ class HomePage extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(height: 16),
-                            Obx(
-                              () => Text(
-                                "Hi, $signController.firstName.value",
-                                style: TextStyle(
-                                  color: appTheme.navBackgroundColor,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            Text(
+                              "Hi, $firstName",
+                              style: TextStyle(
+                                color: appTheme.navBackgroundColor,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                             const SizedBox(height: 20),

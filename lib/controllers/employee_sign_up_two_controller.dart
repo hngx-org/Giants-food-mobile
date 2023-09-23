@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
 import 'package:giants_free_lunch/services/api_client.dart';
@@ -7,6 +8,7 @@ class SecondSignUpController extends GetxController {
   //SecondSignUpController();
   final companyNameController = TextEditingController();
   final lunchPriceController = TextEditingController();
+  final box = GetStorage();
 
   validation() async {
     if (companyNameController.text.trim().isEmpty &&
