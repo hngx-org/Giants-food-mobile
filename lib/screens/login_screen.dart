@@ -5,6 +5,7 @@ import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/screens/employee_sign_up_one_screen.dart';
 import 'package:giants_free_lunch/widgets/custom_text.dart';
 import 'package:giants_free_lunch/widgets/custom_textfieldx.dart';
+import 'package:get_storage/get_storage.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -14,6 +15,7 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  // final SignInController signController = Get.find();
   final signController = Get.put(SignInController());
 
   @override
@@ -22,6 +24,11 @@ class _SignInState extends State<SignIn> {
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
     ));
+    // Retrieve saved data from GetStorage
+    // final box = GetStorage();
+    // final firstName = box.read('firstName') ?? '';
+    // final email = box.read('email') ?? '';
+    // final accessToken = box.read('accessToken') ?? '';
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(

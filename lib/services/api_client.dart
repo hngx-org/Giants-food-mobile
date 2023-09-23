@@ -71,7 +71,7 @@ class ApiClient extends GetConnect {
   /// with the provided headers and request data
   /// Returns a [PostPostLoginResp] object representing the response.
   /// Throws an error if the request fails or an exception occurs.
-  Future<UserModel> postLogin({
+  Future<dynamic> postLogin({
     Map<String, String> headers = const {},
     Map<String, dynamic> requestData = const {},
   }) async {
@@ -83,7 +83,7 @@ class ApiClient extends GetConnect {
         headers: headers,
         body: requestData,
       );
-      //var result = json.decode(response.body);
+
       ProgressDialogUtils.hideProgressDialog();
       if (_isSuccessCall(response)) {
         return UserModel.fromJson(response.body);

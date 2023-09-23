@@ -1,11 +1,13 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:giants_free_lunch/screens/login_screen.dart';
 import './core/app_export.dart';
 
 AppTheme appTheme = AppTheme();
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(const MyApp());
   // Create an instance of Connectivity
   final connectivity = Connectivity();
