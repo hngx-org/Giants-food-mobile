@@ -12,30 +12,37 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => BottomNavigationBar(
-        currentIndex: BottomBarItem.values.indexOf(selectedItem.value),
-        onTap: (index) => selectedItem.value = BottomBarItem.values[index],
-        selectedItemColor: const Color(0xFF150D57), // Active item color
-        unselectedItemColor: const Color(0xFF8A8A8A), // Default item color
-        type: BottomNavigationBarType.fixed,
-        items: [
-          _buildBottomNavigationBarItem(
-            icon: Icons.home,
-            title: 'Home',
-            item: BottomBarItem.Home,
-          ),
-          _buildBottomNavigationBarItem(
-            icon: Icons.leaderboard,
-            title: 'Leaderboards',
-            item: BottomBarItem.Leaderboards,
-          ),
-          _buildBottomNavigationBarItem(
-            icon: Icons.person,
-            title: 'Profile',
-            item: BottomBarItem.Profile,
-          ),
-        ],
+    return Container(
+      height: 52.0,
+      width: 285.0,
+      decoration: BoxDecoration(
+        color: const Color(0xFFEFECFF), // Background color
+      ),
+      child: Obx(
+        () => BottomNavigationBar(
+          currentIndex: BottomBarItem.values.indexOf(selectedItem.value),
+          onTap: (index) => selectedItem.value = BottomBarItem.values[index],
+          selectedItemColor: const Color(0xFF150D57), // Active item color
+          unselectedItemColor: const Color(0xFF8A8A8A), // Default item color
+          type: BottomNavigationBarType.fixed,
+          items: [
+            _buildBottomNavigationBarItem(
+              icon: Icons.home,
+              title: 'Home',
+              item: BottomBarItem.Home,
+            ),
+            _buildBottomNavigationBarItem(
+              icon: Icons.leaderboard,
+              title: 'Leaderboards',
+              item: BottomBarItem.Leaderboards,
+            ),
+            _buildBottomNavigationBarItem(
+              icon: Icons.person,
+              title: 'Profile',
+              item: BottomBarItem.Profile,
+            ),
+          ],
+        ),
       ),
     );
   }
