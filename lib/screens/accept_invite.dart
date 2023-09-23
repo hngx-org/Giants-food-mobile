@@ -78,10 +78,13 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
               textController: controller.emailController,
               // decoration: const InputDecoration(labelText: 'Email'),
               validator: (value) {
-                if (value!.isEmpty) {
-                  return 'Please enter your email';
+                if (RegExp(
+                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                    .hasMatch(value)) {
+                  return null;
+                } else {
+                  return "Please input a valid Email Address";
                 }
-                return null;
               },
               textTitle: 'Email',
               hintText: 'Email',
