@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
 import 'package:giants_free_lunch/screens/employee_sign_up_two_screen.dart';
 import 'package:giants_free_lunch/services/api_client.dart';
@@ -50,19 +51,22 @@ class SignUpController extends GetxController {
   void signUp1() async {
     dynamic res = await ApiClient().postSignUp1(
       requestData: {
-        "email": "erhold60@gmail.com",
-        "first_name": "Magnolia",
-        "last_name": "O'Connell",
-        "phone_number": "868-561-5873",
-        "password_hash": "WYLxctqSVD0ikmD"
+        "email": emailController.text.trim(),
+        "first_name": firstNameController.text.trim(),
+        "last_name": lastNameController.text.trim(),
+        "phone_number": phoneNumberController.text.trim(),
+        "password_hash": passWordController.text.trim()
       },
     );
 
     print("----- $res");
-    if (res["user"]["email"] == emailController.text.trim()) {
-      Get.offAll(SecondSignUp());
-    } else if (res == "Incorrect email or password") {
+    if (res == 400) {
+      print("#### 400");
       errorMethod("Incorrect email or password");
+    } else if (res["user"]["email"] == emailController.text.trim()) {
+      box.write("token", res["tokens"]["refresh"]["token"]);
+      print("token ------ ${box.read("token")}");
+      Get.offAll(SecondSignUp());
     } else {
       errorMethod("An Error Occurred");
       // Map<String, dynamic> tokens = res['tokens'];

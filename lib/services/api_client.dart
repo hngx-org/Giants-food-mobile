@@ -5,7 +5,6 @@ import '../core/utils/progress_dialog_utils.dart';
 import '../services/models/postLogin/post_post_login_resp.dart';
 import '../services/models/postOrganization/post_post_organization_invite_resp.dart';
 
-
 class ApiClient extends GetConnect {
   var url = "https://giants-food-backend-production.up.railway.app";
 
@@ -72,7 +71,7 @@ class ApiClient extends GetConnect {
   /// with the provided headers and request data
   /// Returns a [PostPostLoginResp] object representing the response.
   /// Throws an error if the request fails or an exception occurs.
-  Future<PostPostLoginResp> postLogin({
+  Future<dynamic> postLogin({
     Map<String, String> headers = const {},
     Map requestData = const {},
   }) async {
@@ -86,7 +85,10 @@ class ApiClient extends GetConnect {
       );
       ProgressDialogUtils.hideProgressDialog();
       if (_isSuccessCall(response)) {
-        return PostPostLoginResp.fromJson(response.body);
+        return response.body;
+      } else if (response.statusCode == 400) {
+        print("------------- ${response.statusCode}");
+        return response.statusCode;
       } else {
         throw response.body != null
             ? PostPostLoginResp.fromJson(response.body)
@@ -102,7 +104,7 @@ class ApiClient extends GetConnect {
     }
   }
 
-  Future<SignUp1Response> postSignUp1({
+  Future<dynamic> postSignUp1({
     Map<String, String> headers = const {},
     Map requestData = const {},
   }) async {
@@ -114,13 +116,47 @@ class ApiClient extends GetConnect {
         headers: headers,
         body: requestData,
       );
+      print("------------- $response");
       ProgressDialogUtils.hideProgressDialog();
       if (_isSuccessCall(response)) {
-        return SignUp1Response.fromJson(response.body);
+        return response.body;
+      } else if (response.statusCode == 400) {
+        print("------------- ${response.statusCode}");
+        return response.statusCode;
       } else {
-        throw response.body != null
-            ? SignUp1Response.fromJson(response.body)
-            : 'Something Went Wrong!';
+        throw response.body != null ? response.body : 'Something Went Wrong!';
+      }
+    } catch (error, stackTrace) {
+      ProgressDialogUtils.hideProgressDialog();
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+
+  Future<dynamic> postSignUp2({
+    Map<String, String> headers = const {},
+    Map requestData = const {},
+  }) async {
+    ProgressDialogUtils.showProgressDialog();
+    try {
+      await isNetworkConnected();
+      Response response = await httpClient.post(
+        '$url/api/organizations',
+        headers: headers,
+        body: requestData,
+      );
+      print("------------- $response");
+      ProgressDialogUtils.hideProgressDialog();
+      if (_isSuccessCall(response)) {
+        return response.body;
+      } else if (response.statusCode == 400) {
+        print("------------- ${response.statusCode}");
+        return response.statusCode;
+      } else {
+        throw response.body != null ? response.body : 'Something Went Wrong!';
       }
     } catch (error, stackTrace) {
       ProgressDialogUtils.hideProgressDialog();
