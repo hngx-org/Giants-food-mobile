@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
+import 'package:giants_free_lunch/screens/employee_sign_up_two_screen.dart';
+import 'package:giants_free_lunch/services/api_client.dart';
 import '../core/app_export.dart';
 
 class SignUpController extends GetxController {
@@ -33,9 +35,38 @@ class SignUpController extends GetxController {
       errorMethod('Email or Password can not be empty');
     } else if (!emailController.text.emailValidation) {
       errorMethod('Please enter a vaild email');
-    } else if (passWordController.text.trim() ==
+    } else if (phoneNumberController.text.isPhoneNumber == false) {
+      errorMethod("Please enter a valide phone number");
+    } else if (passWordController.text.passwordValidation) {
+      errorMethod("Please enter a strong password");
+    } else if (passWordController.text.trim() !=
         confirmPassWordController.text.trim()) {
       errorMethod('password and confirm is not the same');
-    } else {}
+    } else {
+      signUp1();
+    }
+  }
+
+  void signUp1() async {
+    dynamic res = await ApiClient().postSignUp1(
+      requestData: {
+        "email": "erhold60@gmail.com",
+        "first_name": "Magnolia",
+        "last_name": "O'Connell",
+        "phone_number": "868-561-5873",
+        "password_hash": "WYLxctqSVD0ikmD"
+      },
+    );
+
+    print("----- $res");
+    if (res["user"]["email"] == emailController.text.trim()) {
+      Get.offAll(SecondSignUp());
+    } else if (res == "Incorrect email or password") {
+      errorMethod("Incorrect email or password");
+    } else {
+      errorMethod("An Error Occurred");
+      // Map<String, dynamic> tokens = res['tokens'];
+      // Get.offAll(HomePage());
+    }
   }
 }

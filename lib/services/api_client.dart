@@ -1,3 +1,5 @@
+import 'package:giants_free_lunch/services/models/postSignUp/sign_up_response.dart';
+
 import '../core/app_export.dart';
 import '../core/utils/progress_dialog_utils.dart';
 import '../services/models/postLogin/post_post_login_resp.dart';
@@ -88,6 +90,36 @@ class ApiClient extends GetConnect {
       } else {
         throw response.body != null
             ? PostPostLoginResp.fromJson(response.body)
+            : 'Something Went Wrong!';
+      }
+    } catch (error, stackTrace) {
+      ProgressDialogUtils.hideProgressDialog();
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+
+  Future<SignUp1Response> postSignUp1({
+    Map<String, String> headers = const {},
+    Map requestData = const {},
+  }) async {
+    ProgressDialogUtils.showProgressDialog();
+    try {
+      await isNetworkConnected();
+      Response response = await httpClient.post(
+        '$url/api/auth/signup',
+        headers: headers,
+        body: requestData,
+      );
+      ProgressDialogUtils.hideProgressDialog();
+      if (_isSuccessCall(response)) {
+        return SignUp1Response.fromJson(response.body);
+      } else {
+        throw response.body != null
+            ? SignUp1Response.fromJson(response.body)
             : 'Something Went Wrong!';
       }
     } catch (error, stackTrace) {
