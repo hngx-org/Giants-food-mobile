@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:giants_free_lunch/widgets/app_text_fields.dart';
 import '../controllers/accept_invite_controller.dart';
 import '../core/app_export.dart';
 
