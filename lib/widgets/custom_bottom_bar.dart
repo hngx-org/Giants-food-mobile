@@ -14,6 +14,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => BottomNavigationBar(
+ paulostic_recent_activity_screen
         backgroundColor: appTheme.bottomNavBarBG,
         currentIndex: BottomBarItem.values.indexOf(selectedItem.value),
         onTap: (index) => selectedItem.value = BottomBarItem.values[index],
