@@ -21,19 +21,15 @@ class HomePage extends StatelessWidget {
     ));
     return Scaffold(
       body: SafeArea(
-        child: Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                _topBuild(context),
-                const SizedBox(
-                  height: 10,
-                ),
-                _recentBuild(),
-                _activitiesBuild(),
-              ],
+        child: Column(
+          children: [
+            _topBuild(context),
+            const SizedBox(
+              height: 10,
             ),
-          ),
+            _recentBuild(),
+            _activitiesBuild(),
+          ],
         ),
       ),
       bottomNavigationBar: CustomBottomNavigationBar(

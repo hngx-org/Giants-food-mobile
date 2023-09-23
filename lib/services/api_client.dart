@@ -1,8 +1,9 @@
+import 'package:giants_free_lunch/core/extentions/extenstion.dart';
+import 'package:giants_free_lunch/models/app_model.dart';
+
 import '../core/app_export.dart';
 import '../core/utils/progress_dialog_utils.dart';
-import '../services/models/postLogin/post_post_login_resp.dart';
 import '../services/models/postOrganization/post_post_organization_invite_resp.dart';
-
 
 class ApiClient extends GetConnect {
   var url = "https://giants-food-backend-production.up.railway.app";
@@ -70,9 +71,9 @@ class ApiClient extends GetConnect {
   /// with the provided headers and request data
   /// Returns a [PostPostLoginResp] object representing the response.
   /// Throws an error if the request fails or an exception occurs.
-  Future<PostPostLoginResp> postLogin({
+  Future<UserModel> postLogin({
     Map<String, String> headers = const {},
-    Map requestData = const {},
+    Map<String, dynamic> requestData = const {},
   }) async {
     ProgressDialogUtils.showProgressDialog();
     try {
@@ -82,13 +83,14 @@ class ApiClient extends GetConnect {
         headers: headers,
         body: requestData,
       );
+      //var result = json.decode(response.body);
       ProgressDialogUtils.hideProgressDialog();
       if (_isSuccessCall(response)) {
-        return PostPostLoginResp.fromJson(response.body);
+        return UserModel.fromJson(response.body);
       } else {
         throw response.body != null
-            ? PostPostLoginResp.fromJson(response.body)
-            : 'Something Went Wrong!';
+            ? UserModel.fromJson(response.body)
+            : errorMethod('Email or password incorrect');
       }
     } catch (error, stackTrace) {
       ProgressDialogUtils.hideProgressDialog();

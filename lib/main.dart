@@ -1,10 +1,18 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:giants_free_lunch/screens/login_screen.dart';
 import './core/app_export.dart';
 
 AppTheme appTheme = AppTheme();
+
 void main() {
   runApp(const MyApp());
+  // Create an instance of Connectivity
+  final connectivity = Connectivity();
+
+  // Register NetworkInfo with the Connectivity instance
+  final networkInfo = NetworkInfo(connectivity);
+  Get.put(networkInfo);
 }
 
 class MyApp extends StatelessWidget {

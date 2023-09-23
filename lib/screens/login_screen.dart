@@ -86,7 +86,6 @@ class _SignInState extends State<SignIn> {
                         buttonText: 'Sign In',
                         onPressed: () {
                           signController.validation();
-                          Get.off(HomePage());
                         },
                       ),
                       SizedBox(height: 10.h),
