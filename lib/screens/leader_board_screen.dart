@@ -51,16 +51,16 @@ class LeaderBoard extends StatelessWidget {
           ),
         ),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(26.0),
+      body: Padding(
+        padding: const EdgeInsets.all(26.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Text(
+            const Text(
               'Top 3 workers',
               style: TextStyle(
                 fontSize: 16,
@@ -69,38 +69,87 @@ class LeaderBoard extends StatelessWidget {
                 height: 2,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            ListTile(
-              leading: CircleAvatar(
-                radius: 25,
-                backgroundImage: AssetImage(imgUnsplashqayxtcv4aq31x31),
-              ),
-              title: Text(
-                'John Doe',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                  height: 2,
-                ),
-              ),
-              trailing: Text(
-                '4.9',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                  height: 2,
-                ),
+            _workLeaders(),
+            const SizedBox(
+              height: 10,
+            ),
+            _workLeaders(),
+            const SizedBox(
+              height: 10,
+            ),
+            _workLeaders(),
+            const SizedBox(
+              height: 30,
+            ),
+            const Text(
+              'All top workers',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+                height: 2,
               ),
             ),
+            const SizedBox(
+              height: 30,
+            ),
+            _workLeaders(),
+            const SizedBox(
+              height: 10,
+            ),
+            _workLeaders(),
+            const SizedBox(
+              height: 10,
+            ),
+            _workLeaders(),
           ],
         ),
       ),
       bottomNavigationBar: CustomBottomNavigationBar(
         selectedItem: selectedItem,
+      ),
+    );
+  }
+
+  Container _workLeaders() {
+    return Container(
+      height: 60,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        border: Border.all(
+          color: appTheme.primaryColor,
+        ),
+        borderRadius: BorderRadius.circular(10),
+        color: appTheme.white,
+      ),
+      child: ListTile(
+        leading: CircleAvatar(
+          radius: 20,
+          backgroundImage: AssetImage(ImageConstant.imgUnsplashqayxtcv4aq31x31),
+        ),
+        title: const Text(
+          'Kolawole Emmanuel',
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            fontStyle: FontStyle.normal,
+            color: Colors.black,
+            height: 2,
+          ),
+        ),
+        trailing: const Text(
+          '4.9',
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+            height: 2,
+          ),
+        ),
       ),
     );
   }
