@@ -3,11 +3,24 @@ import 'package:giants_free_lunch/widgets/app_text_fields.dart';
 import '../controllers/accept_invite_controller.dart';
 import '../core/app_export.dart';
 
-class AcceptInviteScreen extends StatelessWidget {
+class AcceptInviteScreen extends StatefulWidget {
+  AcceptInviteScreen({super.key});
+
+  @override
+  State<AcceptInviteScreen> createState() => _AcceptInviteScreenState();
+}
+
+class _AcceptInviteScreenState extends State<AcceptInviteScreen> {
   // Initialize and register the AcceptInviteController
   final controller = Get.put(AcceptInviteController());
 
-  AcceptInviteScreen({super.key});
+  @override
+  void initState() {
+    // TODO: implement initState
+    controller.acceptInvite();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

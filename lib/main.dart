@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
@@ -24,10 +25,10 @@ void main() async {
   initUniLinks();
 }
 
-
 Future<void> initUniLinks() async {
   try {
     final initialLink = await getInitialUri();
+    print("initialLink $initialLink");
     handleLink(initialLink);
   } on PlatformException {
     // Handle exceptions if any
@@ -41,36 +42,19 @@ Future<void> initUniLinks() async {
   _sub.cancel();
 }
 
-
-
 void handleLink(Uri? uri) {
-  if (uri != null && uri.pathSegments.isNotEmpty) {
+  if (uri != null && uri.queryParameters.isNotEmpty) {
+    // String token = jsonEncode(uri.queryParameters);
+    box.write("inviteToken", uri.queryParameters["token"]) ;
     String path = uri.pathSegments[0];
-    if (path == "acceptInvite"){
-      runApp(const MyAppDeepLink());
-    }
-    // switch (path) {
-    //   case 'acceptInvite':
-        
-      //   break;
-      // case 'settings':
-      //   runApp(SettingsScreen());
-      //   break;
-      // Add more cases for other screens as needed
+    // if (path == "acceptInvite"){
+      
+    runApp(const MyAppDeepLink());
     // }
+  } else {
+    // runApp(const MyAppDeepLink());
   }
 }
-
-
-
-// GoRouter _appRoute = GoRouter(routes: <RouteBase>[
-//   GoRoute(
-//     path: "/acceptInviteScreen",
-//     builder: (BuildContext context, GoRouterState state) {
-//       return AcceptInviteScreen();
-//     },
-//   ),
-// ]);
 
 class MyAppDeepLink extends StatelessWidget {
   const MyAppDeepLink({super.key});
@@ -79,20 +63,21 @@ class MyAppDeepLink extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: const Size(360, 780),
-        builder: (context, child) {
-          return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Free Lunch App',
-            theme: ThemeData(
-              scaffoldBackgroundColor: appTheme.appBackgroundColor,
-              fontFamily: 'Inter',
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              useMaterial3: true,
-            ),
-            home: AcceptInviteScreen(),
-          );
-        });
+      designSize: const Size(360, 780),
+      builder: (context, child) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Free Lunch App',
+          theme: ThemeData(
+            scaffoldBackgroundColor: appTheme.appBackgroundColor,
+            fontFamily: 'Inter',
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: AcceptInviteScreen(),
+        );
+      },
+    );
   }
 }
 
@@ -119,5 +104,3 @@ class MyApp extends StatelessWidget {
         });
   }
 }
-
- 

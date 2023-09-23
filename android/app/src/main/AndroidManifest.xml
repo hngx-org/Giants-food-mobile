@@ -19,13 +19,14 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
-            <meta-data android:name="flutter_deeplinking_enabled" android:value="true" />
-            <intent-filter android:autoVerify="true">
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http" android:host="example.com" />
-                <data android:scheme="https" />
+                <!-- Accepts URIs that begin with YOUR_SCHEME://YOUR_HOST -->
+                <data
+                android:scheme="myapp"
+                android:host="smartbizlord.com.ng" />
             </intent-filter>
 
             <intent-filter>
