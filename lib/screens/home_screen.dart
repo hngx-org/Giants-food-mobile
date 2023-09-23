@@ -28,138 +28,26 @@ class HomePage extends StatelessWidget {
     final firstName = box.read('firstName') ?? '';
     return Scaffold(
       body: SafeArea(
-        child: Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 250,
-                  color: appTheme.primaryColor,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Stack(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  height: 44,
-                                  width: 44,
-                                  margin: const EdgeInsets.all(5),
-                                  alignment: Alignment.center,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: SvgPicture.asset(
-                                    ImageConstant.imgNavprofile,
-                                    color: appTheme.appBackgroundColor,
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Ally",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    // SvgPicture.asset(
-                                    //   ImageConstant.imgUnsplash9kqbqqyxrk,
-                                    //   color: appTheme.appBackgroundColor,
-                                    // ),
-                                  ],
-                                ),
-                                SvgPicture.asset(
-                                  ImageConstant.imgNotification,
-                                  color: appTheme.appBackgroundColor,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 16),
-                            Text(
-                              "Hi, $firstName",
-                              style: TextStyle(
-                                color: appTheme.navBackgroundColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            DisplayContainer(
-                              isImageOrIcon: true,
-                              height: 45,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              width: double.infinity,
-                              text: "Lunch Balance",
-                              count: '3',
-                              image: Image.asset(
-                                'assets/images/img_group16.png',
-                                fit: BoxFit.cover,
-                                height: 20,
-                                width: 20,
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                DisplayContainer(
-                                  isImageOrIcon: true,
-                                  height: 45,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  width:
-                                      MediaQuery.of(context).size.width / 2.2,
-                                  text: 'Give Lunch',
-                                  onTap: () => Get.to(() => GiveLunch()),
-                                  image: SvgPicture.asset(
-                                      height: 20,
-                                      width: 20,
-                                      ImageConstant.imgTrashAmberA200),
-                                ),
-                                DisplayContainer(
-                                  height: 45,
-                                  padding:
-                                      const EdgeInsets.only(left: 10, right: 3),
-                                  width:
-                                      MediaQuery.of(context).size.width / 2.2,
-                                  text: 'Withdraw Lunch',
-                                  onTap: () {
-                                    Get.to(() => const WithdrawLunchScreen());
-                                  },
-                                  sideIcon: const Icon(
-                                    Icons.arrow_upward,
-                                    size: 18,
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                //_topBuild(context),
-                const SizedBox(
-                  height: 10,
-                ),
-                _recentBuild(),
-                _activitiesBuild(),
-              ],
+        child: Column(
+          children: [
+            _topBuild(context),
+            const SizedBox(
+              height: 30,
             ),
-          ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    _recentBuild(),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    _activitiesBuild(),
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
       ),
       bottomNavigationBar: CustomBottomNavigationBar(
