@@ -42,6 +42,7 @@ class SignInController extends GetxController {
 
     print("----- $res");
     if (res["user"]["email"] == emailController.text.trim()) {
+      box.write("token", res["tokens"]["refresh"]["token"]);
       Get.offAll(HomePage());
     } else if (res == "Incorrect email or password") {
       errorMethod("Incorrect email or password");

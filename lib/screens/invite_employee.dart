@@ -65,7 +65,7 @@ class _InviteEmployeeState extends State<InviteEmployee> {
                   ),
                   AppTextField(
                     textTitle: "Email",
-                    textController: _inviteController.textController,
+                    textController: _inviteController.emailController,
                     hintText: "Email",
                     validator: (value) {
                       if (RegExp(
@@ -83,11 +83,7 @@ class _InviteEmployeeState extends State<InviteEmployee> {
                   AppButton(
                     buttonText: "Send Invitation",
                     onPressed: () {
-                      if (_inviteController.formKey.currentState!.validate()) {
-                        print("valid");
-                      } else {
-                        print("Invalid");
-                      }
+                      _inviteController.validation();
                     },
                   ),
                 ],

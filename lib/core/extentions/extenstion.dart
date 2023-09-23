@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:giants_free_lunch/core/app_export.dart';
 
 errorMethod(String erorrMsg) {
   return Get.snackbar(
@@ -7,6 +8,14 @@ errorMethod(String erorrMsg) {
     colorText: Colors.white,
     "Error Occured",
     erorrMsg,
+  );
+}
+successMethod(String successmsg) {
+  return Get.snackbar(
+    backgroundColor: appTheme.primaryColor,
+    colorText: Colors.white,
+    "Success",
+    successmsg,
   );
 }
 

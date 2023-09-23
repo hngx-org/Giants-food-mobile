@@ -10,9 +10,11 @@ class SecondSignUpController extends GetxController {
   final lunchPriceController = TextEditingController();
 
   validation() async {
-    if (companyNameController.text.trim().isEmpty &&
+    if (companyNameController.text.trim().isEmpty ||
         lunchPriceController.text.trim().isEmpty) {
       errorMethod("Company Name or Lunch Price can't empty");
+    } else {
+      signUp2();
     }
   }
 
@@ -32,8 +34,8 @@ class SecondSignUpController extends GetxController {
     print("----- $res");
     if (res == 400) {
       print("#### 400");
-      errorMethod("Incorrect email or password");
-    } else if (res["message"] == "success") {
+      errorMethod("Error");
+    } else if (res["name"] == companyNameController.text.trim()) {
       Get.offAll(HomePage());
     } else {
       errorMethod("An Error Occurred");

@@ -93,7 +93,7 @@ class _SecondSignUpState extends State<SecondSignUp> {
                   buttonText: 'Finish Sign Up',
                   onPressed: () {
                     controller.validation();
-                    Get.to(() => HomePage());
+                    
                   },
                 )
               ],

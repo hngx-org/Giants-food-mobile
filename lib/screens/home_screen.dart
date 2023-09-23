@@ -22,22 +22,26 @@ class HomePage extends StatelessWidget {
     ));
     return Scaffold(
       body: SafeArea(
-        child: Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                _topBuild(context),
-                const SizedBox(
-                  height: 30,
-                ),
-                _recentBuild(),
-                const SizedBox(
-                  height: 30,
-                ),
-                _activitiesBuild(),
-              ],
+        child: Column(
+          children: [
+            _topBuild(context),
+            const SizedBox(
+              height: 30,
             ),
-          ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    _recentBuild(),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    _activitiesBuild(),
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
       ),
       bottomNavigationBar: CustomBottomNavigationBar(

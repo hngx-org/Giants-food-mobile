@@ -60,7 +60,7 @@ class _InputFieldState extends State<InputField> {
                   child: TextFormField(
                     autofocus: false,
                     controller: widget.controller,
-                    style: subtitleStyle,
+                    // style: subtitleStyle,
                     obscureText: widget.isObsured,
                     validator: widget.validate,
                     onChanged: (value) {
