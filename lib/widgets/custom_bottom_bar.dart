@@ -14,6 +14,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => BottomNavigationBar(
+        backgroundColor: appTheme.bottomNavBarBG,
         currentIndex: BottomBarItem.values.indexOf(selectedItem.value),
         onTap: (index) => selectedItem.value = BottomBarItem.values[index],
         selectedItemColor: const Color(0xFF150D57), // Active item color

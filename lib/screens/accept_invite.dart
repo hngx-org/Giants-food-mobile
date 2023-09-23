@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:giants_free_lunch/widgets/app_text_fields.dart';
 import '../controllers/accept_invite_controller.dart';
 import '../core/app_export.dart';
 
@@ -41,22 +42,21 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
         child: ListView(
           children: [
             // accept your invitation descriptin text
-            Center(
-              child: const Text(
-                'Accept your invitation',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.normal,
-                ),
+            const Text(
+              'Accept your invitation',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
               ),
             ),
             AppTextField(
               textController: controller.firstNameController,
-              decoration: const InputDecoration(labelText: 'First Name'),
+              // decoration: const InputDecoration(labelText: 'First Name'),
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Please enter your first name';
                 }
+                return null;
               },
               hintText: 'First name',
               textTitle: 'First name',
@@ -64,7 +64,7 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
             const SizedBox(height: 20),
             AppTextField(
               textController: controller.lastNameController,
-              decoration: const InputDecoration(labelText: 'Last Name'),
+              // decoration: const InputDecoration(labelText: 'Last Name'),
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Please enter your last name';
@@ -77,7 +77,7 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
             const SizedBox(height: 20),
             AppTextField(
               textController: controller.emailController,
-              decoration: const InputDecoration(labelText: 'Email'),
+              // decoration: const InputDecoration(labelText: 'Email'),
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Please enter your email';
@@ -90,7 +90,7 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
             const SizedBox(height: 20),
             AppTextField(
               textController: controller.phoneController,
-              decoration: const InputDecoration(labelText: 'Phone Number'),
+              // decoration: const InputDecoration(labelText: 'Phone Number'),
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Please enter your phone number';
@@ -101,42 +101,24 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
               hintText: 'Phone Number',
             ),
             const SizedBox(height: 20),
-            Obx(
-              () => AppTextField(
-                textController: controller.confirmPasswordController,
-                obscureText: controller.isPasswordVisible.value,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  // Add an icon button to toggle password visibility
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      controller.isPasswordVisible.value
-                          ? Icons.visibility_off
-                          : Icons.visibility,
-                    ),
-                    onPressed: () {
-                      controller.togglePasswordVisibility();
-                    },
-                  ),
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please confirm your password';
-                  }
-                  if (value != controller.passwordController.text) {
-                    return 'Passwords do not match';
-                  }
-                  return null;
-                },
-                hintText: 'Password',
-                textTitle: 'Password',
-              ),
+            AppTextField(
+              textController: controller.passwordController,
+              obscureText: true,
+              // decoration: const InputDecoration(),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter a password';
+                }
+                return null;
+              },
+              textTitle: 'Password',
+              hintText: 'Password',
             ),
             const SizedBox(height: 20),
             AppTextField(
               textController: controller.confirmPasswordController,
               obscureText: true,
-              decoration: const InputDecoration(labelText: 'Confirm Password'),
+              // decoration: const InputDecoration(labelText: 'Confirm Password'),
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Please confirm your password';

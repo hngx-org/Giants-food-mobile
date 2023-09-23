@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../widgets/custom_bottom_bar.dart';
 
 
 class AddBankAccountController extends GetxController {// Initialize with the default selected item
