@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:giants_free_lunch/core/app_export.dart';
 
-import 'package:giants_free_lunch/screens/leader_board_screen.dart';
-import 'package:giants_free_lunch/screens/profile_page_screen.dart';
 import 'package:giants_free_lunch/widgets/container.dart';
 import 'package:giants_free_lunch/widgets/custom_bottom_bar.dart';
 import 'package:giants_free_lunch/widgets/custom_text.dart';
+
+import '../core/app_export.dart';
+import 'leader_board_screen.dart';
+import 'profile_page_screen.dart';
 
 final appTheme = AppTheme();
 
@@ -117,12 +118,12 @@ _recentBuild() {
       children: [
         CustomText(
           text: "Recent Activities",
-          fontsize: 20.sp,
+          fontsize: 20.spMin,
           isBold: true,
         ),
         CustomText(
           text: "See all",
-          fontsize: 20.sp,
+          fontsize: 20.spMin,
           isBold: true,
         ),
       ],
@@ -207,28 +208,30 @@ _topBuild() {
                 ),
               ),
               const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  DisplayContainer(
-                    isImageOrIcon: true,
-                    height: 50,
-                    width: 190,
-                    text: 'Give Lunch',
-                    image: Image.asset(
-                      'assets/images/snacks.jpeg',
-                      fit: BoxFit.cover,
-                      height: 30,
-                      width: 30,
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    DisplayContainer(
+                      isImageOrIcon: true,
+                      height: 50,
+                      width: 190.spMin,
+                      text: 'Give Lunch',
+                      image: Image.asset(
+                        'assets/images/snacks.jpeg',
+                        fit: BoxFit.cover,
+                        height: 30,
+                        width: 30,
+                      ),
                     ),
-                  ),
-                  const DisplayContainer(
-                    height: 50,
-                    width: 190,
-                    text: 'Withdraw Lunch',
-                    sideIcon: Icon(Icons.arrow_upward),
-                  )
-                ],
+                    DisplayContainer(
+                      height: 50,
+                      width: 190.spMin,
+                      text: 'Withdraw Lunch',
+                      sideIcon: Icon(Icons.arrow_upward),
+                    )
+                  ],
+                ),
               )
             ],
           ),

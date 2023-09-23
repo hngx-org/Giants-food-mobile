@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 
+final apiClient = ApiClient();
+
 class SignInController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   var isObsecure = true.obs;
-  GlobalKey<FormFieldState> formFieldKey = GlobalKey();
+
   String? errorMessage;
   @override
   void dispose() {
@@ -22,6 +24,24 @@ class SignInController extends GetxController {
       errorMethod('Email or Password can not be empty');
     } else if (!emailController.text.emailValidation) {
       errorMethod('Please enter a vaild email');
+    } else {
+      CircularProgressIndicator.adaptive();
+      login();
+    }
+  }
+
+  void login() async {
+    dynamic res = await ApiClient().getLogin(
+      emailController.text.trim(),
+      passwordController.text.trim(),
+    );
+
+    if (res == 200) {
+      Get.offAll(HomePage());
+    } else {
+      errorMethod("An Error Occurred");
+      // Map<String, dynamic> tokens = res['tokens'];
+      // Get.offAll(HomePage());
     }
   }
 

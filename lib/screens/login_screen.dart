@@ -49,7 +49,6 @@ class _SignInState extends State<SignIn> {
               ),
               const SizedBox(height: 40),
               Form(
-                key: signController.formFieldKey,
                 child: Column(
                   children: [
                     InputField(
@@ -79,7 +78,6 @@ class _SignInState extends State<SignIn> {
                       buttonText: 'Sign In',
                       onPressed: () {
                         signController.validation();
-                        Get.off(HomePage());
                       },
                     )
                   ],

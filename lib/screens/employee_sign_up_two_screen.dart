@@ -88,8 +88,7 @@ class _SecondSignUpState extends State<SecondSignUp> {
                 buttonText: 'Finish Sign Up',
                 onPressed: () {
                   //controller.validation();
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const SignIn()));
+                  Get.to(() => HomePage());
                 },
               )
             ],
