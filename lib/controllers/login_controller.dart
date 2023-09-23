@@ -36,8 +36,11 @@ class SignInController extends GetxController {
       passwordController.text.trim(),
     );
 
-    if (res == 200) {
+    print("----- $res");
+    if (res["user"]["email"] == emailController.text.trim()) {
       Get.offAll(HomePage());
+    } else if (res == "Incorrect email or password") {
+      errorMethod("Incorrect email or password");
     } else {
       errorMethod("An Error Occurred");
       // Map<String, dynamic> tokens = res['tokens'];

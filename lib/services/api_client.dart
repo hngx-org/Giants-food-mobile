@@ -5,12 +5,12 @@ import 'package:giants_free_lunch/models/app_model.dart';
 
 class ApiClient {
   final Dio _dio = Dio(BaseOptions(
-    baseUrl: 'https://giants-food-backend-production.up.railway.app/',
+    baseUrl: 'https://giants-food-backend-production.up.railway.app',
     connectTimeout: const Duration(seconds: 5),
     receiveTimeout: const Duration(seconds: 5),
   ));
 
-  Future<UserModel> getLogin(
+  Future<dynamic> getLogin(
     String email,
     String password,
   ) async {
@@ -25,9 +25,14 @@ class ApiClient {
       );
 
       print("Respond: $response");
+      print("----------------- success ${response.statusCode}");
 
       if (response.statusCode == 200) {
-        return UserModel.fromJson(response.data);
+        print("----------------- success ${response.statusCode}");
+        return response.data;
+      } else if (response.statusCode == 401) {
+        print("###### ${response.statusCode}");
+        return "Incorrect email or password";
       } else {
         throw Exception(
             "API request failed with status code ${response.statusCode}");
