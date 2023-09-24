@@ -24,12 +24,18 @@ class _AcceptInviteScreenState extends State<AcceptInviteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: appTheme.appBackgroundColor,
       appBar: AppBar(
-        title: const Text(
-          'Accept Invite',
+        backgroundColor: appTheme.appBackgroundColor,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          "Accept Invite",
           style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: appTheme.primaryColor,
+            height: 2,
           ),
         ),
       ),
@@ -54,7 +60,7 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
         key: controller.formKey,
         child: ListView(
           children: [
-            // accept your invitation descriptin text
+           
             const Text(
               'Accept your invitation',
               style: TextStyle(
@@ -150,13 +156,29 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
             const SizedBox(height: 20),
             AppButton(
               onPressed: () async {
-                if (controller.formKey.currentState!.validate()) {
-                  final firstName = controller.firstNameController.text;
-                  final lastName = controller.lastNameController.text;
-                  final email = controller.emailController.text;
-                  final phoneNumber = controller.phoneController.text;
-                  final password = controller.passwordController.text;
+                controller.validation();
+                //   if (controller.formKey.currentState!.validate()) {
+                //     final firstName = controller.firstNameController.text;
+                //     final lastName = controller.lastNameController.text;
+                //     final email = controller.emailController.text;
+                //     final phoneNumber = controller.phoneController.text;
+                //     final password = controller.passwordController.text;
+                //     // Call your registration API or perform the necessary logic here
+                //     // For example:
+                //     final success = await registerUser(
+                //       firstName,
+                //       lastName,
+                //       email,
+                //       phoneNumber,
+                //       password,
+                //     );
 
+                //     if (success) {
+                //       // Registration successful, navigate to another screen or perform actions
+                //     } else {
+                //       // Registration failed, handle the error (e.g., display an error message)
+                //     }
+                //   }
                   final invitationAcceptance = InvitationAcceptance(
                     firstName: firstName,
                     lastName: lastName,

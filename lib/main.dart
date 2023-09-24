@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,7 +6,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:giants_free_lunch/controllers/login_controller.dart';
 import 'package:giants_free_lunch/screens/accept_invite.dart';
 import 'package:giants_free_lunch/screens/login_screen.dart';
-import 'package:go_router/go_router.dart';
 import 'package:uni_links/uni_links.dart';
 import './core/app_export.dart';
 import 'screens/leader_board_screen.dart';
@@ -32,7 +29,12 @@ Future<void> initUniLinks() async {
   try {
     final initialLink = await getInitialUri();
     print("initialLink $initialLink");
+    if(initialLink != null){
+       print("token link ${initialLink.toString().split("=").last}");
+    box.write("inviteToken", initialLink.queryParameters["token"]);
     handleLink(initialLink);
+    }
+    
   } on PlatformException {
     // Handle exceptions if any
   }
@@ -46,16 +48,21 @@ Future<void> initUniLinks() async {
 }
 
 void handleLink(Uri? uri) {
+  if (uri != null ) {
+  //   // String token = jsonEncode(uri.queryParameters);
+   
+  //   String path = uri.pathSegments[0];
+  //   // if (path == "acceptInvite"){
+
+  //   runApp(const MyAppDeepLink());
+  //   // }
+  // } else {
   if (uri != null && uri.queryParameters.isNotEmpty) {
     // String token = jsonEncode(uri.queryParameters);
     box.write("inviteToken", uri.queryParameters["token"]);
     String path = uri.pathSegments[0];
     // if (path == "acceptInvite"){
-
     runApp(const MyAppDeepLink());
-    // }
-  } else {
-    // runApp(const MyAppDeepLink());
   }
 }
 
