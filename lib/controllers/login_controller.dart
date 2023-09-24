@@ -57,9 +57,9 @@ class SignInController extends GetxController {
         // Update the observables
         firstName.value = response["user"]["first_name"] ?? '';
         email.value = response["user"]["email"] ?? '';
-        accessToken.value = response["user"]["first_name"] ?? '';
-        companyName.value = response["user"]["first_name"] ?? '';
-        lunchBal.value = response["user"]["first_name"] ?? 0;
+        accessToken.value = response["tokens"]["access"]["token"] ?? '';
+        // companyName.value = response["user"]["first_name"] ?? '';
+        lunchBal.value = response["user"]["lunch_credit_balance"] ?? 0;
 
         print('token: --------- $accessToken');
 
@@ -70,7 +70,7 @@ class SignInController extends GetxController {
         box.write('firstName', firstName.value);
         box.write('email', email.value);
         box.write('token', accessToken.value);
-        box.write('companyName', companyName.value);
+        // box.write('companyName', companyName.value);
 
         emailController.clear();
         passwordController.clear();
