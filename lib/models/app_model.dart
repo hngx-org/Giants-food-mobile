@@ -40,21 +40,22 @@ class User {
   String? bankNumber;
   String? bankCode;
   String? bankName;
+  Organization? organization;
 
-  User({
-    this.orgId,
-    this.id,
-    this.firstName,
-    this.lastName,
-    this.email,
-    this.profilePicture,
-    this.phoneNumber,
-    this.isAdmin,
-    this.lunchCreditBalance,
-    this.bankNumber,
-    this.bankCode,
-    this.bankName,
-  });
+  User(
+      {this.orgId,
+      this.id,
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.profilePicture,
+      this.phoneNumber,
+      this.isAdmin,
+      this.lunchCreditBalance,
+      this.bankNumber,
+      this.bankCode,
+      this.bankName,
+      this.organization});
 
   User.fromJson(Map<String, dynamic> json) {
     orgId = json['org_id'];
@@ -69,6 +70,9 @@ class User {
     bankNumber = json['bank_number'];
     bankCode = json['bank_code'];
     bankName = json['bank_name'];
+    organization = json['organization'] != null
+        ? Organization.fromJson(json['organization'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -85,6 +89,34 @@ class User {
     data['bank_number'] = bankNumber;
     data['bank_code'] = bankCode;
     data['bank_name'] = bankName;
+    if (organization != null) {
+      data['organization'] = organization!.toJson();
+    }
+    return data;
+  }
+}
+
+class Organization {
+  int? id;
+  String? name;
+  int? lunchPrice;
+  String? currency;
+
+  Organization({this.id, this.name, this.lunchPrice, this.currency});
+
+  Organization.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    lunchPrice = json['lunch_price'];
+    currency = json['currency'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['lunch_price'] = lunchPrice;
+    data['currency'] = currency;
     return data;
   }
 }

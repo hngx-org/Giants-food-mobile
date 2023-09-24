@@ -16,6 +16,8 @@ import 'package:giants_free_lunch/widgets/custom_text.dart';
 
 class HomePage extends StatelessWidget {
   final Rx<BottomBarItem> selectedItem = BottomBarItem.Home.obs;
+  final signController = Get.put(SignInController());
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -24,13 +26,12 @@ class HomePage extends StatelessWidget {
     ));
     //final signController = Get.put(SignInController());
     // Retrieve saved data from GetStorage
-    final box = GetStorage();
-    final firstName = box.read('firstName') ?? '';
+
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            _topBuild(context),
+            _topBuild(context, signController),
             const SizedBox(
               height: 30,
             ),
@@ -258,7 +259,9 @@ _recentBuild() {
   );
 }
 
-_topBuild(BuildContext context, controller) {
+_topBuild(BuildContext context, control) {
+  final firstName = box.read('firstName') ?? '';
+  final companyName = box.read('companyName') ?? '';
   return Container(
     width: double.infinity,
     height: 250,
@@ -289,7 +292,7 @@ _topBuild(BuildContext context, controller) {
                   Row(
                     children: [
                       Text(
-                        "Ally",
+                        companyName,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -312,29 +315,29 @@ _topBuild(BuildContext context, controller) {
                 ],
               ),
               const SizedBox(height: 16),
-              Obx(
-                () => Text(
-                  "Hi, $controller.firstName.value",
-                  style: TextStyle(
-                    color: appTheme.navBackgroundColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Text(
+                "Hi, $firstName",
+                style: TextStyle(
+                  color: appTheme.navBackgroundColor,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 20),
-              DisplayContainer(
-                isImageOrIcon: true,
-                height: 45,
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                width: double.infinity,
-                text: "Lunch Balance",
-                count: '3',
-                image: Image.asset(
-                  'assets/images/img_group16.png',
-                  fit: BoxFit.cover,
-                  height: 20,
-                  width: 20,
+              Obx(
+                () => DisplayContainer(
+                  isImageOrIcon: true,
+                  height: 45,
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  width: double.infinity,
+                  text: "Lunch Balance",
+                  count: control.lunchBal.toString(),
+                  image: Image.asset(
+                    'assets/images/img_group16.png',
+                    fit: BoxFit.cover,
+                    height: 20,
+                    width: 20,
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
