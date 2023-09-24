@@ -8,8 +8,9 @@ class DisplayContainer extends StatelessWidget {
   final Function()? onTap;
   final String text;
   final Icon? sideIcon;
-  final Image? image;
+  final Widget? image;
   final bool isImageOrIcon;
+  final EdgeInsetsGeometry? padding;
   const DisplayContainer({
     Key? key,
     required this.height,
@@ -20,6 +21,7 @@ class DisplayContainer extends StatelessWidget {
     this.image,
     this.isImageOrIcon = false,
     this.count,
+    this.padding,
   }) : super(key: key);
 
   @override
@@ -29,7 +31,7 @@ class DisplayContainer extends StatelessWidget {
       child: Container(
         height: height,
         width: width,
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: padding,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -41,18 +43,20 @@ class DisplayContainer extends StatelessWidget {
               text,
               style: const TextStyle(
                 fontSize: 16,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
               ),
             ),
             const Spacer(),
-            Text(
-              count ?? "",
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
-            const SizedBox(width: 5),
+            count == null
+                ? const SizedBox()
+                : Text(
+                    count ?? "",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+            count == null ? const SizedBox() : const SizedBox(width: 5),
             Container(
               child: isImageOrIcon ? image : sideIcon,
             )

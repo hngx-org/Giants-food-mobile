@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:giants_free_lunch/core/app_export.dart';
 
 class InputField extends StatefulWidget {
   final String hint;
@@ -37,10 +36,14 @@ class _InputFieldState extends State<InputField> {
         children: [
           Text(
             widget.title,
-            style: titleStyle,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              height: 2,
+            ),
           ),
           Container(
-            height: 45.h,
+            height: 40,
             margin: const EdgeInsets.only(top: 2),
             padding: const EdgeInsets.only(left: 8),
             decoration: BoxDecoration(
@@ -48,7 +51,7 @@ class _InputFieldState extends State<InputField> {
                 color: Colors.grey,
                 width: 1.0,
               ),
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(8),
             ),
             child: Row(
               children: [
@@ -56,7 +59,7 @@ class _InputFieldState extends State<InputField> {
                   child: TextFormField(
                     autofocus: false,
                     controller: widget.controller,
-                    style: subtitleStyle,
+                    // style: subtitleStyle,
                     obscureText: widget.isObsured,
                     validator: widget.validate,
                     onChanged: (value) {

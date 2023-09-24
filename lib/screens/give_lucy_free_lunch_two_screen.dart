@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:giants_free_lunch/core/utils/image_constant.dart';
-import 'package:giants_free_lunch/themes/app_theme.dart';
+import 'package:giants_free_lunch/core/app_export.dart';
+import 'package:giants_free_lunch/screens/success_screen.dart';
 
 class GiveLucyFreeLunchTwoScreen extends StatefulWidget {
   const GiveLucyFreeLunchTwoScreen({super.key});
@@ -14,6 +14,7 @@ class GiveLucyFreeLunchTwoScreen extends StatefulWidget {
 class _GiveLucyFreeLunchTwoScreenState
     extends State<GiveLucyFreeLunchTwoScreen> {
   final TextEditingController _complimentController = TextEditingController();
+  int index = 0;
 
   @override
   void dispose() {
@@ -26,35 +27,52 @@ class _GiveLucyFreeLunchTwoScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        leading: const Icon(
-          Icons.arrow_back_ios,
-          color: Color(0xff0F172A),
-          size: 20,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: Color(0xff0F172A),
+            size: 20,
+          ),
         ),
         title: Row(
           children: [
+            const Spacer(),
             Text(
               'Give Lucy free lunch',
-              style:  TextStyle(
-                  fontSize: 18.0,
-                  shadows: const [
-                    Shadow(
-                      blurRadius: 4.0,
-                      color: Colors.grey,
-                      offset: Offset(0.0, 5.0),
-                    ),
-                  ],
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'inter',
-                  fontStyle: FontStyle.normal,
-                  height: 2.8,
-                  color: AppTheme().primaryColor),
+              style: TextStyle(
+                fontSize: 18.0,
+                shadows: const [
+                  Shadow(
+                    blurRadius: 4.0,
+                    color: Colors.grey,
+                    offset: Offset(0.0, 5.0),
+                  ),
+                ],
+                fontWeight: FontWeight.w700,
+                fontFamily: 'inter',
+                fontStyle: FontStyle.normal,
+                height: 2.8,
+                color: AppTheme().primaryColor,
+              ),
             ),
-           const SizedBox( width: 9,),
-           Image.asset('assets/images/img_lucy.png')
+            const SizedBox(
+              width: 9,
+            ),
+            SvgPicture.asset(
+              ImageConstant.imgEmojiSmilingFace,
+              height: 25,
+            ),
+            const SizedBox(
+              width: 30,
+            ),
+            const Spacer()
+            //Image.asset('assets/images/img_unsplashe9gnuhpsg1w_31x31.png')
           ],
         ),
       ),
@@ -115,7 +133,7 @@ class _GiveLucyFreeLunchTwoScreenState
                 height: 12,
               ),
               buildEditField(
-                  keyboard: TextInputType.text,
+                  keyboard: TextInputType.multiline,
                   title: 'Compliment',
                   textController: _complimentController,
                   fieldHeight: 108),
@@ -127,8 +145,8 @@ class _GiveLucyFreeLunchTwoScreenState
                   Text(
                     'Select number of lunch',
                     style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w600,
                       fontFamily: 'inter',
                       fontStyle: FontStyle.normal,
                       color: Colors.black,
@@ -140,46 +158,58 @@ class _GiveLucyFreeLunchTwoScreenState
                 height: 16,
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 50),
+                padding: const EdgeInsets.symmetric(horizontal: 70),
                 child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 40,
                       mainAxisSpacing: 40,
                       crossAxisCount: 2,
-                      childAspectRatio: 1.5,
+                      childAspectRatio: 1.3,
                     ),
                     itemCount: mealCategory.length,
                     shrinkWrap: true,
-                    physics: ScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Container(
-                        width: 84,
-                        height: 65,
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(color: Colors.black),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                                height: 23,
-                                width: 24,
-                                child:
-                                    Image.asset(ImageConstant.imgGroup1623x24)),
-                            Text(
-                              mealCategory[index].title,
-                              style: const TextStyle(
-                                fontSize: 12.0,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'inter',
-                                fontStyle: FontStyle.normal,
-                                color: Colors.black,
-                              ),
+                    physics: const ScrollPhysics(),
+                    itemBuilder: (context, i) {
+                      return InkWell(
+                        onTap: () {
+                          setState(() {
+                            index = i;
+                          });
+                        },
+                        child: Container(
+                          width: 84,
+                          height: 65,
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            border: Border.all(
+                              color: index == i
+                                  ? appTheme.primary600
+                                  : Colors.black,
                             ),
-                          ],
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                  height: 23,
+                                  width: 24,
+                                  child: Image.asset(
+                                      ImageConstant.imgGroup1623x24)),
+                              Text(
+                                mealCategory[i].title,
+                                style: const TextStyle(
+                                  fontSize: 12.0,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'inter',
+                                  fontStyle: FontStyle.normal,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     }),
@@ -188,9 +218,14 @@ class _GiveLucyFreeLunchTwoScreenState
                 height: 38,
               ),
               buildButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(SuccessScreen());
+                },
                 buttonText: 'Give free lunch',
-              )
+              ),
+              const SizedBox(
+                height: 38,
+              ),
             ],
           ),
         ),
@@ -235,30 +270,35 @@ class _GiveLucyFreeLunchTwoScreenState
         Text(
           title,
           style: const TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.bold,
+            fontSize: 14.0,
+            fontWeight: FontWeight.w600,
             fontFamily: 'inter',
             fontStyle: FontStyle.normal,
             color: Colors.black,
           ),
         ),
+        const SizedBox(
+          height: 5,
+        ),
         Container(
-          width: 400,
+          width: double.infinity,
           height: fieldHeight,
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+          padding: EdgeInsets.symmetric(horizontal: 8),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
               border: Border.all(color: Color.fromARGB(255, 89, 88, 88))),
           child: TextFormField(
             controller: textController,
-            expands: true,
-            minLines: null,
-            maxLines: null,
+            // expands: true,
+            minLines: 1,
+            maxLines: 4,
             keyboardType: keyboard,
             autocorrect: false,
             cursorColor: AppTheme().primaryColor,
             autovalidateMode: AutovalidateMode.disabled,
             decoration: const InputDecoration(
+              hintText: 'Enter compliment',
+              hintStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
               fillColor: Colors.white,
               border: OutlineInputBorder(
                 borderSide: BorderSide.none,
