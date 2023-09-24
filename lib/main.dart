@@ -29,7 +29,12 @@ Future<void> initUniLinks() async {
   try {
     final initialLink = await getInitialUri();
     print("initialLink $initialLink");
+    if(initialLink != null){
+       print("token link ${initialLink.toString().split("=").last}");
+    box.write("inviteToken", initialLink.queryParameters["token"]);
     handleLink(initialLink);
+    }
+    
   } on PlatformException {
     // Handle exceptions if any
   }
@@ -43,16 +48,16 @@ Future<void> initUniLinks() async {
 }
 
 void handleLink(Uri? uri) {
-  if (uri != null && uri.queryParameters.isNotEmpty) {
-    // String token = jsonEncode(uri.queryParameters);
-    box.write("inviteToken", uri.queryParameters["token"]) ;
-    String path = uri.pathSegments[0];
-    // if (path == "acceptInvite"){
-      
+  if (uri != null ) {
+  //   // String token = jsonEncode(uri.queryParameters);
+   
+  //   String path = uri.pathSegments[0];
+  //   // if (path == "acceptInvite"){
+
+  //   runApp(const MyAppDeepLink());
+  //   // }
+  // } else {
     runApp(const MyAppDeepLink());
-    // }
-  } else {
-    // runApp(const MyAppDeepLink());
   }
 }
 

@@ -147,29 +147,30 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
             const SizedBox(height: 20),
             AppButton(
               onPressed: () async {
-                if (controller.formKey.currentState!.validate()) {
-                  final firstName = controller.firstNameController.text;
-                  final lastName = controller.lastNameController.text;
-                  final email = controller.emailController.text;
-                  final phoneNumber = controller.phoneController.text;
-                  final password = controller.passwordController.text;
+                controller.validation();
+                //   if (controller.formKey.currentState!.validate()) {
+                //     final firstName = controller.firstNameController.text;
+                //     final lastName = controller.lastNameController.text;
+                //     final email = controller.emailController.text;
+                //     final phoneNumber = controller.phoneController.text;
+                //     final password = controller.passwordController.text;
 
-                  // Call your registration API or perform the necessary logic here
-                  // For example:
-                  final success = await registerUser(
-                    firstName,
-                    lastName,
-                    email,
-                    phoneNumber,
-                    password,
-                  );
+                //     // Call your registration API or perform the necessary logic here
+                //     // For example:
+                //     final success = await registerUser(
+                //       firstName,
+                //       lastName,
+                //       email,
+                //       phoneNumber,
+                //       password,
+                //     );
 
-                  if (success) {
-                    // Registration successful, navigate to another screen or perform actions
-                  } else {
-                    // Registration failed, handle the error (e.g., display an error message)
-                  }
-                }
+                //     if (success) {
+                //       // Registration successful, navigate to another screen or perform actions
+                //     } else {
+                //       // Registration failed, handle the error (e.g., display an error message)
+                //     }
+                //   }
               },
               buttonText: 'Accept Invite',
             )
