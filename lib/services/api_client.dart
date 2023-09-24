@@ -80,13 +80,18 @@ class ApiClient extends GetConnect {
         headers: headers,
         body: requestData,
       );
-
+      print("------------- $response");
       ProgressDialogUtils.hideProgressDialog();
       if (_isSuccessCall(response)) {
-        return UserModel.fromJson(response.body);
-      } else {
+        return response.body;
+      } else if (response.statusCode == 401) {
+        print("------------- ${response.statusCode}");
+        errorMethod('Email or password incorrect');
+        return response.statusCode;
+      } 
+      else {
         throw response.body != null
-            ? UserModel.fromJson(response.body)
+            ? response.body
             : errorMethod('Email or password incorrect');
       }
     } catch (error, stackTrace) {

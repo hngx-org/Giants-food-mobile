@@ -71,7 +71,7 @@ class AcceptInviteController extends GetxController {
         "email": emailController.text.trim(),
         "first_name": firstNameController.text.trim(),
         "last_name": lastNameController.text.trim(),
-        "phone_number": phoneController.text.trim(),
+        "phone": phoneController.text.trim(),
         "password_hash": passwordController.text.trim(),
         "org_id": "15"
       },

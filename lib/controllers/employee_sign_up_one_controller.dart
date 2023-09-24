@@ -54,7 +54,7 @@ class SignUpController extends GetxController {
         "email": emailController.text.trim(),
         "first_name": firstNameController.text.trim(),
         "last_name": lastNameController.text.trim(),
-        "phone_number": phoneNumberController.text.trim(),
+        "phone": phoneNumberController.text.trim(),
         "password_hash": passWordController.text.trim()
       },
     );

@@ -45,19 +45,21 @@ class SignInController extends GetxController {
   Future<void> login() async {
     try {
       //final headers = {'Authorization': 'I dont have'};
+      print("got here");
       final requestData = {
         'email': emailController.text,
         'password_hash': passwordController.text,
       };
       dynamic response = await ApiClient().postLogin(requestData: requestData);
-      if (response is UserModel) {
-        print('Logged in as ${response.user?.firstName}');
+      print("---------- response $response");
+      if (response["user"]["email"] == emailController.text.trim()) {
+        print('Logged in as ${response["user"]["first_name"]}');
         // Update the observables
-        firstName.value = response.user?.firstName ?? '';
-        email.value = response.user?.email ?? '';
-        accessToken.value = response.tokens?.access?.token ?? '';
-        companyName.value = response.user?.organization!.name ?? '';
-        lunchBal.value = response.user?.lunchCreditBalance ?? 0;
+        firstName.value = response["user"]["first_name"] ?? '';
+        email.value = response["user"]["email"] ?? '';
+        accessToken.value = response["user"]["first_name"] ?? '';
+        companyName.value = response["user"]["first_name"] ?? '';
+        lunchBal.value = response["user"]["first_name"] ?? 0;
 
         print('token: --------- $accessToken');
 

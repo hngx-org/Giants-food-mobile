@@ -8,7 +8,6 @@ import 'package:giants_free_lunch/screens/accept_invite.dart';
 import 'package:giants_free_lunch/screens/login_screen.dart';
 import 'package:uni_links/uni_links.dart';
 import './core/app_export.dart';
-import 'screens/leader_board_screen.dart';
 
 AppTheme appTheme = AppTheme();
 final box = GetStorage();
@@ -29,12 +28,11 @@ Future<void> initUniLinks() async {
   try {
     final initialLink = await getInitialUri();
     print("initialLink $initialLink");
-    if(initialLink != null){
-       print("token link ${initialLink.toString().split("=").last}");
-    box.write("inviteToken", initialLink.queryParameters["token"]);
-    handleLink(initialLink);
+    if (initialLink != null) {
+      print("token link ${initialLink.toString().split("=").last}");
+      box.write("inviteToken", initialLink.queryParameters["token"]);
+      handleLink(initialLink);
     }
-    
   } on PlatformException {
     // Handle exceptions if any
   }
@@ -48,21 +46,21 @@ Future<void> initUniLinks() async {
 }
 
 void handleLink(Uri? uri) {
-  if (uri != null ) {
-  //   // String token = jsonEncode(uri.queryParameters);
-   
-  //   String path = uri.pathSegments[0];
-  //   // if (path == "acceptInvite"){
+  if (uri != null) {
+    //   // String token = jsonEncode(uri.queryParameters);
+
+    //   String path = uri.pathSegments[0];
+    //   // if (path == "acceptInvite"){
 
     runApp(const MyAppDeepLink());
-  //   // }
-  // } else {
-  // if (uri != null && uri.queryParameters.isNotEmpty) {
-  //   // String token = jsonEncode(uri.queryParameters);
-  //   box.write("inviteToken", uri.queryParameters["token"]);
-  //   String path = uri.pathSegments[0];
-  //   // if (path == "acceptInvite"){
-  //   runApp(const MyAppDeepLink());
+    //   // }
+    // } else {
+    // if (uri != null && uri.queryParameters.isNotEmpty) {
+    //   // String token = jsonEncode(uri.queryParameters);
+    //   box.write("inviteToken", uri.queryParameters["token"]);
+    //   String path = uri.pathSegments[0];
+    //   // if (path == "acceptInvite"){
+    //   runApp(const MyAppDeepLink());
   }
 }
 
@@ -99,24 +97,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final _signController = Get.put(SignInController());
     return ScreenUtilInit(
-        designSize: const Size(360, 780),
-        builder: (context, child) {
-          return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Free Lunch App',
-            theme: ThemeData(
-              scaffoldBackgroundColor: appTheme.appBackgroundColor,
-              fontFamily: 'Inter',
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              useMaterial3: true,
-            ),
-
-            home: Obx(() {
-              return _signController.isLoggedIn.value ? SignIn() : HomePage();
-            }),
-
-          );
-        });
+      designSize: const Size(360, 780),
+      builder: (context, child) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Free Lunch App',
+          theme: ThemeData(
+            scaffoldBackgroundColor: appTheme.appBackgroundColor,
+            fontFamily: 'Inter',
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: Obx(() {
+            return _signController.isLoggedIn.value ? HomePage(): const SignIn() ;
+          }),
+        );
+      },
+    );
   }
 }
-
