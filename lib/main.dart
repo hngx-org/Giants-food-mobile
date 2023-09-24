@@ -11,6 +11,7 @@ import 'package:giants_free_lunch/screens/login_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uni_links/uni_links.dart';
 import './core/app_export.dart';
+import 'screens/leader_board_screen.dart';
 
 AppTheme appTheme = AppTheme();
 final box = GetStorage();
@@ -102,10 +103,13 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
+
             home: Obx(() {
               return _signController.isLoggedIn.value ? SignIn() : HomePage();
             }),
+
           );
         });
   }
 }
+
