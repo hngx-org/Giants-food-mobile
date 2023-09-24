@@ -1,5 +1,3 @@
-import 'package:giants_free_lunch/services/models/postSignUp/sign_up_response.dart';
-
 import '../core/app_export.dart';
 import '../core/utils/progress_dialog_utils.dart';
 import '../services/models/postLogin/post_post_login_resp.dart';
