@@ -11,7 +11,7 @@ class AddBankAccountScreen extends StatelessWidget {
   final Rx<BottomBarItem> selectedItem = BottomBarItem.Home.obs;
 
   // Listen to changes in selected item and navigate accordingly
-  AddBankAccountScreen({super.key}) {}
+  AddBankAccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

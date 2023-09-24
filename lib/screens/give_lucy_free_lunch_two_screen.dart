@@ -93,7 +93,7 @@ class _GiveLucyFreeLunchTwoScreenState
                             ImageConstant.imgUnsplashe9gnuhpsg1w92x92)),
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(width: 3, color: Color(0xff8a8a8a))),
+                    border: Border.all(width: 3, color: const Color(0xff8a8a8a))),
               ),
               const SizedBox(
                 height: 4,
@@ -219,7 +219,7 @@ class _GiveLucyFreeLunchTwoScreenState
               ),
               buildButton(
                 onPressed: () {
-                  Get.to(SuccessScreen());
+                  Get.to(const SuccessScreen());
                 },
                 buttonText: 'Give free lunch',
               ),
@@ -283,10 +283,10 @@ class _GiveLucyFreeLunchTwoScreenState
         Container(
           width: double.infinity,
           height: fieldHeight,
-          padding: EdgeInsets.symmetric(horizontal: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
-              border: Border.all(color: Color.fromARGB(255, 89, 88, 88))),
+              border: Border.all(color: const Color.fromARGB(255, 89, 88, 88))),
           child: TextFormField(
             controller: textController,
             // expands: true,

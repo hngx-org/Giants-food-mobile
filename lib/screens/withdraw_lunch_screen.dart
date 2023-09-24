@@ -54,7 +54,7 @@ class _WithdrawLunchScreenState extends State<WithdrawLunchScreen> {
             SizedBox(height: 38.h),
             // space for account details
             ListTile(
-              contentPadding: EdgeInsets.all(0),
+              contentPadding: const EdgeInsets.all(0),
               leading: const Icon(
                 Icons.curtains_closed_outlined,
               ),
@@ -80,7 +80,7 @@ class _WithdrawLunchScreenState extends State<WithdrawLunchScreen> {
                 Get.to(AddBankAccountScreen());
               },
               child: ListTile(
-                contentPadding: EdgeInsets.all(0),
+                contentPadding: const EdgeInsets.all(0),
                 leading: Icon(
                   Icons.credit_card_outlined,
                   color: appTheme.primaryColor,

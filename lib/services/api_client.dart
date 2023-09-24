@@ -50,7 +50,7 @@ class ApiClient extends GetConnect {
       if (_isSuccessCall(response)) {
         return response.body;
       } else {
-        throw response.body != null ? response.body : 'Something Went Wrong!';
+        throw response.body ?? 'Something Went Wrong!';
       }
     } catch (error, stackTrace) {
       ProgressDialogUtils.hideProgressDialog();
@@ -119,7 +119,7 @@ class ApiClient extends GetConnect {
         print("------------- ${response.statusCode}");
         return response.statusCode;
       } else {
-        throw response.body != null ? response.body : 'Something Went Wrong!';
+        throw response.body ?? 'Something Went Wrong!';
       }
     } catch (error, stackTrace) {
       ProgressDialogUtils.hideProgressDialog();
@@ -151,7 +151,7 @@ class ApiClient extends GetConnect {
         print("------------- ${response.statusCode}");
         return response.statusCode;
       } else {
-        throw response.body != null ? response.body : 'Something Went Wrong!';
+        throw response.body ?? 'Something Went Wrong!';
       }
     } catch (error, stackTrace) {
       ProgressDialogUtils.hideProgressDialog();
@@ -183,7 +183,7 @@ class ApiClient extends GetConnect {
         print("------------- ${response.statusCode}");
         return response.statusCode;
       } else {
-        throw response.body != null ? response.body : 'Something Went Wrong!';
+        throw response.body ?? 'Something Went Wrong!';
       }
     } catch (error, stackTrace) {
       ProgressDialogUtils.hideProgressDialog();
@@ -216,7 +216,7 @@ class ApiClient extends GetConnect {
         print("------------- ${response.statusCode}");
         return response.statusCode;
       } else {
-        throw response.body != null ? response.body : 'Something Went Wrong!';
+        throw response.body ?? 'Something Went Wrong!';
       }
     } catch (error, stackTrace) {
       ProgressDialogUtils.hideProgressDialog();
@@ -247,7 +247,7 @@ class ApiClient extends GetConnect {
         print("------------- ${response.statusCode}");
         return response.statusCode;
       } else {
-        throw response.body != null ? response.body : 'Something Went Wrong!';
+        throw response.body ?? 'Something Went Wrong!';
       }
     } catch (error, stackTrace) {
       ProgressDialogUtils.hideProgressDialog();

@@ -3,7 +3,7 @@ import '../controllers/accept_invite_controller.dart';
 import '../core/app_export.dart';
 
 class AcceptInviteScreen extends StatefulWidget {
-  AcceptInviteScreen({super.key});
+  const AcceptInviteScreen({super.key});
 
   @override
   State<AcceptInviteScreen> createState() => _AcceptInviteScreenState();

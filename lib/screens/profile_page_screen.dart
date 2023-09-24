@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
-import 'package:giants_free_lunch/screens/home_screen.dart';
 import 'package:giants_free_lunch/screens/invite_employee.dart';
 import 'package:giants_free_lunch/screens/leader_board_screen.dart';
 import 'package:giants_free_lunch/screens/login_screen.dart';
-import 'package:giants_free_lunch/widgets/custom_bottom_bar.dart';
 
 class ProfileScreen extends StatelessWidget {
   final Rx<BottomBarItem> selectedItem = BottomBarItem.Profile.obs;
@@ -165,7 +162,7 @@ class ProfileScreen extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       box.erase();
-                      Get.offAll(SignIn());
+                      Get.offAll(const SignIn());
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

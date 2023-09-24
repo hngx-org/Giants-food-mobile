@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
 import 'package:giants_free_lunch/screens/login_screen.dart';
 import 'package:giants_free_lunch/services/api_client.dart';
@@ -46,7 +45,7 @@ class AddBankAccountController extends GetxController {
         print('#### 400');
         errorMethod("Incorrect email or password");
       } else if (res == 200) {
-        Get.offAll(SignIn());
+        Get.offAll(const SignIn());
       } else {
         errorMethod("An Error Occured");
       }

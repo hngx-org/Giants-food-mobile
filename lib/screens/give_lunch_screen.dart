@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,7 +5,7 @@ import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/screens/give_lucy_free_lunch_two_screen.dart';
 
 class GiveLunch extends StatefulWidget {
-  GiveLunch({super.key});
+  const GiveLunch({super.key});
 
   @override
   State<GiveLunch> createState() => _GiveLunchState();

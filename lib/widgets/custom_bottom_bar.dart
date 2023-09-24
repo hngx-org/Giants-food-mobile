@@ -11,7 +11,7 @@ enum BottomBarItem { Home, Leaderboards, Profile }
 class CustomBottomNavigationBar extends StatelessWidget {
   final Rx<BottomBarItem> selectedItem;
 
-  CustomBottomNavigationBar({required this.selectedItem});
+  const CustomBottomNavigationBar({required this.selectedItem});
 
   @override
   Widget build(BuildContext context) {

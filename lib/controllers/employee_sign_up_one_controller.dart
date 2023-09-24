@@ -65,7 +65,7 @@ class SignUpController extends GetxController {
     } else if (res["user"]["email"] == emailController.text.trim()) {
       box.write("token", res["tokens"]["refresh"]["token"]);
       print("token ------ ${box.read("token")}");
-      Get.offAll(SecondSignUp());
+      Get.offAll(const SecondSignUp());
     } else {
       errorMethod("An Error Occurred");
     }

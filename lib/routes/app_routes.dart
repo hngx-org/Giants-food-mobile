@@ -8,6 +8,6 @@ class Routes {
 final getPages = [
   GetPage(
     name: Routes.invite,
-    page: () => InviteEmployee(),
+    page: () => const InviteEmployee(),
   ),
 ];

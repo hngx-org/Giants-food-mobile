@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:giants_free_lunch/controllers/login_controller.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/screens/give_lunch_screen.dart';
@@ -293,13 +291,13 @@ _topBuild(BuildContext context, control) {
                     children: [
                       Text(
                         companyName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                       // SvgPicture.asset(
@@ -350,7 +348,7 @@ _topBuild(BuildContext context, control) {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     width: MediaQuery.of(context).size.width / 2.2,
                     text: 'Give Lunch',
-                    onTap: () => Get.to(() => GiveLunch()),
+                    onTap: () => Get.to(() => const GiveLunch()),
                     image: SvgPicture.asset(
                         height: 20, width: 20, ImageConstant.imgTrashAmberA200),
                   ),
