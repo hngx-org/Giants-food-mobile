@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../controllers/accept_invite_controller.dart';
 import '../core/app_export.dart';
+import '../models/accept_invite.dart';
 
 class AcceptInviteScreen extends StatelessWidget {
   // Initialize and register the AcceptInviteController
@@ -143,21 +144,23 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
                   final phoneNumber = controller.phoneController.text;
                   final password = controller.passwordController.text;
 
-                  // Call your registration API or perform the necessary logic here
-                  // For example:
-                  final success = await registerUser(
-                    firstName,
-                    lastName,
-                    email,
-                    phoneNumber,
-                    password,
+                  final invitationAcceptance = InvitationAcceptance(
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    phoneNumber: phoneNumber,
+                    password: password,
+                    // Set values for any additional invitation-related fields here
                   );
 
-                  if (success) {
-                    // Registration successful, navigate to another screen or perform actions
-                  } else {
-                    // Registration failed, handle the error (e.g., display an error message)
-                  }
+                  // // Call your API to accept the invitation
+                  // // final success = await acceptInvitation(invitationAcceptance);
+
+                  // if (success) {
+                  //   // Invitation accepted successfully, navigate to another screen or perform actions
+                  // } else {
+                  //   // Invitation acceptance failed, handle the error (e.g., display an error message)
+                  // }
                 }
               },
               buttonText: 'Accept Invite',
