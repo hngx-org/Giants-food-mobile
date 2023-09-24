@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
 import 'package:giants_free_lunch/screens/employee_sign_up_two_screen.dart';
 import 'package:giants_free_lunch/services/api_client.dart';
@@ -15,7 +14,6 @@ class SignUpController extends GetxController {
       TextEditingController();
   bool obscurePassword = true;
   bool obscureConfirmPassword = true;
-  final box = GetStorage();
 
   @override
   void dispose() {

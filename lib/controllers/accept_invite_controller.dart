@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
-import 'package:giants_free_lunch/screens/accept_invite.dart';
-import 'package:giants_free_lunch/screens/login_screen.dart';
 import 'package:giants_free_lunch/services/api_client.dart';
 
 import '../core/app_export.dart';
@@ -57,7 +55,7 @@ class AcceptInviteController extends GetxController {
 
     print("----- $res");
     // if (res == 400) {
-      // box.write("user_id", value);
+    //   box.write("user_id", value);
     //   Get.offAll(AcceptInviteScreen());
     // } else if (res["name"] == ) {
     //   Get.offAll(SignIn());
@@ -75,10 +73,10 @@ class AcceptInviteController extends GetxController {
         "last_name": lastNameController.text.trim(),
         "phone_number": phoneController.text.trim(),
         "password_hash": passwordController.text.trim(),
-        "org_id": box.read("user_id")
+        "org_id": "15"
       },
     );
-
+      print("----- accept invite $res");
       if (res == 400) {
       print("#### 400");
       errorMethod("Incorrect email or password");

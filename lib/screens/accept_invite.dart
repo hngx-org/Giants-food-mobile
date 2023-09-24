@@ -23,12 +23,18 @@ class _AcceptInviteScreenState extends State<AcceptInviteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: appTheme.appBackgroundColor,
       appBar: AppBar(
-        title: const Text(
-          'Accept Invite',
+        backgroundColor: appTheme.appBackgroundColor,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          "Accept Invite",
           style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: appTheme.primaryColor,
+            height: 2,
           ),
         ),
       ),
@@ -53,7 +59,6 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
         key: controller.formKey,
         child: ListView(
           children: [
-            // accept your invitation descriptin text
             const Text(
               'Accept your invitation',
               style: TextStyle(
