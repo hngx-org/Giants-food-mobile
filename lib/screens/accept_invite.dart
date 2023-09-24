@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../controllers/accept_invite_controller.dart';
 import '../core/app_export.dart';
-import '../models/accept_invite.dart';
+//import '../models/accept_invite.dart';
 
 class AcceptInviteScreen extends StatefulWidget {
   AcceptInviteScreen({super.key});
@@ -183,6 +183,8 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
       ),
     );
   }
+  
+  InvitationAcceptance({required String firstName, required String lastName, required String email, required String phoneNumber, required String password}) {}
 }
 
 registerUser(String firstName, String lastName, String email,
