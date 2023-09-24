@@ -1,22 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:giants_free_lunch/widgets/app_text_fields.dart';
 import '../controllers/accept_invite_controller.dart';
 import '../core/app_export.dart';
+import '../models/accept_invite.dart';
 
-class AcceptInviteScreen extends StatelessWidget {
+class AcceptInviteScreen extends StatefulWidget {
+  AcceptInviteScreen({super.key});
+
+  @override
+  State<AcceptInviteScreen> createState() => _AcceptInviteScreenState();
+}
+
+class _AcceptInviteScreenState extends State<AcceptInviteScreen> {
   // Initialize and register the AcceptInviteController
   final controller = Get.put(AcceptInviteController());
 
-  AcceptInviteScreen({super.key});
+  @override
+  void initState() {
+    // TODO: implement initState
+    controller.acceptInvite();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: appTheme.appBackgroundColor,
       appBar: AppBar(
-        title: const Text(
-          'Accept Invite',
+        backgroundColor: appTheme.appBackgroundColor,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          "Accept Invite",
           style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: appTheme.primaryColor,
+            height: 2,
           ),
         ),
       ),
@@ -41,7 +60,7 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
         key: controller.formKey,
         child: ListView(
           children: [
-            // accept your invitation descriptin text
+           
             const Text(
               'Accept your invitation',
               style: TextStyle(
@@ -79,10 +98,13 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
               textController: controller.emailController,
               // decoration: const InputDecoration(labelText: 'Email'),
               validator: (value) {
-                if (value!.isEmpty) {
-                  return 'Please enter your email';
+                if (RegExp(
+                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                    .hasMatch(value)) {
+                  return null;
+                } else {
+                  return "Please input a valid Email Address";
                 }
-                return null;
               },
               textTitle: 'Email',
               hintText: 'Email',
@@ -134,28 +156,46 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
             const SizedBox(height: 20),
             AppButton(
               onPressed: () async {
-                if (controller.formKey.currentState!.validate()) {
-                  final firstName = controller.firstNameController.text;
-                  final lastName = controller.lastNameController.text;
-                  final email = controller.emailController.text;
-                  final phoneNumber = controller.phoneController.text;
-                  final password = controller.passwordController.text;
+                controller.validation();
+                //   if (controller.formKey.currentState!.validate()) {
+                //     final firstName = controller.firstNameController.text;
+                //     final lastName = controller.lastNameController.text;
+                //     final email = controller.emailController.text;
+                //     final phoneNumber = controller.phoneController.text;
+                //     final password = controller.passwordController.text;
+                //     // Call your registration API or perform the necessary logic here
+                //     // For example:
+                //     final success = await registerUser(
+                //       firstName,
+                //       lastName,
+                //       email,
+                //       phoneNumber,
+                //       password,
+                //     );
 
-                  // Call your registration API or perform the necessary logic here
-                  // For example:
-                  final success = await registerUser(
-                    firstName,
-                    lastName,
-                    email,
-                    phoneNumber,
-                    password,
+                //     if (success) {
+                //       // Registration successful, navigate to another screen or perform actions
+                //     } else {
+                //       // Registration failed, handle the error (e.g., display an error message)
+                //     }
+                //   }
+                  final invitationAcceptance = InvitationAcceptance(
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    phoneNumber: phoneNumber,
+                    password: password,
+                    // Set values for any additional invitation-related fields here
                   );
 
-                  if (success) {
-                    // Registration successful, navigate to another screen or perform actions
-                  } else {
-                    // Registration failed, handle the error (e.g., display an error message)
-                  }
+                  // // Call your API to accept the invitation
+                  // // final success = await acceptInvitation(invitationAcceptance);
+
+                  // if (success) {
+                  //   // Invitation accepted successfully, navigate to another screen or perform actions
+                  // } else {
+                  //   // Invitation acceptance failed, handle the error (e.g., display an error message)
+                  // }
                 }
               },
               buttonText: 'Accept Invite',

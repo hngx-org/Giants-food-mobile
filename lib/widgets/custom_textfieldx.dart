@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:giants_free_lunch/core/app_export.dart';
 
 class InputField extends StatefulWidget {
   final String hint;
@@ -60,7 +59,7 @@ class _InputFieldState extends State<InputField> {
                   child: TextFormField(
                     autofocus: false,
                     controller: widget.controller,
-                    style: subtitleStyle,
+                    // style: subtitleStyle,
                     obscureText: widget.isObsured,
                     validator: widget.validate,
                     onChanged: (value) {

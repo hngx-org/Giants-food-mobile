@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:giants_free_lunch/core/app_export.dart';
 
 class DisplayContainer extends StatelessWidget {
   final double height;
@@ -9,7 +8,7 @@ class DisplayContainer extends StatelessWidget {
   final Function()? onTap;
   final String text;
   final Icon? sideIcon;
-  final Image? image;
+  final Widget? image;
   final bool isImageOrIcon;
   final EdgeInsetsGeometry? padding;
   const DisplayContainer({
@@ -42,9 +41,9 @@ class DisplayContainer extends StatelessWidget {
           children: [
             Text(
               text,
-              style: TextStyle(
-                fontSize: 16.w,
-                fontWeight: FontWeight.bold,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
               ),
             ),
             const Spacer(),
@@ -54,7 +53,7 @@ class DisplayContainer extends StatelessWidget {
                     count ?? "",
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                      fontSize: 16,
                     ),
                   ),
             count == null ? const SizedBox() : const SizedBox(width: 5),

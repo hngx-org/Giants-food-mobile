@@ -14,8 +14,16 @@ class GiveLunch extends StatefulWidget {
 
 class _GiveLunchState extends State<GiveLunch> {
   final appTheme = AppTheme();
+  int index = 0;
 
-  bool check = false;
+  // List<bool> check = [
+  //   false,
+  //   false,
+  //   false,
+  //   false,
+  //   false,
+  //   false,
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +99,8 @@ class _GiveLunchState extends State<GiveLunch> {
                     ),
                     contentPadding: const EdgeInsets.fromLTRB(10, 5, 5, 0),
                     hintText: "Search worker's name",
+                    hintStyle: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.w500),
                     suffixIcon: IconButton(
                       onPressed: () {},
                       icon: const Icon(Icons.search_outlined),
@@ -106,61 +116,85 @@ class _GiveLunchState extends State<GiveLunch> {
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: 15,
-              itemBuilder: (context, index) {
+              itemCount: 6,
+              itemBuilder: (context, i) {
                 return Column(
                   children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: InkWell(
-                        onTap: () {
-                          setState(() {
-                            check = !check;
-                          });
-                        },
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          // check[index] = !check[index];
+                          index = i;
+                        });
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              children: [
-                                Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black26,
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          ImageConstant.imgUnsplashqayxtcv4aq),
-                                      fit: BoxFit.cover,
-                                    ),
-                                    borderRadius: BorderRadius.circular(100),
-                                    //color: Colors.blue
-                                  ),
+                            Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.black26,
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      ImageConstant.imgUnsplashqayxtcv4aq),
+                                  fit: BoxFit.cover,
                                 ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                const Text('Kolawole Emmanuel'),
-                              ],
+                                borderRadius: BorderRadius.circular(100),
+                                //color: Colors.blue
+                              ),
                             ),
-                            Checkbox(
-                              shape: const CircleBorder(),
-                              value: check,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  check = value!;
-                                });
-                              },
-                            )
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            const Text('Kolawole Emmanuel'),
+                            const Spacer(),
+                            index == i
+                                ? Container(
+                                    height: 25,
+                                    width: 25,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: appTheme.primaryColor),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: const Icon(
+                                      Icons.check,
+                                      color: Colors.green,
+                                      size: 18,
+                                    ),
+                                  )
+                                : Container(
+                                    height: 25,
+                                    width: 25,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
                           ],
                         ),
                       ),
                     ),
-                    const Divider()
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24),
+                      child: Divider(),
+                    )
                   ],
                 );
               },
             ),
+          ),
+          const SizedBox(
+            height: 80,
           ),
         ],
       ),
@@ -173,20 +207,6 @@ class _GiveLunchState extends State<GiveLunch> {
           },
         ),
       ),
-      // SizedBox(
-      //   height: 40,
-      //   width: MediaQuery.sizeOf(context).width * 0.8,
-      //   child: FloatingActionButton.extended(
-      //     onPressed: () => Get.to(() => GiveLucyFreeLunchTwoScreen()),
-      //     label: Text(
-      //       "Proceed",
-      //       style: const TextStyle(color: Colors.white),
-      //     ),
-      //     shape: const BeveledRectangleBorder(
-      //         borderRadius: BorderRadius.all(Radius.circular(5))),
-      //     backgroundColor: appTheme.primaryColor,
-      //   ),
-      // ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       backgroundColor: appTheme.appBackgroundColor,
     );

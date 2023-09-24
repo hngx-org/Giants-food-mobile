@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
-import 'package:giants_free_lunch/core/utils/image_constant.dart';
 import 'package:giants_free_lunch/screens/success_screen.dart';
-import 'package:giants_free_lunch/themes/app_theme.dart';
 
 class GiveLucyFreeLunchTwoScreen extends StatefulWidget {
   const GiveLucyFreeLunchTwoScreen({super.key});
@@ -16,6 +14,7 @@ class GiveLucyFreeLunchTwoScreen extends StatefulWidget {
 class _GiveLucyFreeLunchTwoScreenState
     extends State<GiveLucyFreeLunchTwoScreen> {
   final TextEditingController _complimentController = TextEditingController();
+  int index = 0;
 
   @override
   void dispose() {
@@ -146,8 +145,8 @@ class _GiveLucyFreeLunchTwoScreenState
                   Text(
                     'Select number of lunch',
                     style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w600,
                       fontFamily: 'inter',
                       fontStyle: FontStyle.normal,
                       color: Colors.black,
@@ -159,7 +158,7 @@ class _GiveLucyFreeLunchTwoScreenState
                 height: 16,
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 50),
+                padding: const EdgeInsets.symmetric(horizontal: 70),
                 child: GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -170,36 +169,47 @@ class _GiveLucyFreeLunchTwoScreenState
                     ),
                     itemCount: mealCategory.length,
                     shrinkWrap: true,
-                    physics: ScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Container(
-                        width: 84,
-                        height: 65,
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(color: Colors.black),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                                height: 23,
-                                width: 24,
-                                child:
-                                    Image.asset(ImageConstant.imgGroup1623x24)),
-                            Text(
-                              mealCategory[index].title,
-                              style: const TextStyle(
-                                fontSize: 12.0,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'inter',
-                                fontStyle: FontStyle.normal,
-                                color: Colors.black,
-                              ),
+                    physics: const ScrollPhysics(),
+                    itemBuilder: (context, i) {
+                      return InkWell(
+                        onTap: () {
+                          setState(() {
+                            index = i;
+                          });
+                        },
+                        child: Container(
+                          width: 84,
+                          height: 65,
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            border: Border.all(
+                              color: index == i
+                                  ? appTheme.primary600
+                                  : Colors.black,
                             ),
-                          ],
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                  height: 23,
+                                  width: 24,
+                                  child: Image.asset(
+                                      ImageConstant.imgGroup1623x24)),
+                              Text(
+                                mealCategory[i].title,
+                                style: const TextStyle(
+                                  fontSize: 12.0,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'inter',
+                                  fontStyle: FontStyle.normal,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     }),
@@ -260,33 +270,35 @@ class _GiveLucyFreeLunchTwoScreenState
         Text(
           title,
           style: const TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.bold,
+            fontSize: 14.0,
+            fontWeight: FontWeight.w600,
             fontFamily: 'inter',
             fontStyle: FontStyle.normal,
             color: Colors.black,
           ),
         ),
+        const SizedBox(
+          height: 5,
+        ),
         Container(
-          width: 400,
+          width: double.infinity,
           height: fieldHeight,
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+          padding: EdgeInsets.symmetric(horizontal: 8),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
               border: Border.all(color: Color.fromARGB(255, 89, 88, 88))),
           child: TextFormField(
             controller: textController,
-            expands: true,
-            minLines: null,
-            maxLines: null,
+            // expands: true,
+            minLines: 1,
+            maxLines: 4,
             keyboardType: keyboard,
             autocorrect: false,
             cursorColor: AppTheme().primaryColor,
             autovalidateMode: AutovalidateMode.disabled,
             decoration: const InputDecoration(
-              hintText:
-                  'You\'re simply awesome! I am impressed\nby your outstanding contribution, here\'s a \nlittle token to treat yourself.',
-              hintStyle: TextStyle(),
+              hintText: 'Enter compliment',
+              hintStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
               fillColor: Colors.white,
               border: OutlineInputBorder(
                 borderSide: BorderSide.none,

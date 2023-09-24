@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:giants_free_lunch/controllers/login_controller.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/screens/give_lunch_screen.dart';
 import 'package:giants_free_lunch/screens/leader_board_screen.dart';
@@ -13,27 +16,39 @@ import 'package:giants_free_lunch/widgets/custom_text.dart';
 
 class HomePage extends StatelessWidget {
   final Rx<BottomBarItem> selectedItem = BottomBarItem.Home.obs;
+  final signController = Get.put(SignInController());
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: appTheme.primaryColor,
       statusBarIconBrightness: Brightness.light,
     ));
+    //final signController = Get.put(SignInController());
+    // Retrieve saved data from GetStorage
+
     return Scaffold(
       body: SafeArea(
-        child: Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                _topBuild(context),
-                const SizedBox(
-                  height: 10,
-                ),
-                _recentBuild(),
-                _activitiesBuild(),
-              ],
+        child: Column(
+          children: [
+            _topBuild(context, signController),
+            const SizedBox(
+              height: 30,
             ),
-          ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    _recentBuild(),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    _activitiesBuild(),
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
       ),
       bottomNavigationBar: CustomBottomNavigationBar(
@@ -67,69 +82,148 @@ _activitiesBuild() {
     shrinkWrap: true,
     children: [
       ListTile(
-        title: const CustomText(
-          text: "You got 2 free lunches",
-          isBold: true,
-        ),
-        subtitle: const CustomText(
-            text:
-                'You received a free lunch for your outstanding contribution. Thank you for your hard work'),
-        trailing: Column(
+        title: Row(
           children: [
-            CustomText(
-              text: "From: Lucy",
-              color: appTheme.primaryColor,
+            const CustomText(
+              text: "You got 2 free lunches",
               isBold: true,
             ),
-            const CustomText(
-              text: "Today: 3:30pm",
-              fontsize: 12,
-            )
+            const SizedBox(
+              width: 5,
+            ),
+            Image.asset(
+              'assets/images/img_group16.png',
+              fit: BoxFit.cover,
+              height: 20,
+              width: 20,
+            ),
+          ],
+        ),
+        subtitle: const Padding(
+          padding: EdgeInsets.fromLTRB(0, 8, 40, 8),
+          child: Text(
+            'You received a free lunch for your outstanding contribution. Thank you for your hard work',
+            style:
+                TextStyle(fontSize: 12, fontWeight: FontWeight.w400, height: 2),
+          ),
+        ),
+        trailing: const Column(
+          children: [
+            Text(
+              "From: Lucy",
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              "Today: 3:30pm",
+              style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ],
         ),
       ),
       ListTile(
-        title: const CustomText(
-          text: "You got 2 free lunches",
-          isBold: true,
-        ),
-        subtitle: const CustomText(
-            text:
-                'You received a free lunch for your outstanding contribution. Thank you for your hard work'),
-        trailing: Column(
+        title: Row(
           children: [
-            CustomText(
-              text: "From: Lucy",
-              color: appTheme.primaryColor,
+            const CustomText(
+              text: "You got 2 free lunches",
               isBold: true,
             ),
-            const CustomText(
-              text: "Today: 3:30pm",
-              fontsize: 12,
-            )
+            const SizedBox(
+              width: 5,
+            ),
+            Image.asset(
+              'assets/images/img_group16.png',
+              fit: BoxFit.cover,
+              height: 20,
+              width: 20,
+            ),
+          ],
+        ),
+        subtitle: const Padding(
+          padding: EdgeInsets.fromLTRB(0, 8, 40, 8),
+          child: Text(
+            'You received a free lunch for your outstanding contribution. Thank you for your hard work',
+            style:
+                TextStyle(fontSize: 12, fontWeight: FontWeight.w400, height: 2),
+          ),
+        ),
+        trailing: const Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "From: Lucy",
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              "Today: 3:30pm",
+              style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ],
         ),
       ),
       ListTile(
-        title: const CustomText(
-          text: "You got 3 free lunches",
-          isBold: true,
+        title: Row(
+          children: [
+            const CustomText(
+              text: "You got 3 free lunches",
+              isBold: true,
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            Image.asset(
+              'assets/images/img_group16.png',
+              fit: BoxFit.cover,
+              height: 20,
+              width: 20,
+            ),
+          ],
         ),
-        subtitle: const CustomText(
-            text:
-                'You received a free lunch for your outstanding contribution. Thank you for your hard work'),
-        trailing: Column(
+        subtitle: const Padding(
+          padding: EdgeInsets.fromLTRB(0, 8, 40, 8),
+          child: Text(
+            'You received a free lunch for your outstanding contribution. Thank you for your hard work',
+            style:
+                TextStyle(fontSize: 12, fontWeight: FontWeight.w400, height: 2),
+          ),
+        ),
+        trailing: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomText(
-              text: "From: Lucy",
-              color: appTheme.primaryColor,
-              isBold: true,
+            Text(
+              "From: Lucy",
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+              ),
             ),
-            const CustomText(
-              text: "Today: 3:30pm",
-              fontsize: 12,
-            )
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              "Today: 3:30pm",
+              style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ],
         ),
       ),
@@ -145,22 +239,29 @@ _recentBuild() {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CustomText(
-          text: "Recent Activities",
-          fontsize: 16.sp,
-          isBold: true,
+        const Text(
+          "Recent Activities",
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
         ),
-        CustomText(
-          text: "See all",
-          fontsize: 14.sp,
-          isBold: true,
+        Text(
+          "See all",
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: appTheme.primaryColor,
+          ),
         ),
       ],
     ),
   );
 }
 
-_topBuild(BuildContext context) {
+_topBuild(BuildContext context, control) {
+  final firstName = box.read('firstName') ?? '';
+  final companyName = box.read('companyName') ?? '';
   return Container(
     width: double.infinity,
     height: 250,
@@ -183,35 +284,39 @@ _topBuild(BuildContext context) {
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(
-                      Icons.person,
+                    child: SvgPicture.asset(
+                      ImageConstant.imgNavprofile,
                       color: appTheme.appBackgroundColor,
                     ),
                   ),
-                  const Row(
+                  Row(
                     children: [
                       Text(
-                        "Ally",
+                        companyName,
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 28,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       SizedBox(
                         width: 20,
-                      )
+                      ),
+                      // SvgPicture.asset(
+                      //   ImageConstant.imgUnsplash9kqbqqyxrk,
+                      //   color: appTheme.appBackgroundColor,
+                      // ),
                     ],
                   ),
-                  const Icon(
-                    CupertinoIcons.bell,
-                    size: 28,
-                    color: Colors.white,
-                  )
+                  SvgPicture.asset(
+                    ImageConstant.imgNotification,
+                    color: appTheme.appBackgroundColor,
+                  ),
                 ],
               ),
               const SizedBox(height: 16),
               Text(
-                "Hi, John",
+                "Hi, $firstName",
                 style: TextStyle(
                   color: appTheme.navBackgroundColor,
                   fontSize: 18,
@@ -219,18 +324,20 @@ _topBuild(BuildContext context) {
                 ),
               ),
               const SizedBox(height: 20),
-              DisplayContainer(
-                isImageOrIcon: true,
-                height: 45,
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                width: double.infinity,
-                text: "Lunch Balance",
-                count: '3',
-                image: Image.asset(
-                  'assets/images/img_group16.png',
-                  fit: BoxFit.cover,
-                  height: 20,
-                  width: 20,
+              Obx(
+                () => DisplayContainer(
+                  isImageOrIcon: true,
+                  height: 45,
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  width: double.infinity,
+                  text: "Lunch Balance",
+                  count: control.lunchBal.toString(),
+                  image: Image.asset(
+                    'assets/images/img_group16.png',
+                    fit: BoxFit.cover,
+                    height: 20,
+                    width: 20,
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -244,12 +351,8 @@ _topBuild(BuildContext context) {
                     width: MediaQuery.of(context).size.width / 2.2,
                     text: 'Give Lunch',
                     onTap: () => Get.to(() => GiveLunch()),
-                    image: Image.asset(
-                      'assets/images/img_group16.png',
-                      fit: BoxFit.cover,
-                      height: 20,
-                      width: 20,
-                    ),
+                    image: SvgPicture.asset(
+                        height: 20, width: 20, ImageConstant.imgTrashAmberA200),
                   ),
                   DisplayContainer(
                     height: 45,

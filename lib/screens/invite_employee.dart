@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:giants_free_lunch/controllers/invite_employee_controller.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
-import 'package:giants_free_lunch/widgets/app_text_fields.dart';
+
 
 class InviteEmployee extends StatefulWidget {
   const InviteEmployee({super.key});
@@ -65,7 +65,7 @@ class _InviteEmployeeState extends State<InviteEmployee> {
                   ),
                   AppTextField(
                     textTitle: "Email",
-                    textController: _inviteController.textController,
+                    textController: _inviteController.emailController,
                     hintText: "Email",
                     validator: (value) {
                       if (RegExp(
@@ -83,11 +83,7 @@ class _InviteEmployeeState extends State<InviteEmployee> {
                   AppButton(
                     buttonText: "Send Invitation",
                     onPressed: () {
-                      if (_inviteController.formKey.currentState!.validate()) {
-                        print("valid");
-                      } else {
-                        print("Invalid");
-                      }
+                      _inviteController.validation();
                     },
                   ),
                 ],

@@ -14,6 +14,7 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  // final SignInController signController = Get.find();
   final signController = Get.put(SignInController());
 
   @override
@@ -22,6 +23,11 @@ class _SignInState extends State<SignIn> {
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
     ));
+    // Retrieve saved data from GetStorage
+    // final box = GetStorage();
+    // final firstName = box.read('firstName') ?? '';
+    // final email = box.read('email') ?? '';
+    // final accessToken = box.read('accessToken') ?? '';
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -86,7 +92,6 @@ class _SignInState extends State<SignIn> {
                         buttonText: 'Sign In',
                         onPressed: () {
                           signController.validation();
-                          Get.off(HomePage());
                         },
                       ),
                       SizedBox(height: 10.h),
