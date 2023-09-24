@@ -8,10 +8,27 @@ import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/core/constants/app_strings.dart';
 import 'package:giants_free_lunch/widgets/custom_textfieldx.dart';
 
-class GiveLunch extends StatelessWidget {
+import 'give_lucy_free_lunch_two_screen.dart';
+
+class GiveLunch extends StatefulWidget {
   GiveLunch({super.key});
-  final controller = Get.put(GiveLunchController());
+
+  @override
+  State<GiveLunch> createState() => _GiveLunchState();
+}
+
+class _GiveLunchState extends State<GiveLunch> {
   final appTheme = AppTheme();
+  int index = 0;
+
+  // List<bool> check = [
+  //   false,
+  //   false,
+  //   false,
+  //   false,
+  //   false,
+  //   false,
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -20,121 +37,183 @@ class GiveLunch extends StatelessWidget {
       statusBarIconBrightness: Brightness.dark,
     ));
     return Scaffold(
-      body: SafeArea(
-        child: Column(
+      appBar: AppBar(
+        backgroundColor: appTheme.appBackgroundColor,
+        elevation: 0,
+        leading: GestureDetector(
+          onTap: () {
+            Get.back();
+          },
+          child: const Icon(Icons.arrow_back_ios_new_rounded),
+        ),
+        // centerTitle: true,
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              height: 150,
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              margin: const EdgeInsets.only(bottom: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    child: Row(
-                      children: [
-                        IconButton(
-                            onPressed: (){
-                              Get.to(()=> HomePage());
-                              },
-                            icon: const Icon(Icons.arrow_back_ios_rounded)),
-                        const SizedBox(width: 50,),
-                        Text('Give free lunch',
-                          style: titleStyle,
-                        ),
-                        const SizedBox(width: 5,),
-                        SvgPicture.asset(ImageConstant.imgCut,
-                          semanticsLabel: 'SVG Image',
-                          height: 20,width: 20,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20,),
-                  Container(
-                    color: Colors.white,
-                    child: TextFormField(
-                        decoration: InputDecoration(
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(width: 2,color: Colors.black45),
-                          ),
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide(width: 2,color: Colors.black45),
-                          ),
-                          hintText: "Search worker's name",
-                          suffixIcon: IconButton(
-                            onPressed: (){}, icon: const Icon(Icons.search_outlined),
-                          ),
-                        )
-                    ),
-                  )
-                ],
+            const Spacer(),
+            Text(
+              'Give free lunch',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: appTheme.primaryColor,
+                height: 2,
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 7,
-                itemBuilder: (context,index){
-                  return Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black26,
-                                    image: DecorationImage(
-                                      image: AssetImage(ImageConstant.imgUnsplashqayxtcv4aq),
-                                      fit: BoxFit.cover,
-                                    ),
-                                    borderRadius: BorderRadius.circular(100),
-                                    //color: Colors.blue
-                                  ),
-                                ),
-                                const SizedBox(width: 5,),
-                                const Text('Kolawole Emmanuel'),
-                              ],
-                            ),
-                            Checkbox(
-                                shape: const CircleBorder(),
-                                checkColor: AppTheme.checkBoxMarkColor,
-                                value: controller.check.value,
-                                onChanged: (bool? value){
-                                  controller.check.value = value!;
-                                })
-                          ],
-                        ),
-                      ),
-                      const Divider()
-                    ],
-                  );
-                },
-              ),
+            const SizedBox(
+              width: 5,
             ),
+            SvgPicture.asset(
+              ImageConstant.imgCut,
+              semanticsLabel: 'SVG Image',
+              height: 20,
+              width: 20,
+            ),
+            const SizedBox(
+              width: 30,
+            ),
+            const Spacer()
           ],
         ),
       ),
-      floatingActionButton: SizedBox(
-        height: 40,
-        width: MediaQuery.sizeOf(context).width * 0.7,
-        child: FloatingActionButton.extended(
-          onPressed: (){},
-          label: Text(giveLunchButtonText,style: const TextStyle(color: AppTheme.btnTextColor),),
-          shape: const BeveledRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
-          backgroundColor: appTheme.primaryColor,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: 150,
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  color: Colors.white,
+                  height: 45,
+                  margin: const EdgeInsets.symmetric(horizontal: 5),
+                  child: TextFormField(
+                      decoration: InputDecoration(
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(width: 2, color: Colors.black45),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          const BorderSide(width: 2, color: Colors.black45),
+                        ),
+                        contentPadding: const EdgeInsets.fromLTRB(10, 5, 5, 0),
+                        hintText: "Search worker's name",
+                        hintStyle: const TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.w500),
+                        suffixIcon: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.search_outlined),
+                        ),
+                      )),
+                )
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: 6,
+              itemBuilder: (context, i) {
+                return Column(
+                  children: [
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          // check[index] = !check[index];
+                          index = i;
+                        });
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Row(
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.black26,
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      ImageConstant.imgUnsplashqayxtcv4aq),
+                                  fit: BoxFit.cover,
+                                ),
+                                borderRadius: BorderRadius.circular(100),
+                                //color: Colors.blue
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            const Text('Kolawole Emmanuel'),
+                            const Spacer(),
+                            index == i
+                                ? Container(
+                              height: 25,
+                              width: 25,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: appTheme.primaryColor),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: const Icon(
+                                Icons.check,
+                                color: Colors.green,
+                                size: 18,
+                              ),
+                            )
+                                : Container(
+                              height: 25,
+                              width: 25,
+                              decoration: BoxDecoration(
+                                border: Border.all(),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24),
+                      child: Divider(),
+                    )
+                  ],
+                );
+              },
+            ),
+          ),
+          const SizedBox(
+            height: 80,
+          ),
+        ],
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: AppButton(
+          buttonText: "Proceed",
+          onPressed: () {
+            Get.to(const GiveLucyFreeLunchTwoScreen());
+          },
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       backgroundColor: appTheme.appBackgroundColor,
     );
   }
-
 }
