@@ -54,15 +54,15 @@ void handleLink(Uri? uri) {
   //   String path = uri.pathSegments[0];
   //   // if (path == "acceptInvite"){
 
-  //   runApp(const MyAppDeepLink());
+    runApp(const MyAppDeepLink());
   //   // }
   // } else {
-  if (uri != null && uri.queryParameters.isNotEmpty) {
-    // String token = jsonEncode(uri.queryParameters);
-    box.write("inviteToken", uri.queryParameters["token"]);
-    String path = uri.pathSegments[0];
-    // if (path == "acceptInvite"){
-    runApp(const MyAppDeepLink());
+  // if (uri != null && uri.queryParameters.isNotEmpty) {
+  //   // String token = jsonEncode(uri.queryParameters);
+  //   box.write("inviteToken", uri.queryParameters["token"]);
+  //   String path = uri.pathSegments[0];
+  //   // if (path == "acceptInvite"){
+  //   runApp(const MyAppDeepLink());
   }
 }
 

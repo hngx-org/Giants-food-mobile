@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../controllers/accept_invite_controller.dart';
 import '../core/app_export.dart';
-import '../models/accept_invite.dart';
 
 class AcceptInviteScreen extends StatefulWidget {
   AcceptInviteScreen({super.key});
@@ -179,14 +178,14 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
                 //       // Registration failed, handle the error (e.g., display an error message)
                 //     }
                 //   }
-                  final invitationAcceptance = InvitationAcceptance(
-                    firstName: firstName,
-                    lastName: lastName,
-                    email: email,
-                    phoneNumber: phoneNumber,
-                    password: password,
+                  // final invitationAcceptance = InvitationAcceptance(
+                  //   firstName: firstName,
+                  //   lastName: lastName,
+                  //   email: email,
+                  //   phoneNumber: phoneNumber,
+                  //   password: password,
                     // Set values for any additional invitation-related fields here
-                  );
+                  // );
 
                   // // Call your API to accept the invitation
                   // // final success = await acceptInvitation(invitationAcceptance);
@@ -196,7 +195,7 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
                   // } else {
                   //   // Invitation acceptance failed, handle the error (e.g., display an error message)
                   // }
-                }
+                // }
               },
               buttonText: 'Accept Invite',
             )

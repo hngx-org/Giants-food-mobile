@@ -14,7 +14,7 @@ class SignUpController extends GetxController {
       TextEditingController();
   bool obscurePassword = true;
   bool obscureConfirmPassword = true;
-  final box = GetStorage();
+  // final box = GetStorage();
 
   @override
   void dispose() {

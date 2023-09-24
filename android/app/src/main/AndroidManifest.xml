@@ -26,8 +26,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- Accepts URIs that begin with YOUR_SCHEME://YOUR_HOST -->
                 <data
-                android:scheme="http"
-                android:host="smartbizlord.com.ng" />
+                android:scheme="https"
+                android:host="giants.smartbizlord.com.ng" />
             </intent-filter>
 
             <intent-filter>
