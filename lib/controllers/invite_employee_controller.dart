@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
 import 'package:giants_free_lunch/services/api_client.dart';
@@ -29,9 +28,8 @@ class InviteController extends GetxController {
     print("----- ${res["message"]}");
     if (res["message"] == "User invited succesfully") {
       print("true");
-
-      Get.back();
       successMethod("User invited succesfully");
+      Get.back();
     } else {
       errorMethod("An Error Occurred");
       // Map<String, dynamic> tokens = res['tokens'];

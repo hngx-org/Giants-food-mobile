@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../controllers/add_bank_account_controller.dart' as addcontroller;
 import '../core/app_export.dart';
 
@@ -116,7 +117,13 @@ class ContentWidget extends StatelessWidget {
               items: _controller.bankList.map((String bank) {
                 return DropdownMenuItem<String>(
                   value: bank,
-                  child: Text(bank),
+                  child: Text(
+                    bank,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
                 );
               }).toList(),
               icon: const Icon(
@@ -140,6 +147,10 @@ class ContentWidget extends StatelessWidget {
             height: 45,
             child: TextFormField(
               controller: _controller.accountNumberController,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly,
+              ],
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.only(right: 10),
                 hintText: 'Account Number',
@@ -153,28 +164,29 @@ class ContentWidget extends StatelessWidget {
           AppButton(
             buttonText: 'Add Account',
             onPressed: () async {
+              _controller.addBankAccount(userID: 1);
               Get.back();
-              
-              // Add logic to add bank account here
-              final result = await _controller.addBankAccount();
 
-              if (result) {
-                // Show a success message using GetX SnackBar
-                Get.snackbar(
-                  'Success',
-                  'Bank account added successfully',
-                  backgroundColor: Colors.green,
-                  snackPosition: SnackPosition.BOTTOM,
-                );
-              } else {
-                // Show an error message using GetX SnackBar
-                Get.snackbar(
-                  'Error',
-                  'Failed to add bank account',
-                  backgroundColor: Colors.red,
-                  snackPosition: SnackPosition.BOTTOM,
-                );
-              }
+              // Add logic to add bank account here
+              //final result = await _controller.addBankAccount();
+
+              // if (result) {
+              //   // Show a success message using GetX SnackBar
+              //   Get.snackbar(
+              //     'Success',
+              //     'Bank account added successfully',
+              //     backgroundColor: Colors.green,
+              //     snackPosition: SnackPosition.BOTTOM,
+              //   );
+              // } else {
+              //   // Show an error message using GetX SnackBar
+              //   Get.snackbar(
+              //     'Error',
+              //     'Failed to add bank account',
+              //     backgroundColor: Colors.red,
+              //     snackPosition: SnackPosition.BOTTOM,
+              //   );
+              // }
             },
           ),
         ],

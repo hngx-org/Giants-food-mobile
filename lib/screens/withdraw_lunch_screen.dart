@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/screens/add_bank_account_screen.dart';
 import 'package:giants_free_lunch/screens/redeem_success_screen.dart';
-
-import '../main.dart';
 
 class WithdrawLunchScreen extends StatefulWidget {
   const WithdrawLunchScreen({super.key});

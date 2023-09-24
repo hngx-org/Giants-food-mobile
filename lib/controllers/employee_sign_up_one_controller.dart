@@ -15,6 +15,7 @@ class SignUpController extends GetxController {
       TextEditingController();
   bool obscurePassword = true;
   bool obscureConfirmPassword = true;
+  final box = GetStorage();
 
   @override
   void dispose() {
@@ -69,8 +70,6 @@ class SignUpController extends GetxController {
       Get.offAll(SecondSignUp());
     } else {
       errorMethod("An Error Occurred");
-      // Map<String, dynamic> tokens = res['tokens'];
-      // Get.offAll(HomePage());
     }
   }
 }

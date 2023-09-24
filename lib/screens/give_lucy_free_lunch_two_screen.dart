@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
-import 'package:giants_free_lunch/core/utils/image_constant.dart';
 import 'package:giants_free_lunch/screens/success_screen.dart';
-import 'package:giants_free_lunch/themes/app_theme.dart';
 
 class GiveLucyFreeLunchTwoScreen extends StatefulWidget {
   const GiveLucyFreeLunchTwoScreen({super.key});
