@@ -60,7 +60,7 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
         key: controller.formKey,
         child: ListView(
           children: [
-            // accept your invitation descriptin text
+           
             const Text(
               'Accept your invitation',
               style: TextStyle(
