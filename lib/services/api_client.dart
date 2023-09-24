@@ -84,7 +84,7 @@ class ApiClient extends GetConnect {
       );
       ProgressDialogUtils.hideProgressDialog();
       if (_isSuccessCall(response)) {
-        return PostPostLoginResp.fromJson(response.body);
+        return PostPostLoginResp.fromJson(response.body as Map<String, dynamic>);
       } else {
         throw response.body != null
             ? PostPostLoginResp.fromJson(response.body)
