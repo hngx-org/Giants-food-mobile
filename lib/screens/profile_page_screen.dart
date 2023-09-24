@@ -6,6 +6,7 @@ import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/screens/home_screen.dart';
 import 'package:giants_free_lunch/screens/invite_employee.dart';
 import 'package:giants_free_lunch/screens/leader_board_screen.dart';
+import 'package:giants_free_lunch/screens/login_screen.dart';
 import 'package:giants_free_lunch/widgets/custom_bottom_bar.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -162,7 +163,10 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 Center(
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      box.erase();
+                      Get.offAll(SignIn());
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

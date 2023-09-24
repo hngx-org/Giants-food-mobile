@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:giants_free_lunch/controllers/login_controller.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/screens/give_lunch_screen.dart';
 import 'package:giants_free_lunch/screens/leader_board_screen.dart';
@@ -14,17 +16,22 @@ import 'package:giants_free_lunch/widgets/custom_text.dart';
 
 class HomePage extends StatelessWidget {
   final Rx<BottomBarItem> selectedItem = BottomBarItem.Home.obs;
+  final signController = Get.put(SignInController());
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: appTheme.primaryColor,
       statusBarIconBrightness: Brightness.light,
     ));
+    //final signController = Get.put(SignInController());
+    // Retrieve saved data from GetStorage
+
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            _topBuild(context),
+            _topBuild(context, signController),
             const SizedBox(
               height: 30,
             ),
@@ -252,7 +259,9 @@ _recentBuild() {
   );
 }
 
-_topBuild(BuildContext context) {
+_topBuild(BuildContext context, control) {
+  final firstName = box.read('firstName') ?? '';
+  final companyName = box.read('companyName') ?? '';
   return Container(
     width: double.infinity,
     height: 250,
@@ -283,7 +292,7 @@ _topBuild(BuildContext context) {
                   Row(
                     children: [
                       Text(
-                        "Ally",
+                        companyName,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -307,7 +316,7 @@ _topBuild(BuildContext context) {
               ),
               const SizedBox(height: 16),
               Text(
-                "Hi, John",
+                "Hi, $firstName",
                 style: TextStyle(
                   color: appTheme.navBackgroundColor,
                   fontSize: 18,
@@ -315,18 +324,20 @@ _topBuild(BuildContext context) {
                 ),
               ),
               const SizedBox(height: 20),
-              DisplayContainer(
-                isImageOrIcon: true,
-                height: 45,
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                width: double.infinity,
-                text: "Lunch Balance",
-                count: '3',
-                image: Image.asset(
-                  'assets/images/img_group16.png',
-                  fit: BoxFit.cover,
-                  height: 20,
-                  width: 20,
+              Obx(
+                () => DisplayContainer(
+                  isImageOrIcon: true,
+                  height: 45,
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  width: double.infinity,
+                  text: "Lunch Balance",
+                  count: control.lunchBal.toString(),
+                  image: Image.asset(
+                    'assets/images/img_group16.png',
+                    fit: BoxFit.cover,
+                    height: 20,
+                    width: 20,
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
