@@ -331,7 +331,8 @@ class _SignUpState extends State<SignUp> {
                     AppButton(
                       buttonText: "Continue",
                       onPressed: () {
-                        Get.to(const SecondSignUp());
+                        signUpController.validation();
+                        // Get.to(const SecondSignUp());
                       },
                     ),
                     SizedBox(height: 10.h),
