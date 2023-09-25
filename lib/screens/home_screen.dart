@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:giants_free_lunch/controllers/home_controller.dart';
+import 'package:giants_free_lunch/controllers/login_controller.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/screens/give_lunch_screen.dart';
 import 'package:giants_free_lunch/screens/leader_board_screen.dart';
@@ -14,12 +16,16 @@ import 'package:giants_free_lunch/widgets/custom_text.dart';
 
 class HomePage extends StatelessWidget {
   final Rx<BottomBarItem> selectedItem = BottomBarItem.Home.obs;
+  final signController = Get.put(SignInController());
+  final homeController = Get.put(HomeController());
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: appTheme.primaryColor,
       statusBarIconBrightness: Brightness.light,
     ));
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -36,7 +42,70 @@ class HomePage extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    _activitiesBuild(),
+                    // TextButton(
+                    //     onPressed: () => homeController.getLunchesByUserId(),
+                    //     child: Text("Clicked")),
+                    Obx(
+                      () => ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: homeController.dataList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final item = homeController.dataList[index];
+                          return ListTile(
+                            title: Row(
+                              children: [
+                                CustomText(
+                                  text: 'you got ${item.quantity} free lunches',
+                                  isBold: true,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Image.asset(
+                                  'assets/images/img_group16.png',
+                                  fit: BoxFit.cover,
+                                  height: 20,
+                                  width: 20,
+                                ),
+                              ],
+                            ),
+                            subtitle: Padding(
+                              padding: EdgeInsets.fromLTRB(0, 8, 40, 8),
+                              child: Text(
+                                item.note ?? "",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                    height: 2),
+                              ),
+                            ),
+                            trailing: Column(
+                              children: [
+                                Text(
+                                  'From: ${item.senderId}',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  item.createdAt.toString(),
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                    // //  _activitiesBuild(context, homeController),
                   ],
                 ),
               ),
@@ -69,161 +138,6 @@ class HomePage extends StatelessWidget {
   }
 }
 
-_activitiesBuild() {
-  return ListView(
-    physics: const NeverScrollableScrollPhysics(),
-    shrinkWrap: true,
-    children: [
-      ListTile(
-        title: Row(
-          children: [
-            const CustomText(
-              text: "You got 2 free lunches",
-              isBold: true,
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-            Image.asset(
-              'assets/images/img_group16.png',
-              fit: BoxFit.cover,
-              height: 20,
-              width: 20,
-            ),
-          ],
-        ),
-        subtitle: const Padding(
-          padding: EdgeInsets.fromLTRB(0, 8, 40, 8),
-          child: Text(
-            'You received a free lunch for your outstanding contribution. Thank you for your hard work',
-            style:
-                TextStyle(fontSize: 12, fontWeight: FontWeight.w400, height: 2),
-          ),
-        ),
-        trailing: const Column(
-          children: [
-            Text(
-              "From: Lucy",
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              "Today: 3:30pm",
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      ),
-      ListTile(
-        title: Row(
-          children: [
-            const CustomText(
-              text: "You got 2 free lunches",
-              isBold: true,
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-            Image.asset(
-              'assets/images/img_group16.png',
-              fit: BoxFit.cover,
-              height: 20,
-              width: 20,
-            ),
-          ],
-        ),
-        subtitle: const Padding(
-          padding: EdgeInsets.fromLTRB(0, 8, 40, 8),
-          child: Text(
-            'You received a free lunch for your outstanding contribution. Thank you for your hard work',
-            style:
-                TextStyle(fontSize: 12, fontWeight: FontWeight.w400, height: 2),
-          ),
-        ),
-        trailing: const Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "From: Lucy",
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              "Today: 3:30pm",
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      ),
-      ListTile(
-        title: Row(
-          children: [
-            const CustomText(
-              text: "You got 3 free lunches",
-              isBold: true,
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-            Image.asset(
-              'assets/images/img_group16.png',
-              fit: BoxFit.cover,
-              height: 20,
-              width: 20,
-            ),
-          ],
-        ),
-        subtitle: const Padding(
-          padding: EdgeInsets.fromLTRB(0, 8, 40, 8),
-          child: Text(
-            'You received a free lunch for your outstanding contribution. Thank you for your hard work',
-            style:
-                TextStyle(fontSize: 12, fontWeight: FontWeight.w400, height: 2),
-          ),
-        ),
-        trailing: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "From: Lucy",
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              "Today: 3:30pm",
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      ),
-    ],
-  );
-}
-
 _recentBuild() {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 19).copyWith(
@@ -253,6 +167,8 @@ _recentBuild() {
 }
 
 _topBuild(BuildContext context) {
+  final firstName = box.read('firstName');
+  final companyName = box.read('companyName') ?? '';
   return Container(
     width: double.infinity,
     height: 250,
@@ -283,7 +199,7 @@ _topBuild(BuildContext context) {
                   Row(
                     children: [
                       Text(
-                        "Ally",
+                        companyName,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -307,7 +223,7 @@ _topBuild(BuildContext context) {
               ),
               const SizedBox(height: 16),
               Text(
-                "Hi, John",
+                "Hi, $firstName",
                 style: TextStyle(
                   color: appTheme.navBackgroundColor,
                   fontSize: 18,
@@ -321,7 +237,7 @@ _topBuild(BuildContext context) {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 width: double.infinity,
                 text: "Lunch Balance",
-                count: '3',
+                count: box.read('lunchBal') == null? "0": box.read('lunchBal').toString(),
                 image: Image.asset(
                   'assets/images/img_group16.png',
                   fit: BoxFit.cover,

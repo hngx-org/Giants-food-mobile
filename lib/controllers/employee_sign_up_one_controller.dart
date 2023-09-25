@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
 import 'package:giants_free_lunch/screens/employee_sign_up_two_screen.dart';
 import 'package:giants_free_lunch/services/api_client.dart';
@@ -15,6 +14,7 @@ class SignUpController extends GetxController {
       TextEditingController();
   bool obscurePassword = true;
   bool obscureConfirmPassword = true;
+  // final box = GetStorage();
 
   @override
   void dispose() {
@@ -54,7 +54,7 @@ class SignUpController extends GetxController {
         "email": emailController.text.trim(),
         "first_name": firstNameController.text.trim(),
         "last_name": lastNameController.text.trim(),
-        "phone_number": phoneNumberController.text.trim(),
+        "phone": phoneNumberController.text.trim(),
         "password_hash": passWordController.text.trim()
       },
     );
@@ -65,12 +65,14 @@ class SignUpController extends GetxController {
       errorMethod("Incorrect email or password");
     } else if (res["user"]["email"] == emailController.text.trim()) {
       box.write("token", res["tokens"]["refresh"]["token"]);
+      box.write("firstName", res["user"]["first_name"]);
+      box.write("lastName", res["user"]["last_name"]);
+      box.write('userID', res["user"]["id"]);
+
       print("token ------ ${box.read("token")}");
       Get.offAll(SecondSignUp());
     } else {
       errorMethod("An Error Occurred");
-      // Map<String, dynamic> tokens = res['tokens'];
-      // Get.offAll(HomePage());
     }
   }
 }

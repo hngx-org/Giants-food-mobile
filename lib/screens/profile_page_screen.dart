@@ -6,6 +6,7 @@ import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/screens/home_screen.dart';
 import 'package:giants_free_lunch/screens/invite_employee.dart';
 import 'package:giants_free_lunch/screens/leader_board_screen.dart';
+import 'package:giants_free_lunch/screens/login_screen.dart';
 import 'package:giants_free_lunch/widgets/custom_bottom_bar.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -29,6 +30,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final firstName = box.read('firstName');
+    final lastName = box.read("lastName");
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
@@ -47,12 +50,13 @@ class ProfileScreen extends StatelessWidget {
                 Center(
                   child: Column(
                     children: [
-                      const Text(
+                      Text(
                         'My Profile',
                         style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                            color: Color(0xFF150D57)),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                          color: appTheme.primaryColor,
+                        ),
                       ),
                       const SizedBox(
                         height: 20,
@@ -72,9 +76,9 @@ class ProfileScreen extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      const Text(
-                        "John Olumide",
-                        style: TextStyle(
+                      Text(
+                        "$firstName $lastName",
+                        style: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w600),
                       ),
                       const SizedBox(
@@ -162,7 +166,10 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 Center(
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      box.erase();
+                      Get.offAll(SignIn());
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

@@ -1,8 +1,7 @@
-import 'package:giants_free_lunch/services/models/postSignUp/sign_up_response.dart';
-
+import 'package:giants_free_lunch/core/extentions/extenstion.dart';
+import 'package:giants_free_lunch/services/models/lunch/lunch_model.dart';
 import '../core/app_export.dart';
 import '../core/utils/progress_dialog_utils.dart';
-import '../services/models/postLogin/post_post_login_resp.dart';
 import '../services/models/postOrganization/post_post_organization_invite_resp.dart';
 
 class ApiClient extends GetConnect {
@@ -71,7 +70,7 @@ class ApiClient extends GetConnect {
   /// Throws an error if the request fails or an exception occurs.
   Future<dynamic> postLogin({
     Map<String, String> headers = const {},
-    Map requestData = const {},
+    Map<String, dynamic> requestData = const {},
   }) async {
     ProgressDialogUtils.showProgressDialog();
     try {
@@ -81,16 +80,16 @@ class ApiClient extends GetConnect {
         headers: headers,
         body: requestData,
       );
+      print("------------- ${response.body}");
       ProgressDialogUtils.hideProgressDialog();
       if (_isSuccessCall(response)) {
         return response.body;
-      } else if (response.statusCode == 400) {
+      } else if (response.statusCode == 401) {
         print("------------- ${response.statusCode}");
+        errorMethod('Email or password incorrect');
         return response.statusCode;
       } else {
-        throw response.body != null
-            ? PostPostLoginResp.fromJson(response.body)
-            : 'Something Went Wrong!';
+        throw response.body != null ? response.body : 'Something when wrong';
       }
     } catch (error, stackTrace) {
       ProgressDialogUtils.hideProgressDialog();
@@ -153,7 +152,11 @@ class ApiClient extends GetConnect {
       } else if (response.statusCode == 400) {
         print("------------- ${response.statusCode}");
         return response.statusCode;
-      } else {
+      } else if (response.statusCode == 500){
+        print("------------- ${response.statusCode}");
+        return response.statusCode;
+      }
+      else {
         throw response.body != null ? response.body : 'Something Went Wrong!';
       }
     } catch (error, stackTrace) {
@@ -198,17 +201,18 @@ class ApiClient extends GetConnect {
     }
   }
 
-    Future<dynamic> acceptInvite({
+  Future<dynamic> addAccount({
     Map<String, String> headers = const {},
     Map requestData = const {},
+    required int userId,
   }) async {
     ProgressDialogUtils.showProgressDialog();
     try {
       await isNetworkConnected();
       Response response = await httpClient.post(
-        '$url/api/organizations/accept-invite',
+        '$url/api/bank-account/:$userId',
         headers: headers,
-        body: requestData
+        body: requestData,
       );
       print("------------- $response");
       ProgressDialogUtils.hideProgressDialog();
@@ -229,8 +233,67 @@ class ApiClient extends GetConnect {
       rethrow;
     }
   }
-}
 
-// {
-//   "token": box.read("inviteToken");
-// }
+  Future<dynamic> acceptInvite({
+    Map<String, String> headers = const {},
+    Map requestData = const {},
+  }) async {
+    ProgressDialogUtils.showProgressDialog();
+    try {
+      await isNetworkConnected();
+      Response response = await httpClient.post(
+          '$url/api/organizations/accept-invite',
+          headers: headers,
+          body: requestData);
+      print("------------- $response");
+      ProgressDialogUtils.hideProgressDialog();
+      if (_isSuccessCall(response)) {
+        return response.body;
+      } else if (response.statusCode == 400) {
+        print("------------- ${response.statusCode}");
+        return response.statusCode;
+      } else {
+        throw response.body != null ? response.body : 'Something Went Wrong!';
+      }
+    } catch (error, stackTrace) {
+      ProgressDialogUtils.hideProgressDialog();
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+
+  Future<List<LunchsModel>> getLunchesByUserId({
+    required String userId,
+    Map<String, String> headers = const {},
+  }) async {
+    try {
+      await isNetworkConnected();
+      Response response = await httpClient.get(
+        '$url/api/lunches/$userId',
+        headers: headers,
+      );
+      print("------$response------");
+      print('Response Status Code: ${response.statusCode}');
+      print('Response Body: ${response.body}');
+      if (response.isOk) {
+        final responseData = response.body as List<dynamic>;
+        final lunchList =
+            responseData.map((json) => LunchsModel.fromJson(json)).toList();
+
+        return lunchList;
+      } else {
+        throw Exception('Failed to fetch data: ${response.statusText}');
+      }
+    } catch (error, stackTrace) {
+      ProgressDialogUtils.hideProgressDialog();
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+}

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:giants_free_lunch/controllers/employee_sign_up_one_controller.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
-import 'package:giants_free_lunch/screens/employee_sign_up_two_screen.dart';
 import 'package:giants_free_lunch/screens/login_screen.dart';
 
 import '../widgets/custom_text.dart';
