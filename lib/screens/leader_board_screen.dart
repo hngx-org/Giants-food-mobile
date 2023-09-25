@@ -35,20 +35,23 @@ class LeaderBoard extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: GestureDetector(
-          onTap: () {
-            Get.back();
-          },
-          child: const Icon(Icons.arrow_back_ios_new_rounded),
-        ),
+        // leading: GestureDetector(
+        //   onTap: () {
+        //     Get.back();
+        //   },
+        //   child: const Icon(Icons.arrow_back_ios_new_rounded),
+        // ),
         centerTitle: true,
-        title: Text(
-          'Leaderboard',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: appTheme.primaryColor,
-            height: 2,
+        title: Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: Text(
+            'Leaderboard',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: appTheme.primaryColor,
+              height: 2,
+            ),
           ),
         ),
       ),

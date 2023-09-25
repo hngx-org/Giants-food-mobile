@@ -50,12 +50,13 @@ class ProfileScreen extends StatelessWidget {
                 Center(
                   child: Column(
                     children: [
-                      const Text(
+                      Text(
                         'My Profile',
                         style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                            color: Color(0xFF150D57)),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                          color: appTheme.primaryColor,
+                        ),
                       ),
                       const SizedBox(
                         height: 20,
