@@ -95,7 +95,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final _signController = Get.put(SignInController());
+    final signController = Get.put(SignInController());
     return ScreenUtilInit(
       designSize: const Size(360, 780),
       builder: (context, child) {
@@ -109,9 +109,9 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
           ),
           home: Obx(() {
-            return _signController.isLoggedIn.value
-                ? const SignIn()
-                : HomePage();
+            return signController.isLoggedIn.value
+                ? HomePage()
+                : const SignIn();
           }),
         );
       },

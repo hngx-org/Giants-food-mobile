@@ -7,13 +7,12 @@ class HomeController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    getLunchesByUserId();
+    await getLunchesByUserId();
   }
 
-  void getLunchesByUserId() async {
-    print("got here home");
-
+  Future<void> getLunchesByUserId() async {
     try {
+      print("got here home");
       dynamic response = await ApiClient().getLunchesByUserId(headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer ${box.read("token").toString()}"
