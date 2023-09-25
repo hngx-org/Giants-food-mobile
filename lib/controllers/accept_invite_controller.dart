@@ -53,14 +53,15 @@ class AcceptInviteController extends GetxController {
     print("token ------ ${box.read("token")}");
     dynamic res = await ApiClient().acceptInvite(
       requestData: {
-        "token": box.read("inviteToken"),
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjg0NDg3NzQ5LCJlbWFpbCI6InVtdW51Ym8ubGdAZ21haWwuY29tIn0sImlhdCI6MTY5NTU4NzQ4NSwiZXhwIjoxNjk1NjczODg1LCJ0eXBlIjoib3JnYW5pemF0aW9uSW52aXRlIn0.kZBI0X9ydzfUI1WGi3dZlRn_LDCE1I7Eh6i_t66tsdw"
+        // box.read("inviteToken"),
       },
     );
 
     print("----- $res");
     if (res["isUser"] == false) { 
       box.write("org_id", res["org_id"]);
-      Get.offAll(AcceptInviteScreen(hasAnAccountEndpoint: true,));
+      Get.offAll(AcceptInviteScreen());
     } else if (res["isUser"] == true) {
       box.write("org_id", res["org_id"]);
       Get.offAll(const SignIn());
@@ -86,7 +87,11 @@ class AcceptInviteController extends GetxController {
       print("#### 400");
       errorMethod("Incorrect email or password");
     } else if (res["user"]["email"] == emailController.text.trim()) {
+
+      box.write('firstName', res["user"]["first_name"]);
+      box.write('email', res["user"]["email"]);
       box.write("token", res["tokens"]["refresh"]["token"]);
+
       print("token ------ ${box.read("token")}");
       Get.offAll(HomePage());
     } else {

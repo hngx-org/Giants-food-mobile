@@ -3,8 +3,8 @@ import '../controllers/accept_invite_controller.dart';
 import '../core/app_export.dart';
 
 class AcceptInviteScreen extends StatefulWidget {
-  AcceptInviteScreen({super.key, required this.hasAnAccountEndpoint});
-  bool hasAnAccountEndpoint;
+  AcceptInviteScreen({super.key,});
+  
 
   @override
   State<AcceptInviteScreen> createState() => _AcceptInviteScreenState();
@@ -14,15 +14,7 @@ class _AcceptInviteScreenState extends State<AcceptInviteScreen> {
   // Initialize and register the AcceptInviteController
   final controller = Get.put(AcceptInviteController());
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    if (widget.hasAnAccountEndpoint == false) {
-      controller.hasAnAccount();
-    }
 
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

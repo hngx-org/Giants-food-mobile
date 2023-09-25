@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:giants_free_lunch/controllers/login_controller.dart';
 import 'package:giants_free_lunch/screens/accept_invite.dart';
+import 'package:giants_free_lunch/screens/landing_page.dart';
 import 'package:giants_free_lunch/screens/login_screen.dart';
 import 'package:uni_links/uni_links.dart';
 import './core/app_export.dart';
@@ -82,7 +83,7 @@ class MyAppDeepLink extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: AcceptInviteScreen(hasAnAccountEndpoint: false,),
+          home: const LandingPage(),
         );
       },
     );
@@ -108,9 +109,10 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: Obx(() {
-            return _signController.isLoggedIn.value ? HomePage(): const SignIn() ;
-          }),
+          home: LandingPage()
+          // Obx(() {
+          //   return _signController.isLoggedIn.value ? HomePage(): const SignIn() ;
+          // }),
         );
       },
     );
