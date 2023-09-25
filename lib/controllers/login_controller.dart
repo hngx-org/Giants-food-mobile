@@ -12,12 +12,12 @@ class SignInController extends GetxController {
 
   var isObsecure = true.obs;
 
-  RxString firstName = ''.obs;
-  RxString email = ''.obs;
-  RxString accessToken = ''.obs;
-  RxInt lunchBal = 0.obs;
-  RxString companyName = ''.obs;
-  RxString userid = ''.obs;
+  // RxString firstName = ''.obs;
+  // RxString email = ''.obs;
+  // RxString accessToken = ''.obs;
+  // RxString lunchBal = ''.obs;
+  // RxString companyName = ''.obs;
+  // RxString userid = ''.obs;
   RxBool isLoggedIn = false.obs;
   GlobalKey<FormFieldState> formFieldKey = GlobalKey();
 
@@ -55,24 +55,27 @@ class SignInController extends GetxController {
       if (response["user"]!["email"] == emailController.text.trim()) {
         print('Logged in as ${response["user"]["first_name"]}');
         // Update the observables
-        firstName.value = response["user"]["first_name"] ?? '';
-        userid.value = response["user"]["id"] ?? '';
-        email.value = response["user"]["email"] ?? '';
-        accessToken.value = response["tokens"]["refresh"]["token"] ?? '';
-        companyName.value = response["user"]['organization']["name"] ?? '';
-        lunchBal.value = response["user"]["lunch_credit_balance"] ?? 0;
+        // firstName.value = response["user"]["first_name"] ?? '';
+        // userid.value = response["user"]["id"] ?? '';
+        // email.value = response["user"]["email"] ?? '';
+        // accessToken.value = response["tokens"]["refresh"]["token"] ?? '';
+        // companyName.value = response["user"]['organization']["name"] ?? '';
+        // lunchBal.value = response["user"]["lunch_credit_balance"] ?? '';
 
-        print('token: --------- $accessToken');
+        print('token: --------- ${response["tokens"]["refresh"]["token"]}');
 
         isLoggedIn.value = true;
 
         // Save data to GetStorage
 
-        box.write('firstName', firstName.value);
-        box.write('email', email.value);
-        box.write('token', accessToken.value);
-        box.write('companyName', companyName.value);
-        box.write('userID', userid.value);
+        box.write('firstName', response["user"]["first_name"]);
+        box.write('email', response["user"]["email"]);
+        box.write('token', response["tokens"]["refresh"]["token"]);
+        box.write('companyName', response["user"]['organization']["name"]);
+        box.write('userID', response["user"]["id"]);
+        box.write('lunchBal', response["user"]["lunch_credit_balance"]);
+
+        print('Box ${box.read('token')}');
 
         emailController.clear();
         passwordController.clear();

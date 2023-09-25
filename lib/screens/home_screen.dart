@@ -25,14 +25,12 @@ class HomePage extends StatelessWidget {
       statusBarColor: appTheme.primaryColor,
       statusBarIconBrightness: Brightness.light,
     ));
-    //final signController = Get.put(SignInController());
-    // Retrieve saved data from GetStorage
 
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            _topBuild(context, signController),
+            _topBuild(context),
             const SizedBox(
               height: 30,
             ),
@@ -44,7 +42,9 @@ class HomePage extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-
+                    // TextButton(
+                    //     onPressed: () => homeController.getLunchesByUserId(),
+                    //     child: Text("Clicked")),
                     Obx(
                       () => ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
@@ -56,8 +56,7 @@ class HomePage extends StatelessWidget {
                             title: Row(
                               children: [
                                 CustomText(
-                                  text:
-                                      'you got ${item.quantity.toString()} free lunches',
+                                  text: 'you got ${item.quantity} free lunches',
                                   isBold: true,
                                 ),
                                 const SizedBox(
@@ -74,7 +73,7 @@ class HomePage extends StatelessWidget {
                             subtitle: Padding(
                               padding: EdgeInsets.fromLTRB(0, 8, 40, 8),
                               child: Text(
-                                item.note.toString(),
+                                item.note ?? "",
                                 style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w400,
@@ -84,7 +83,7 @@ class HomePage extends StatelessWidget {
                             trailing: Column(
                               children: [
                                 Text(
-                                  'From: ${item.senderId.toString()}',
+                                  'From: ${item.senderId}',
                                   style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w700,
@@ -106,7 +105,7 @@ class HomePage extends StatelessWidget {
                         },
                       ),
                     )
-                    //  _activitiesBuild(context, homeController),
+                    // //  _activitiesBuild(context, homeController),
                   ],
                 ),
               ),
@@ -139,168 +138,6 @@ class HomePage extends StatelessWidget {
   }
 }
 
-_activitiesBuild(BuildContext context, controller) {
-  return ListView.builder(
-    physics: const NeverScrollableScrollPhysics(),
-    shrinkWrap: true,
-    itemCount: controller.dataList.length,
-    itemBuilder: (BuildContext context, int index) {
-      final item = controller.dataList[index];
-      return ListTile(
-        title: Text("ID: ${item['id'].toString()}"),
-      );
-    },
-    // children: [
-    // ListTile(
-    //   title: Row(
-    //     children: [
-    //       const CustomText(
-    //         text: "You got 2 free lunches",
-    //         isBold: true,
-    //       ),
-    //       const SizedBox(
-    //         width: 5,
-    //       ),
-    //       Image.asset(
-    //         'assets/images/img_group16.png',
-    //         fit: BoxFit.cover,
-    //         height: 20,
-    //         width: 20,
-    //       ),
-    //     ],
-    //   ),
-    //   subtitle: const Padding(
-    //     padding: EdgeInsets.fromLTRB(0, 8, 40, 8),
-    //     child: Text(
-    //       'You received a free lunch for your outstanding contribution. Thank you for your hard work',
-    //       style:
-    //           TextStyle(fontSize: 12, fontWeight: FontWeight.w400, height: 2),
-    //     ),
-    //   ),
-    //   trailing: const Column(
-    //     children: [
-    //       Text(
-    //         "From: Lucy",
-    //         style: TextStyle(
-    //           fontSize: 12,
-    //           fontWeight: FontWeight.w700,
-    //         ),
-    //       ),
-    //       SizedBox(
-    //         height: 5,
-    //       ),
-    //       Text(
-    //         "Today: 3:30pm",
-    //         style: TextStyle(
-    //           fontSize: 10,
-    //           fontWeight: FontWeight.w500,
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // ),
-    // ListTile(
-    //   title: Row(
-    //     children: [
-    //       const CustomText(
-    //         text: "You got 2 free lunches",
-    //         isBold: true,
-    //       ),
-    //       const SizedBox(
-    //         width: 5,
-    //       ),
-    //       Image.asset(
-    //         'assets/images/img_group16.png',
-    //         fit: BoxFit.cover,
-    //         height: 20,
-    //         width: 20,
-    //       ),
-    //     ],
-    //   ),
-    //   subtitle: const Padding(
-    //     padding: EdgeInsets.fromLTRB(0, 8, 40, 8),
-    //     child: Text(
-    //       'You received a free lunch for your outstanding contribution. Thank you for your hard work',
-    //       style:
-    //           TextStyle(fontSize: 12, fontWeight: FontWeight.w400, height: 2),
-    //     ),
-    //   ),
-    //   trailing: const Column(
-    //     mainAxisAlignment: MainAxisAlignment.start,
-    //     children: [
-    //       Text(
-    //         "From: Lucy",
-    //         style: TextStyle(
-    //           fontSize: 12,
-    //           fontWeight: FontWeight.w700,
-    //         ),
-    //       ),
-    //       SizedBox(
-    //         height: 5,
-    //       ),
-    //       Text(
-    //         "Today: 3:30pm",
-    //         style: TextStyle(
-    //           fontSize: 10,
-    //           fontWeight: FontWeight.w500,
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // ),
-    // ListTile(
-    //   title: Row(
-    //     children: [
-    //       const CustomText(
-    //         text: "You got 3 free lunches",
-    //         isBold: true,
-    //       ),
-    //       const SizedBox(
-    //         width: 5,
-    //       ),
-    //       Image.asset(
-    //         'assets/images/img_group16.png',
-    //         fit: BoxFit.cover,
-    //         height: 20,
-    //         width: 20,
-    //       ),
-    //     ],
-    //   ),
-    //   subtitle: const Padding(
-    //     padding: EdgeInsets.fromLTRB(0, 8, 40, 8),
-    //     child: Text(
-    //       'You received a free lunch for your outstanding contribution. Thank you for your hard work',
-    //       style:
-    //           TextStyle(fontSize: 12, fontWeight: FontWeight.w400, height: 2),
-    //     ),
-    //   ),
-    //   trailing: const Column(
-    //     crossAxisAlignment: CrossAxisAlignment.start,
-    //     children: [
-    //       Text(
-    //         "From: Lucy",
-    //         style: TextStyle(
-    //           fontSize: 12,
-    //           fontWeight: FontWeight.w700,
-    //         ),
-    //       ),
-    //       SizedBox(
-    //         height: 5,
-    //       ),
-    //       Text(
-    //         "Today: 3:30pm",
-    //         style: TextStyle(
-    //           fontSize: 10,
-    //           fontWeight: FontWeight.w500,
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // ),
-    //  ],
-  );
-}
-
 _recentBuild() {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 19).copyWith(
@@ -329,9 +166,9 @@ _recentBuild() {
   );
 }
 
-_topBuild(BuildContext context, control) {
-  final firstName = box.read('firstName') ?? '';
-  final companyName = box.read('companyName') ?? '';
+_topBuild(BuildContext context) {
+  final firstName = box.read('firstName');
+  final companyName = box.read('companyName');
   return Container(
     width: double.infinity,
     height: 250,
@@ -362,7 +199,7 @@ _topBuild(BuildContext context, control) {
                   Row(
                     children: [
                       Text(
-                        companyName.toString(),
+                        companyName,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -400,7 +237,7 @@ _topBuild(BuildContext context, control) {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 width: double.infinity,
                 text: "Lunch Balance",
-                count: control.lunchBal.toString(),
+                count: box.read('lunchBal').toString(),
                 image: Image.asset(
                   'assets/images/img_group16.png',
                   fit: BoxFit.cover,
