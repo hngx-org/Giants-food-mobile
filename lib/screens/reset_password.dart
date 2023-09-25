@@ -3,8 +3,9 @@ import '../controllers/reset_password.dart';
 import '../core/app_export.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
-  ResetPasswordScreen({super.key,});
-  
+  ResetPasswordScreen({
+    super.key,
+  });
 
   @override
   State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
@@ -13,8 +14,6 @@ class ResetPasswordScreen extends StatefulWidget {
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   // Initialize and register the ResetPasswordController
   final controller = Get.put(ResetPasswordController());
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +63,7 @@ class ResetPasswordForm extends GetView<ResetPasswordController> {
             ),
             const SizedBox(height: 20),
             AppTextField(
-              textController: controller.passwordController,
+              textController: controller.passWordController,
               obscureText: true,
               // decoration: const InputDecoration(),
               validator: (value) {
@@ -78,14 +77,14 @@ class ResetPasswordForm extends GetView<ResetPasswordController> {
             ),
             const SizedBox(height: 20),
             AppTextField(
-              textController: controller.confirmPasswordController,
+              textController: controller.confirmPassWordController,
               obscureText: true,
               // decoration: const InputDecoration(labelText: 'Confirm Password'),
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Please confirm your password';
                 }
-                if (value != controller.passwordController.text) {
+                if (value != controller.passWordController.text) {
                   return 'Passwords do not match';
                 }
                 return null;
@@ -97,12 +96,12 @@ class ResetPasswordForm extends GetView<ResetPasswordController> {
             AppButton(
               onPressed: () async {
                 controller.validation();
-                  if (controller.formKey.currentState!.validate()) {
-                  final password = controller.passwordController.text;
-                  // Call your registration API or perform the necessary logic here
-                  // For example:
-                  await controller.resetPass1();
-                }
+                // if (controller.formKey.currentState!.validate()) {
+                //   final password = controller.passWordController.text;
+                //   // Call your registration API or perform the necessary logic here
+                //   // For example:
+                //   controller.resetPass1();
+                // }
               },
               buttonText: 'Reset Password',
             )

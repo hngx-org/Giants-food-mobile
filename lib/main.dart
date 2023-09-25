@@ -50,11 +50,11 @@ void handleLink(Uri? uri) {
   if (uri != null) {
     if (uri.pathSegments[0] != null && uri.queryParameters.isNotEmpty) {
       String path = uri.pathSegments[0];
-      if (path == "acceptInvite"){
+      if (path == "acceptInvite") {
         box.write("inviteToken", uri.queryParameters["token"]);
         runApp(const MyAppDeepLink());
       }
-      if (path == "resetPassword"){
+      if (path == "resetPassword") {
         box.write("resetPassToken", uri.queryParameters["token"]);
         runApp(const ResetPasswordDeepLink());
       }
@@ -105,7 +105,7 @@ class ResetPasswordDeepLink extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const ResetPasswordScreen(),
+          home: ResetPasswordScreen(),
         );
       },
     );
