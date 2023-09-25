@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:giants_free_lunch/controllers/give_lucy_free_lunch_two_controller.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
-import 'package:giants_free_lunch/screens/success_screen.dart';
 
 class GiveLucyFreeLunchTwoScreen extends StatefulWidget {
   final String userId;

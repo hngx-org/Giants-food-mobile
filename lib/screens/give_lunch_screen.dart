@@ -168,7 +168,7 @@ class _GiveLunchState extends State<GiveLunch> {
                             const SizedBox(
                               width: 8,
                             ),
-                            Text(item.lastName.toString()),
+                            Text('${item.lastName.toString()} ${item.firstName.toString()}'),
                             const Spacer(),
                             userId == item.id.toString()
                                 ? Container(
