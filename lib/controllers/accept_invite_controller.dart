@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
+import 'package:giants_free_lunch/screens/accept_invite.dart';
+import 'package:giants_free_lunch/screens/login_screen.dart';
 import 'package:giants_free_lunch/services/api_client.dart';
 
 import '../core/app_export.dart';
@@ -11,9 +13,11 @@ class AcceptInviteController extends GetxController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+  
 
-   @override
+  @override
   void dispose() {
     super.dispose();
     firstNameController.dispose();
@@ -49,22 +53,24 @@ class AcceptInviteController extends GetxController {
     print("token ------ ${box.read("token")}");
     dynamic res = await ApiClient().acceptInvite(
       requestData: {
-        "token": box.read("inviteToken"),
+        "token": box.read("inviteToken") ?? "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjg0NDg3NzQ5LCJlbWFpbCI6InVtdW51Ym8ubGdAZ21haWwuY29tIn0sImlhdCI6MTY5NTU4NzQ4NSwiZXhwIjoxNjk1NjczODg1LCJ0eXBlIjoib3JnYW5pemF0aW9uSW52aXRlIn0.kZBI0X9ydzfUI1WGi3dZlRn_LDCE1I7Eh6i_t66tsdw"
+        // ,
       },
     );
 
     print("----- $res");
-    // if (res == 400) {
-    //   box.write("user_id", value);
-    //   Get.offAll(AcceptInviteScreen());
-    // } else if (res["name"] == ) {
-    //   Get.offAll(SignIn());
-    // } 
-    // else {
-    //   errorMethod("An Error Occurred");
-    // }
+    if (res["isUser"] == false) { 
+      box.write("org_id", res["org_id"]);
+      Get.offAll(AcceptInviteScreen());
+    } else if (res["isUser"] == true) {
+      box.write("org_id", res["org_id"]);
+      Get.offAll(const SignIn());
+    } else {
+      errorMethod("An Error Occurred");
+    }
   }
-    void acceptInvite() async {
+
+  void acceptInvite() async {
     print("token ------ ${box.read("token")}");
     dynamic res = await ApiClient().postSignUp1(
       requestData: {
@@ -73,15 +79,19 @@ class AcceptInviteController extends GetxController {
         "last_name": lastNameController.text.trim(),
         "phone": phoneController.text.trim(),
         "password_hash": passwordController.text.trim(),
-        "org_id": "15"
+        "org_id": box.read("org_id") ?? "15"
       },
     );
-      print("----- accept invite $res");
-      if (res == 400) {
+    print("----- accept invite $res");
+    if (res == 400) {
       print("#### 400");
       errorMethod("Incorrect email or password");
     } else if (res["user"]["email"] == emailController.text.trim()) {
+
+      box.write('firstName', res["user"]["first_name"]);
+      box.write('email', res["user"]["email"]);
       box.write("token", res["tokens"]["refresh"]["token"]);
+
       print("token ------ ${box.read("token")}");
       Get.offAll(HomePage());
     } else {

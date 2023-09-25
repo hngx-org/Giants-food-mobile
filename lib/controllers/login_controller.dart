@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
-import 'package:giants_free_lunch/models/app_model.dart';
 import 'package:giants_free_lunch/services/api_client.dart';
 
 final apiClient = ApiClient();
