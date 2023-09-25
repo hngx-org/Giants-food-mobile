@@ -199,6 +199,8 @@ class AcceptInviteForm extends GetView<AcceptInviteController> {
       ),
     );
   }
+  
+  InvitationAcceptance({required String firstName, required String lastName, required String email, required String phoneNumber, required String password}) {}
 }
 
 registerUser(String firstName, String lastName, String email,
