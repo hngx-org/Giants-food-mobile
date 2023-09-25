@@ -23,7 +23,6 @@ class SecondSignUpController extends GetxController {
     print("token ------ ${box.read("token")}");
     dynamic res = await ApiClient().postSignUp2(
       headers: {
-        "Content-Type": "application/json",
         "Authorization": "Bearer ${box.read("token")}"
       },
       requestData: {
@@ -33,11 +32,16 @@ class SecondSignUpController extends GetxController {
     );
 
     print("----- $res");
-    if (res == 400) {
+     if (res == 500) {
+      print("#### 500");
+      errorMethod("Input only digits for your lunch price");
+    }else if (res == 400) {
       print("#### 400");
       errorMethod("Error");
     } else if (res["name"] == companyNameController.text.trim()) {
-      box.write("token", res["user"]["organization"]["name"]);
+      box.write("companyName", res["name"]);
+      box.write('lunchBal', res["lunch_price"]);
+      box.write('userID', res["id"]);
 
       Get.offAll(HomePage());
     } else {

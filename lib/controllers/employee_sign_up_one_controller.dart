@@ -65,8 +65,9 @@ class SignUpController extends GetxController {
       errorMethod("Incorrect email or password");
     } else if (res["user"]["email"] == emailController.text.trim()) {
       box.write("token", res["tokens"]["refresh"]["token"]);
-      box.write("token", res["user"]["first_name"]);
-      box.write("token", res["user"]["id"]);
+      box.write("firstName", res["user"]["first_name"]);
+      box.write("lastName", res["user"]["last_name"]);
+      box.write('userID', res["user"]["id"]);
 
       print("token ------ ${box.read("token")}");
       Get.offAll(SecondSignUp());

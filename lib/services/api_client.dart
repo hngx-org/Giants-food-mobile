@@ -155,7 +155,11 @@ class ApiClient extends GetConnect {
       } else if (response.statusCode == 400) {
         print("------------- ${response.statusCode}");
         return response.statusCode;
-      } else {
+      } else if (response.statusCode == 500){
+        print("------------- ${response.statusCode}");
+        return response.statusCode;
+      }
+      else {
         throw response.body != null ? response.body : 'Something Went Wrong!';
       }
     } catch (error, stackTrace) {
