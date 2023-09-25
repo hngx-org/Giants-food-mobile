@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
+import 'package:giants_free_lunch/screens/accept_invite.dart';
+import 'package:giants_free_lunch/screens/login_screen.dart';
 import 'package:giants_free_lunch/services/api_client.dart';
 
 import '../core/app_export.dart';
@@ -11,9 +13,11 @@ class AcceptInviteController extends GetxController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+  
 
-   @override
+  @override
   void dispose() {
     super.dispose();
     firstNameController.dispose();
@@ -54,17 +58,18 @@ class AcceptInviteController extends GetxController {
     );
 
     print("----- $res");
-    // if (res == 400) {
-    //   box.write("user_id", value);
-    //   Get.offAll(AcceptInviteScreen());
-    // } else if (res["name"] == ) {
-    //   Get.offAll(SignIn());
-    // } 
-    // else {
-    //   errorMethod("An Error Occurred");
-    // }
+    if (res["isUser"] == false) { 
+      box.write("org_id", res["org_id"]);
+      Get.offAll(AcceptInviteScreen(hasAnAccountEndpoint: true,));
+    } else if (res["isUser"] == true) {
+      box.write("org_id", res["org_id"]);
+      Get.offAll(const SignIn());
+    } else {
+      errorMethod("An Error Occurred");
+    }
   }
-    void acceptInvite() async {
+
+  void acceptInvite() async {
     print("token ------ ${box.read("token")}");
     dynamic res = await ApiClient().postSignUp1(
       requestData: {
@@ -73,11 +78,11 @@ class AcceptInviteController extends GetxController {
         "last_name": lastNameController.text.trim(),
         "phone": phoneController.text.trim(),
         "password_hash": passwordController.text.trim(),
-        "org_id": "15"
+        // "org_id": box.read("org_id")
       },
     );
-      print("----- accept invite $res");
-      if (res == 400) {
+    print("----- accept invite $res");
+    if (res == 400) {
       print("#### 400");
       errorMethod("Incorrect email or password");
     } else if (res["user"]["email"] == emailController.text.trim()) {
