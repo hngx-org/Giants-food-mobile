@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:giants_free_lunch/controllers/give_lunch_controller.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/screens/give_lucy_free_lunch_two_screen.dart';
 
@@ -14,7 +15,9 @@ class GiveLunch extends StatefulWidget {
 
 class _GiveLunchState extends State<GiveLunch> {
   final appTheme = AppTheme();
-  int index = 0;
+
+  final GiveLunchController getEmployeeByOrgIdController =
+      Get.put(GiveLunchController());
 
   // List<bool> check = [
   //   false,
@@ -24,6 +27,17 @@ class _GiveLunchState extends State<GiveLunch> {
   //   false,
   //   false,
   // ];
+
+  @override
+  void initState() {
+    // getEmployeeByOrgIdController =
+    // TODO: implement initState
+    super.initState();
+  }
+
+  String userId = '';
+  String firstName = '';
+  String lastName = '';
 
   @override
   Widget build(BuildContext context) {
@@ -72,10 +86,9 @@ class _GiveLunchState extends State<GiveLunch> {
         ),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: 150,
+            height: 80,
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -113,11 +126,13 @@ class _GiveLunchState extends State<GiveLunch> {
           const SizedBox(
             height: 20,
           ),
-          Expanded(
-            child: ListView.builder(
+          Obx(
+            () => ListView.builder(
               shrinkWrap: true,
-              itemCount: 6,
+              itemCount: getEmployeeByOrgIdController.dataList.length,
               itemBuilder: (context, i) {
+                final item = getEmployeeByOrgIdController.dataList[i];
+                print(getEmployeeByOrgIdController.dataList.length);
                 return Column(
                   children: [
                     const SizedBox(
@@ -126,8 +141,9 @@ class _GiveLunchState extends State<GiveLunch> {
                     InkWell(
                       onTap: () {
                         setState(() {
-                          // check[index] = !check[index];
-                          index = i;
+                          userId = item.id.toString();
+                          firstName = item.firstName.toString();
+                          lastName = item.lastName.toString();
                         });
                       },
                       child: Padding(
@@ -152,9 +168,9 @@ class _GiveLunchState extends State<GiveLunch> {
                             const SizedBox(
                               width: 8,
                             ),
-                            const Text('Kolawole Emmanuel'),
+                            Text(item.lastName.toString()),
                             const Spacer(),
-                            index == i
+                            userId == item.id.toString()
                                 ? Container(
                                     height: 25,
                                     width: 25,
@@ -203,7 +219,14 @@ class _GiveLunchState extends State<GiveLunch> {
         child: AppButton(
           buttonText: "Proceed",
           onPressed: () {
-            Get.to(const GiveLucyFreeLunchTwoScreen());
+            if (firstName == '') {
+            } else {
+              Get.to(GiveLucyFreeLunchTwoScreen(
+                userId: userId,
+                firstName: firstName,
+                lastName: lastName,
+              ));
+            }
           },
         ),
       ),
