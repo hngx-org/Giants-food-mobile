@@ -4,9 +4,11 @@ import 'package:giants_free_lunch/services/models/lunch/lunch_model.dart';
 import '../core/app_export.dart';
 import '../core/utils/progress_dialog_utils.dart';
 import '../services/models/postOrganization/post_post_organization_invite_resp.dart';
+import 'package:get_storage/get_storage.dart';
 
 class ApiClient extends GetConnect {
   var url = "https://giants-food-backend-production.up.railway.app";
+  final box = GetStorage();
 
   @override
   void onInit() {
@@ -88,6 +90,39 @@ class ApiClient extends GetConnect {
       } else if (response.statusCode == 401) {
         print("------------- ${response.statusCode}");
         errorMethod('Email or password incorrect');
+        return response.statusCode;
+      } else {
+        throw response.body != null ? response.body : 'Something when wrong';
+      }
+    } catch (error, stackTrace) {
+      ProgressDialogUtils.hideProgressDialog();
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+
+  Future<dynamic> postResetPass1({
+    Map<String, String> headers = const {},
+    Map<String, dynamic> requestData = const {},
+  }) async {
+    ProgressDialogUtils.showProgressDialog();
+    try {
+      await isNetworkConnected();
+      Response response = await httpClient.post(
+        '$url/api/auth/login',
+        headers: headers,
+        body: requestData,
+      );
+      print("------------- ${response.body}");
+      ProgressDialogUtils.hideProgressDialog();
+      if (_isSuccessCall(response)) {
+        return response.body;
+      } else if (response.statusCode == 401) {
+        print("------------- ${response.statusCode}");
+        errorMethod('There was an error with the your please login again');
         return response.statusCode;
       } else {
         throw response.body != null ? response.body : 'Something when wrong';
