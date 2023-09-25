@@ -3,10 +3,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:giants_free_lunch/controllers/login_controller.dart';
-import 'package:giants_free_lunch/screens/accept_invite.dart';
 import 'package:giants_free_lunch/screens/landing_page.dart';
-import 'package:giants_free_lunch/screens/login_screen.dart';
 import 'package:uni_links/uni_links.dart';
 import './core/app_export.dart';
 
@@ -96,7 +93,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final _signController = Get.put(SignInController());
     return ScreenUtilInit(
       designSize: const Size(360, 780),
       builder: (context, child) {
@@ -109,7 +105,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: LandingPage()
+          home: const LandingPage()
           // Obx(() {
           //   return _signController.isLoggedIn.value ? HomePage(): const SignIn() ;
           // }),

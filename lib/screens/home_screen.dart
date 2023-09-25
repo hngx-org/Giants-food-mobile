@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:giants_free_lunch/controllers/login_controller.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
 import 'package:giants_free_lunch/screens/give_lunch_screen.dart';

@@ -31,9 +31,9 @@ class LeaderBoard extends StatelessWidget {
       statusBarIconBrightness: Brightness.dark,
     ));
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: appTheme.appBackgroundColor,
       appBar: AppBar(
-              backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: GestureDetector(
           onTap: () {
@@ -52,61 +52,63 @@ class LeaderBoard extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(26.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            const Text(
-              'Top 3 workers',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-                height: 2,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(26.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 10,
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            _workLeaders(),
-            const SizedBox(
-              height: 10,
-            ),
-            _workLeaders(),
-            const SizedBox(
-              height: 10,
-            ),
-            _workLeaders(),
-            const SizedBox(
-              height: 30,
-            ),
-            const Text(
-              'All top workers',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-                height: 2,
+              const Text(
+                'Top 3 workers',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                  height: 2,
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            _workLeaders(),
-            const SizedBox(
-              height: 10,
-            ),
-            _workLeaders(),
-            const SizedBox(
-              height: 10,
-            ),
-            _workLeaders(),
-          ],
+              const SizedBox(
+                height: 10,
+              ),
+              _workLeaders(),
+              const SizedBox(
+                height: 10,
+              ),
+              _workLeaders(),
+              const SizedBox(
+                height: 10,
+              ),
+              _workLeaders(),
+              const SizedBox(
+                height: 30,
+              ),
+              const Text(
+                'All top workers',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                  height: 2,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              _workLeaders(),
+              const SizedBox(
+                height: 10,
+              ),
+              _workLeaders(),
+              const SizedBox(
+                height: 10,
+              ),
+              _workLeaders(),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: CustomBottomNavigationBar(
@@ -125,7 +127,7 @@ class LeaderBoard extends StatelessWidget {
           color: appTheme.primaryColor,
         ),
         borderRadius: BorderRadius.circular(10),
-        color: appTheme.white,
+        color: appTheme.appBackgroundColor,
       ),
       child: ListTile(
         leading: CircleAvatar(

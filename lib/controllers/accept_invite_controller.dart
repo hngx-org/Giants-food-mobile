@@ -53,8 +53,8 @@ class AcceptInviteController extends GetxController {
     print("token ------ ${box.read("token")}");
     dynamic res = await ApiClient().acceptInvite(
       requestData: {
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjg0NDg3NzQ5LCJlbWFpbCI6InVtdW51Ym8ubGdAZ21haWwuY29tIn0sImlhdCI6MTY5NTU4NzQ4NSwiZXhwIjoxNjk1NjczODg1LCJ0eXBlIjoib3JnYW5pemF0aW9uSW52aXRlIn0.kZBI0X9ydzfUI1WGi3dZlRn_LDCE1I7Eh6i_t66tsdw"
-        // box.read("inviteToken"),
+        "token": box.read("inviteToken") ?? "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjg0NDg3NzQ5LCJlbWFpbCI6InVtdW51Ym8ubGdAZ21haWwuY29tIn0sImlhdCI6MTY5NTU4NzQ4NSwiZXhwIjoxNjk1NjczODg1LCJ0eXBlIjoib3JnYW5pemF0aW9uSW52aXRlIn0.kZBI0X9ydzfUI1WGi3dZlRn_LDCE1I7Eh6i_t66tsdw"
+        // ,
       },
     );
 
@@ -79,7 +79,7 @@ class AcceptInviteController extends GetxController {
         "last_name": lastNameController.text.trim(),
         "phone": phoneController.text.trim(),
         "password_hash": passwordController.text.trim(),
-        // "org_id": box.read("org_id")
+        "org_id": box.read("org_id") ?? "15"
       },
     );
     print("----- accept invite $res");

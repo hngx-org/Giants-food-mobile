@@ -25,7 +25,7 @@ class AddBankAccountController extends GetxController {
   }
 
   Future<void> addBankAccount({required int userID}) async {
-    final selectedCountry = this.selectedCountry;
+    // final selectedCountry = this.selectedCountry;
     final selectedBank = this.selectedBank;
     final accountNumber = accountNumberController.text.trim();
 

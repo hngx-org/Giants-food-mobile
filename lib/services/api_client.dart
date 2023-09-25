@@ -1,5 +1,4 @@
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
-import 'package:giants_free_lunch/models/app_model.dart';
 import '../core/app_export.dart';
 import '../core/utils/progress_dialog_utils.dart';
 import '../services/models/postOrganization/post_post_organization_invite_resp.dart';
