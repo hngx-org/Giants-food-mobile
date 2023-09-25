@@ -30,6 +30,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final firstName = box.read('firstName');
+    final lastName = box.read("lastName");
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
@@ -48,12 +50,13 @@ class ProfileScreen extends StatelessWidget {
                 Center(
                   child: Column(
                     children: [
-                      const Text(
+                      Text(
                         'My Profile',
                         style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                            color: Color(0xFF150D57)),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                          color: appTheme.primaryColor,
+                        ),
                       ),
                       const SizedBox(
                         height: 20,
@@ -73,9 +76,9 @@ class ProfileScreen extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      const Text(
-                        "John Olumide",
-                        style: TextStyle(
+                      Text(
+                        "$firstName $lastName",
+                        style: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w600),
                       ),
                       const SizedBox(

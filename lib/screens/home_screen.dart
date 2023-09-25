@@ -167,9 +167,8 @@ _recentBuild() {
 }
 
 _topBuild(BuildContext context) {
-  final firstName = box.read('firstName') ?? '';
+  final firstName = box.read('firstName');
   final companyName = box.read('companyName') ?? '';
-  final lunchBal = box.read("lunchBal") ?? 0;
   return Container(
     width: double.infinity,
     height: 250,
@@ -238,7 +237,9 @@ _topBuild(BuildContext context) {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 width: double.infinity,
                 text: "Lunch Balance",
-                count: lunchBal.toString(),
+                count: box.read('lunchBal') == null
+                    ? "0"
+                    : box.read('lunchBal').toString(),
                 image: Image.asset(
                   'assets/images/img_group16.png',
                   fit: BoxFit.cover,

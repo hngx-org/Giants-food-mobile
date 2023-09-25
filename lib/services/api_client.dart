@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
-import 'package:giants_free_lunch/models/app_model.dart';
 import 'package:giants_free_lunch/services/models/lunch/lunch_model.dart';
 import '../core/app_export.dart';
 import '../core/utils/progress_dialog_utils.dart';
@@ -155,7 +152,11 @@ class ApiClient extends GetConnect {
       } else if (response.statusCode == 400) {
         print("------------- ${response.statusCode}");
         return response.statusCode;
-      } else {
+      } else if (response.statusCode == 500){
+        print("------------- ${response.statusCode}");
+        return response.statusCode;
+      }
+      else {
         throw response.body != null ? response.body : 'Something Went Wrong!';
       }
     } catch (error, stackTrace) {
