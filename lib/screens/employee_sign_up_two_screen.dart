@@ -83,17 +83,16 @@ class _SecondSignUpState extends State<SecondSignUp> {
                     title: "Company Name",
                     controller: controller.companyNameController),
                 InputField(
-                    hint: "₦ 1,000 ",
+                    hint: "eg: ₦ 1,000 ",
                     title: "Lunch Price",
                     controller: controller.lunchPriceController),
                 const SizedBox(height: 10),
-                const CustomText(text: 'One free lunch worth ₦ 1,000.00 '),
+                //const CustomText(text: 'One free lunch worth ₦ 1,000.00 '),
                 SizedBox(height: 40.h),
                 AppButton(
                   buttonText: 'Finish Sign Up',
                   onPressed: () {
                     controller.validation();
-                    
                   },
                 )
               ],

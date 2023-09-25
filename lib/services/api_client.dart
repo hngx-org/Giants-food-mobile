@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
 import 'package:giants_free_lunch/models/app_model.dart';
+import 'package:giants_free_lunch/services/models/lunch/lunch_model.dart';
 import '../core/app_export.dart';
 import '../core/utils/progress_dialog_utils.dart';
 import '../services/models/postOrganization/post_post_organization_invite_resp.dart';
@@ -80,7 +83,7 @@ class ApiClient extends GetConnect {
         headers: headers,
         body: requestData,
       );
-      print("------------- $response");
+      print("------------- ${response.body}");
       ProgressDialogUtils.hideProgressDialog();
       if (_isSuccessCall(response)) {
         return response.body;
@@ -88,11 +91,8 @@ class ApiClient extends GetConnect {
         print("------------- ${response.statusCode}");
         errorMethod('Email or password incorrect');
         return response.statusCode;
-      } 
-      else {
-        throw response.body != null
-            ? response.body
-            : errorMethod('Email or password incorrect');
+      } else {
+        throw response.body != null ? response.body : 'Something when wrong';
       }
     } catch (error, stackTrace) {
       ProgressDialogUtils.hideProgressDialog();
@@ -263,8 +263,36 @@ class ApiClient extends GetConnect {
       rethrow;
     }
   }
-}
 
-// {
-//   "token": box.read("inviteToken");
-// }
+  Future<List<LunchsModel>> getLunchesByUserId({
+    required String userId,
+    Map<String, String> headers = const {},
+  }) async {
+    try {
+      await isNetworkConnected();
+      Response response = await httpClient.get(
+        '$url/api/lunches/$userId',
+        headers: headers,
+      );
+      print("------$response------");
+      print('Response Status Code: ${response.statusCode}');
+      print('Response Body: ${response.body}');
+      if (response.isOk) {
+        final responseData = response.body as List<dynamic>;
+        final lunchList =
+            responseData.map((json) => LunchsModel.fromJson(json)).toList();
+
+        return lunchList;
+      } else {
+        throw Exception('Failed to fetch data: ${response.statusText}');
+      }
+    } catch (error, stackTrace) {
+      ProgressDialogUtils.hideProgressDialog();
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+}

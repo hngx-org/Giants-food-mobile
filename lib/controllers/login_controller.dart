@@ -18,6 +18,7 @@ class SignInController extends GetxController {
   RxString accessToken = ''.obs;
   RxInt lunchBal = 0.obs;
   RxString companyName = ''.obs;
+  RxString userid = ''.obs;
   RxBool isLoggedIn = false.obs;
   GlobalKey<FormFieldState> formFieldKey = GlobalKey();
 
@@ -52,13 +53,14 @@ class SignInController extends GetxController {
       };
       dynamic response = await ApiClient().postLogin(requestData: requestData);
       print("---------- response $response");
-      if (response["user"]["email"] == emailController.text.trim()) {
+      if (response["user"]!["email"] == emailController.text.trim()) {
         print('Logged in as ${response["user"]["first_name"]}');
         // Update the observables
         firstName.value = response["user"]["first_name"] ?? '';
+        userid.value = response["user"]["id"] ?? '';
         email.value = response["user"]["email"] ?? '';
-        accessToken.value = response["tokens"]["access"]["token"] ?? '';
-        // companyName.value = response["user"]["first_name"] ?? '';
+        accessToken.value = response["tokens"]["refresh"]["token"] ?? '';
+        companyName.value = response["user"]['organization']["name"] ?? '';
         lunchBal.value = response["user"]["lunch_credit_balance"] ?? 0;
 
         print('token: --------- $accessToken');
@@ -70,14 +72,15 @@ class SignInController extends GetxController {
         box.write('firstName', firstName.value);
         box.write('email', email.value);
         box.write('token', accessToken.value);
-        // box.write('companyName', companyName.value);
+        box.write('companyName', companyName.value);
+        box.write('userID', userid.value);
 
         emailController.clear();
         passwordController.clear();
 
         Get.off(HomePage());
       } else {
-        print('Login failed: $response');
+        print('fetching failed: $response');
         errorMethod('Email or Password Incorrect');
       }
     } catch (e) {

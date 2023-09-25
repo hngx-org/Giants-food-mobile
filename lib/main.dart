@@ -109,7 +109,9 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
           ),
           home: Obx(() {
-            return _signController.isLoggedIn.value ? HomePage(): const SignIn() ;
+            return _signController.isLoggedIn.value
+                ? const SignIn()
+                : HomePage();
           }),
         );
       },

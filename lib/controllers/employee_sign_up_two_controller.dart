@@ -37,6 +37,8 @@ class SecondSignUpController extends GetxController {
       print("#### 400");
       errorMethod("Error");
     } else if (res["name"] == companyNameController.text.trim()) {
+      box.write("token", res["user"]["organization"]["name"]);
+
       Get.offAll(HomePage());
     } else {
       errorMethod("An Error Occurred");
