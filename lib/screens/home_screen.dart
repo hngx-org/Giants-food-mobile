@@ -83,7 +83,7 @@ class HomePage extends StatelessWidget {
                             trailing: Column(
                               children: [
                                 Text(
-                                  'From: ${item.senderId}',
+                                  'From: ${item.senderId.toString()}',
                                   style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w700,
@@ -93,7 +93,7 @@ class HomePage extends StatelessWidget {
                                   height: 5,
                                 ),
                                 Text(
-                                  item.createdAt.toString(),
+                                  item.createdAt ?? "",
                                   style: TextStyle(
                                     fontSize: 10,
                                     fontWeight: FontWeight.w500,
@@ -237,7 +237,9 @@ _topBuild(BuildContext context) {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 width: double.infinity,
                 text: "Lunch Balance",
-                count: box.read('lunchBal') == null? "0": box.read('lunchBal').toString(),
+                count: box.read('lunchBal') == null
+                    ? "0"
+                    : box.read('lunchBal').toString(),
                 image: Image.asset(
                   'assets/images/img_group16.png',
                   fit: BoxFit.cover,

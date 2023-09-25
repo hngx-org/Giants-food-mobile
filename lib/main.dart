@@ -8,6 +8,7 @@ import 'package:giants_free_lunch/screens/landing_page.dart';
 import 'package:uni_links/uni_links.dart';
 import './core/app_export.dart';
 import 'screens/login_screen.dart';
+import 'screens/reset_password.dart';
 
 AppTheme appTheme = AppTheme();
 final box = GetStorage();
@@ -30,7 +31,7 @@ Future<void> initUniLinks() async {
     print("initialLink $initialLink");
     if (initialLink != null) {
       print("token link ${initialLink.toString().split("=").last}");
-      box.write("inviteToken", initialLink.queryParameters["token"]);
+      // box.write("inviteToken", initialLink.queryParameters["token"]);
       handleLink(initialLink);
     }
   } on PlatformException {
@@ -47,20 +48,17 @@ Future<void> initUniLinks() async {
 
 void handleLink(Uri? uri) {
   if (uri != null) {
-    //   // String token = jsonEncode(uri.queryParameters);
-
-    //   String path = uri.pathSegments[0];
-    //   // if (path == "acceptInvite"){
-
-    runApp(const MyAppDeepLink());
-    //   // }
-    // } else {
-    // if (uri != null && uri.queryParameters.isNotEmpty) {
-    //   // String token = jsonEncode(uri.queryParameters);
-    //   box.write("inviteToken", uri.queryParameters["token"]);
-    //   String path = uri.pathSegments[0];
-    //   // if (path == "acceptInvite"){
-    //   runApp(const MyAppDeepLink());
+    if (uri.pathSegments[0] != null && uri.queryParameters.isNotEmpty) {
+      String path = uri.pathSegments[0];
+      if (path == "acceptInvite"){
+        box.write("inviteToken", uri.queryParameters["token"]);
+        runApp(const MyAppDeepLink());
+      }
+      if (path == "resetPassword"){
+        box.write("resetPassToken", uri.queryParameters["token"]);
+        runApp(const ResetPasswordDeepLink());
+      }
+    }
   }
 }
 
@@ -89,13 +87,12 @@ class MyAppDeepLink extends StatelessWidget {
   }
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ResetPasswordDeepLink extends StatelessWidget {
+  const ResetPasswordDeepLink({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final _signController = Get.put(SignInController());
     return ScreenUtilInit(
       designSize: const Size(360, 780),
       builder: (context, child) {
@@ -108,13 +105,37 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: Obx(
-            () {
-              return _signController.isLoggedIn.value
-                  ? HomePage()
-                  : const SignIn();
-            },
+          home: const ResetPasswordScreen(),
+        );
+      },
+    );
+  }
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    final signController = Get.put(SignInController());
+    return ScreenUtilInit(
+      designSize: const Size(360, 780),
+      builder: (context, child) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Free Lunch App',
+          theme: ThemeData(
+            scaffoldBackgroundColor: appTheme.appBackgroundColor,
+            fontFamily: 'Inter',
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
           ),
+          home: Obx(() {
+            return signController.isLoggedIn.value
+                ? HomePage()
+                : const SignIn();
+          }),
         );
       },
     );
