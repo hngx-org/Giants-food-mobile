@@ -71,6 +71,39 @@ class ApiClient extends GetConnect {
   /// with the provided headers and request data
   /// Returns a [PostPostLoginResp] object representing the response.
   /// Throws an error if the request fails or an exception occurs.
+
+  Future<dynamic> acceptInvite({
+    Map<String, String> headers = const {},
+    Map requestData = const {},
+  }) async {
+    ProgressDialogUtils.showProgressDialog();
+    try {
+      await isNetworkConnected();
+      Response response = await httpClient.post(
+        '$url/api/organizations/accept-invite',
+        headers: headers,
+        body: requestData,
+      );
+      print("------------- $response");
+      ProgressDialogUtils.hideProgressDialog();
+      if (_isSuccessCall(response)) {
+        return response.body;
+      } else if (response.statusCode == 400) {
+        print("------------- ${response.statusCode}");
+        return response.statusCode;
+      } else {
+        throw response.body != null ? response.body : 'Something Went Wrong!';
+      }
+    } catch (error, stackTrace) {
+      ProgressDialogUtils.hideProgressDialog();
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+
   Future<dynamic> postLogin({
     Map<String, String> headers = const {},
     Map<String, dynamic> requestData = const {},
@@ -269,36 +302,36 @@ class ApiClient extends GetConnect {
     }
   }
 
-  Future<dynamic> acceptInvite({
-    Map<String, String> headers = const {},
-    Map requestData = const {},
-  }) async {
-    ProgressDialogUtils.showProgressDialog();
-    try {
-      await isNetworkConnected();
-      Response response = await httpClient.post(
-          '$url/api/organizations/accept-invite',
-          headers: headers,
-          body: requestData);
-      print("------------- $response");
-      ProgressDialogUtils.hideProgressDialog();
-      if (_isSuccessCall(response)) {
-        return response.body;
-      } else if (response.statusCode == 400) {
-        print("------------- ${response.statusCode}");
-        return response.statusCode;
-      } else {
-        throw response.body != null ? response.body : 'Something Went Wrong!';
-      }
-    } catch (error, stackTrace) {
-      ProgressDialogUtils.hideProgressDialog();
-      Logger.log(
-        error,
-        stackTrace: stackTrace,
-      );
-      rethrow;
-    }
-  }
+  // Future<dynamic> acceptInvite({
+  //   Map<String, String> headers = const {},
+  //   Map requestData = const {},
+  // }) async {
+  //   ProgressDialogUtils.showProgressDialog();
+  //   try {
+  //     await isNetworkConnected();
+  //     Response response = await httpClient.post(
+  //         '$url/api/organizations/accept-invite',
+  //         headers: headers,
+  //         body: requestData);
+  //     print("------------- $response");
+  //     ProgressDialogUtils.hideProgressDialog();
+  //     if (_isSuccessCall(response)) {
+  //       return response.body;
+  //     } else if (response.statusCode == 400) {
+  //       print("------------- ${response.statusCode}");
+  //       return response.statusCode;
+  //     } else {
+  //       throw response.body != null ? response.body : 'Something Went Wrong!';
+  //     }
+  //   } catch (error, stackTrace) {
+  //     ProgressDialogUtils.hideProgressDialog();
+  //     Logger.log(
+  //       error,
+  //       stackTrace: stackTrace,
+  //     );
+  //     rethrow;
+  //   }
+  // }
 
   Future<List<LunchsModel>> getLunchesByUserId({
     required String userId,
