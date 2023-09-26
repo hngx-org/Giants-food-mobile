@@ -60,13 +60,11 @@ Future<void> handleLink(Uri? uri) async {
     if (uri != null) {
       if (uri.pathSegments[0] != null && uri.queryParameters.isNotEmpty) {
         String path = uri.pathSegments[0];
-        if (path == "acceptInvite"){
+        if (path == "acceptInvite") {
           box.write("inviteToken", uri.queryParameters["token"]);
           Map invited = await apiClient.acceptInvite(
-            requestData: {
-              "token": uri.queryParameters["token"]
-            },
-          )
+            requestData: {"token": uri.queryParameters["token"]},
+          );
           if (invited["message"] == "user added successfully") {
             runApp(const ResetPasswordDeepLink());
             // runApp(const MyApp());
@@ -76,7 +74,7 @@ Future<void> handleLink(Uri? uri) async {
           }
           // handleInvite(uri.queryParameters["token"])
         }
-        if (path == "resetPassword"){
+        if (path == "resetPassword") {
           box.write("resetPassToken", uri.queryParameters["token"]);
           // runApp(const ResetPasswordDeepLink());
         }
@@ -105,7 +103,7 @@ class MyAppDeepLink extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const AcceptInviteScreen(),
+          home: AcceptInviteScreen(),
         );
       },
     );
