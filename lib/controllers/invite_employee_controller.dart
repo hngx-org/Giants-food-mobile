@@ -28,9 +28,8 @@ class InviteController extends GetxController {
     print("----- ${res["message"]}");
     if (res["message"] == "User invited succesfully") {
       print("true");
-
-      Get.back();
       successMethod("User invited succesfully");
+      Get.back();
     } else {
       errorMethod("An Error Occurred");
       // Map<String, dynamic> tokens = res['tokens'];

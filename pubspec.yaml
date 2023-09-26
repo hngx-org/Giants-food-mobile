@@ -71,7 +71,7 @@ flutter:
   uses-material-design: true
   assets: 
     - assets/
-    - assets/images/
+    - assets/images/group-16-79Z.png
   fonts: 
     - family: Lucida Bright
       fonts: 
