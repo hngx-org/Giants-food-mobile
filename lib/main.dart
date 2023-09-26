@@ -9,9 +9,13 @@ import 'package:uni_links/uni_links.dart';
 import './core/app_export.dart';
 import 'screens/login_screen.dart';
 import 'screens/reset_password.dart';
+import 'screens/accept_invite.dart';
+import 'package:giants_free_lunch/services/api_client.dart';
 
 AppTheme appTheme = AppTheme();
 final box = GetStorage();
+
+final apiClient = ApiClient();
 
 void main() async {
   await GetStorage.init();
@@ -46,19 +50,40 @@ Future<void> initUniLinks() async {
   _sub.cancel();
 }
 
-void handleLink(Uri? uri) {
-  if (uri != null) {
-    if (uri.pathSegments[0] != null && uri.queryParameters.isNotEmpty) {
-      String path = uri.pathSegments[0];
-      if (path == "acceptInvite"){
-        box.write("inviteToken", uri.queryParameters["token"]);
-        runApp(const MyAppDeepLink());
-      }
-      if (path == "resetPassword"){
-        box.write("resetPassToken", uri.queryParameters["token"]);
-        runApp(const ResetPasswordDeepLink());
+// void handleInvite(String token) {
+//   runApp(const ResetPasswordDeepLink());
+// }
+// void handleReset(String token, String type) {}
+
+Future<void> handleLink(Uri? uri) async {
+  try {
+    if (uri != null) {
+      if (uri.pathSegments[0] != null && uri.queryParameters.isNotEmpty) {
+        String path = uri.pathSegments[0];
+        if (path == "acceptInvite"){
+          box.write("inviteToken", uri.queryParameters["token"]);
+          Map invited = await apiClient.acceptInvite(
+            requestData: {
+              "token": uri.queryParameters["token"]
+            },
+          )
+          if (invited["message"] == "user added successfully") {
+            runApp(const ResetPasswordDeepLink());
+            // runApp(const MyApp());
+          } else {
+            runApp(const ResetPasswordDeepLink());
+            // runApp(const MyAppDeepLink());
+          }
+          // handleInvite(uri.queryParameters["token"])
+        }
+        if (path == "resetPassword"){
+          box.write("resetPassToken", uri.queryParameters["token"]);
+          // runApp(const ResetPasswordDeepLink());
+        }
       }
     }
+  } on PlatformException {
+    // Handle exceptions if any
   }
 }
 
@@ -80,7 +105,7 @@ class MyAppDeepLink extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const LandingPage(),
+          home: const AcceptInviteScreen(),
         );
       },
     );
