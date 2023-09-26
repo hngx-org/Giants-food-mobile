@@ -74,6 +74,8 @@ class SignInController extends GetxController {
         box.write('token', response["tokens"]["access"]["token"]);
         box.write('refreshToken', response["tokens"]["refresh"]["token"]);
         // box.write(
+        box.write('token', response["tokens"]["refresh"]["token"]);
+        box.write('orgId', response['user']['org_id']);
         //     'companyName', response["user"]['organization']["name"] ?? "");
         box.write('userID', response["user"]["id"]);
         box.write('lunchBal', response["user"]["lunch_credit_balance"]);

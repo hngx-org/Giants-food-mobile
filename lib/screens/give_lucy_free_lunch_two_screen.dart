@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:giants_free_lunch/controllers/give_lucy_free_lunch_two_controller.dart';
 import 'package:giants_free_lunch/core/app_export.dart';
-import 'package:giants_free_lunch/screens/success_screen.dart';
 
 class GiveLucyFreeLunchTwoScreen extends StatefulWidget {
-  const GiveLucyFreeLunchTwoScreen({super.key});
+  final String userId;
+  final String firstName;
+  final String lastName;
+
+  const GiveLucyFreeLunchTwoScreen(
+      {super.key,
+      required this.userId,
+      required this.firstName,
+      required this.lastName});
 
   @override
   State<GiveLucyFreeLunchTwoScreen> createState() =>
@@ -15,6 +23,7 @@ class _GiveLucyFreeLunchTwoScreenState
     extends State<GiveLucyFreeLunchTwoScreen> {
   final TextEditingController _complimentController = TextEditingController();
   int index = 0;
+  final lunchController = Get.put(SendLunchController());
 
   @override
   void dispose() {
@@ -25,6 +34,7 @@ class _GiveLucyFreeLunchTwoScreenState
 
   @override
   Widget build(BuildContext context) {
+    String fullName = '${widget.firstName} ${widget.lastName}';
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -44,7 +54,7 @@ class _GiveLucyFreeLunchTwoScreenState
           children: [
             const Spacer(),
             Text(
-              'Give Lucy free lunch',
+              'Give ${widget.firstName} free lunch',
               style: TextStyle(
                 fontSize: 18.0,
                 shadows: const [
@@ -72,7 +82,6 @@ class _GiveLucyFreeLunchTwoScreenState
               width: 30,
             ),
             const Spacer()
-            //Image.asset('assets/images/img_unsplashe9gnuhpsg1w_31x31.png')
           ],
         ),
       ),
@@ -80,153 +89,172 @@ class _GiveLucyFreeLunchTwoScreenState
           child: Padding(
         padding: const EdgeInsets.only(top: 21, left: 21, right: 21),
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                height: 92,
-                width: 92,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(
-                            ImageConstant.imgUnsplashe9gnuhpsg1w92x92)),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(width: 3, color: Color(0xff8a8a8a))),
-              ),
-              const SizedBox(
-                height: 4,
-              ),
-              const Text(
-                'Lucy John',
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'inter',
-                  fontStyle: FontStyle.normal,
-                  height: 2.0,
-                  color: Color(0xff000000),
+          child: Form(
+            key: lunchController.lunchKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  height: 92,
+                  width: 92,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(
+                              ImageConstant.imgUnsplashe9gnuhpsg1w92x92)),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(width: 3, color: Color(0xff8a8a8a))),
                 ),
-              ),
-              const SizedBox(
-                height: 4,
-              ),
-              const Text(
-                'HR Administration',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'inter',
-                  fontStyle: FontStyle.normal,
-                  height: 2.0,
-                  color: Color(0xff333333),
+                const SizedBox(
+                  height: 4,
                 ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              SvgPicture.asset(
-                  height: 57.42, width: 46, ImageConstant.imgTrashAmberA200),
-              const SizedBox(
-                height: 12,
-              ),
-              buildEditField(
-                  keyboard: TextInputType.multiline,
-                  title: 'Compliment',
-                  textController: _complimentController,
-                  fieldHeight: 108),
-              const SizedBox(
-                height: 16,
-              ),
-              const Row(
-                children: [
-                  Text(
-                    'Select number of lunch',
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'inter',
-                      fontStyle: FontStyle.normal,
-                      color: Colors.black,
-                    ),
+                Text(
+                  fullName,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'inter',
+                    fontStyle: FontStyle.normal,
+                    height: 2.0,
+                    color: Color(0xff000000),
                   ),
-                ],
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 70),
-                child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: 40,
-                      mainAxisSpacing: 40,
-                      crossAxisCount: 2,
-                      childAspectRatio: 1.3,
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                const Text(
+                  'HR Administration',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'inter',
+                    fontStyle: FontStyle.normal,
+                    height: 2.0,
+                    color: Color(0xff333333),
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                SvgPicture.asset(
+                    height: 57.42, width: 46, ImageConstant.imgTrashAmberA200),
+                const SizedBox(
+                  height: 12,
+                ),
+                buildEditField(
+                    keyboard: TextInputType.multiline,
+                    title: 'Compliment',
+                    textController: lunchController.complimentController,
+                    fieldHeight: 108),
+                const SizedBox(
+                  height: 16,
+                ),
+                const Row(
+                  children: [
+                    Text(
+                      'Select number of lunch',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'inter',
+                        fontStyle: FontStyle.normal,
+                        color: Colors.black,
+                      ),
                     ),
-                    itemCount: mealCategory.length,
-                    shrinkWrap: true,
-                    physics: const ScrollPhysics(),
-                    itemBuilder: (context, i) {
-                      return InkWell(
-                        onTap: () {
-                          setState(() {
-                            index = i;
-                          });
-                        },
-                        child: Container(
-                          width: 84,
-                          height: 65,
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            border: Border.all(
-                              color: index == i
-                                  ? appTheme.primary600
-                                  : Colors.black,
+                  ],
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 70),
+                  child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisSpacing: 40,
+                        mainAxisSpacing: 40,
+                        crossAxisCount: 2,
+                        childAspectRatio: 1.3,
+                      ),
+                      itemCount: mealCategory.length,
+                      shrinkWrap: true,
+                      physics: const ScrollPhysics(),
+                      itemBuilder: (context, i) {
+                        return InkWell(
+                          onTap: () {
+                            setState(() {
+                              switch (i) {
+                                case 0:
+                                  index = 1;
+                                  break;
+                                case 1:
+                                  index = 2;
+                                  break;
+                                case 2:
+                                  index = 3;
+                                  break;
+                                case 3:
+                                  index = 3;
+                                  break;
+                              }
+
+                              print(index);
+                            });
+                          },
+                          child: Container(
+                            width: 84,
+                            height: 65,
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              border: Border.all(
+                                color: index == i + 1
+                                    ? appTheme.primary600
+                                    : Colors.black,
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                    height: 23,
+                                    width: 24,
+                                    child: Image.asset(
+                                        ImageConstant.imgGroup1623x24)),
+                                Text(
+                                  mealCategory[i].title,
+                                  style: const TextStyle(
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: 'inter',
+                                    fontStyle: FontStyle.normal,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                  height: 23,
-                                  width: 24,
-                                  child: Image.asset(
-                                      ImageConstant.imgGroup1623x24)),
-                              Text(
-                                mealCategory[i].title,
-                                style: const TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.w600,
-                                  fontFamily: 'inter',
-                                  fontStyle: FontStyle.normal,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    }),
-              ),
-              const SizedBox(
-                height: 38,
-              ),
-              buildButton(
-                onPressed: () {
-                  Get.to(SuccessScreen());
-                },
-                buttonText: 'Give free lunch',
-              ),
-              const SizedBox(
-                height: 38,
-              ),
-            ],
+                        );
+                      }),
+                ),
+                const SizedBox(
+                  height: 38,
+                ),
+                buildButton(
+                  onPressed: () {
+                    lunchController.validation(
+                        userId: widget.userId, numberOfLunch: index);
+                  },
+                  buttonText: 'Give free lunch',
+                ),
+                const SizedBox(
+                  height: 38,
+                ),
+              ],
+            ),
           ),
         ),
       )),

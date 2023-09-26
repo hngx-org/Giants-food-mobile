@@ -1,4 +1,5 @@
 import 'package:giants_free_lunch/core/extentions/extenstion.dart';
+import 'package:giants_free_lunch/services/models/lunch/employee_model.dart';
 import 'package:giants_free_lunch/services/models/lunch/lunch_model.dart';
 import '../core/app_export.dart';
 import '../core/utils/progress_dialog_utils.dart';
@@ -222,11 +223,10 @@ class ApiClient extends GetConnect {
       } else if (response.statusCode == 400) {
         print("------------- ${response.statusCode}");
         return response.statusCode;
-      } else if (response.statusCode == 500){
+      } else if (response.statusCode == 500) {
         print("------------- ${response.statusCode}");
         return response.statusCode;
-      }
-      else {
+      } else {
         throw response.body != null ? response.body : 'Something Went Wrong!';
       }
     } catch (error, stackTrace) {
@@ -354,6 +354,71 @@ class ApiClient extends GetConnect {
             responseData.map((json) => LunchsModel.fromJson(json)).toList();
 
         return lunchList;
+      } else {
+        throw Exception('Failed to fetch data: ${response.statusText}');
+      }
+    } catch (error, stackTrace) {
+      ProgressDialogUtils.hideProgressDialog();
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+
+  Future<dynamic> sendLunch({
+    Map<String, String> headers = const {},
+    Map requestData = const {},
+  }) async {
+    ProgressDialogUtils.showProgressDialog();
+    try {
+      await isNetworkConnected();
+      Response response = await httpClient.post(
+        '$url/api/lunches',
+        headers: headers,
+        body: requestData,
+      );
+      print("------------- $response");
+      ProgressDialogUtils.hideProgressDialog();
+      if (_isSuccessCall(response)) {
+        return response.body;
+      } else if (response.statusCode == 400) {
+        print("------------- ${response.statusCode}");
+        return response.statusCode;
+      } else {
+        throw response.body != null ? response.body : 'Something Went Wrong!';
+      }
+    } catch (error, stackTrace) {
+      ProgressDialogUtils.hideProgressDialog();
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+
+  Future<List<EmployeeModel>> getEmployeeByOrgId({
+    required String orgId,
+    Map<String, String> headers = const {},
+  }) async {
+    try {
+      print('in org');
+      await isNetworkConnected();
+      Response response = await httpClient.get(
+        '$url/api/organizations/$orgId/users',
+        headers: headers,
+      );
+      print("------$response------");
+      print('Response Status Code: ${response.statusCode}');
+      print('Response Body: ${response.body}');
+      if (response.isOk) {
+        final responseData = response.body as List<dynamic>;
+        final employeeList =
+            responseData.map((json) => EmployeeModel.fromJson(json)).toList();
+
+        return employeeList;
       } else {
         throw Exception('Failed to fetch data: ${response.statusText}');
       }
