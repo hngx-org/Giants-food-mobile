@@ -244,7 +244,7 @@ class ActivityScreen extends StatelessWidget {
                                             width: 30.22 * fem,
                                             height: 24 * fem,
                                             child: Image.asset(
-                                              'images/group-16-79Z.png',
+                                              'assets/images/group-16-79Z.png',
                                               fit: BoxFit.cover,
                                             ),
                                           ),
